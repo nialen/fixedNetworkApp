@@ -1,0 +1,51 @@
+body{
+	background: #fff;
+}
+.wrapper {
+    width: 20rem;
+    margin: 0 auto;
+}
+header{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 2.611111rem;
+	background: #333333;
+	color: #fff;
+	line-height: 2.611111rem;
+	text-align: center;
+}
+header .header-title{
+	font-size: 0.944444rem;
+}
+header .back{
+	position: absolute;
+	left: 0.777778rem;
+	top: 0;
+	font-size: 0.8rem;
+}
+header .back .iconfont{
+	font-size: 0.8rem;
+}
+
+.top{
+	position: absolute;
+	top: 2.611111rem;
+	left: 0;
+	width: 100%;
+	height: 2.333333rem;
+	background: #ffe5e9;
+	line-height: 2.333333rem;
+	border-bottom: 1px solid #ddd;
+}
+.top .top-title{
+	padding-left: 0.777778rem;
+	color: #ff002a;
+	font-size: 0.8rem;
+}
+.top .top-title .iconfont{
+	color: #ff002a;
+	font-size: 1.066667rem;
+	vertical-align: top;
+}
