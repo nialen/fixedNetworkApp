@@ -20,3 +20,98 @@ header .back{
 header .back i.iconfont{
 	font-size: 0.8rem;
 }
+.p-titl{
+	height: 2.24rem;
+	line-height: 2.24rem;
+	background: #ffe5e9;
+	color:#ff002a;
+	font-size: 0.8rem;	
+}
+.p-titl i.iconfont{
+	font-size: 1.013333rem;
+	margin: 0 0.293333rem 0 0.8rem;
+}
+.base-info{
+	margin-left: 1.653333rem;
+}
+.bottom-line{
+	border-bottom: 1px solid #e1e0e1;
+}
+.info-line{
+	position: relative;
+	height: 2.346667rem;
+	line-height: 2.346667rem;
+	padding-left: 4.0rem;
+	font-size: 0.746667rem;
+}
+.info-line .info-label{
+	position: absolute;
+	left:0;
+	color: #7f7e7e;
+	width: 4.0rem;
+	text-align: right;
+} 
+.info-radio{
+	display: flex;
+}
+.textarea-box{
+	width: 12.96rem;
+	height: 5.226667rem;
+	border: 1px solid #d1d1d1;
+	border-radius: 0.16rem;
+}
+.radioclass{
+	margin-right: 0.6rem;
+}
+.radioclass:last-child{
+	margin-right:0;
+}
+.radioclass input[type=radio] {
+	display: none;
+}
+.radioclass input[type=radio] + span {
+	position: relative;
+	display: inline-block;
+	padding-left: 1.44rem;
+}
+.radioclass input[type=radio] + span::after {
+	content: '';
+	position: absolute;
+	top: 0.533333rem;
+	left: 0;
+	width: 1.066667rem;
+	height: 1.066667rem;
+	background: url('../../resources/images/icon-nocheck.png') no-repeat;
+	background-size: 1.066667rem 1.066667rem;
+}
+.radioclass input[type=radio]:checked + span::after {
+	content: '';
+	position: absolute;
+	top: 0.533333rem;
+	left: 0;
+	width: 1.066667rem;
+	height: 1.066667rem;
+	background: url('../../resources/images/icon-checked.png') no-repeat;
+	background-size: 1.066667rem 1.066667rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
