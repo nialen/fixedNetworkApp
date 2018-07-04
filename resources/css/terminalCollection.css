@@ -20,12 +20,19 @@ header .back{
 header .back i.iconfont{
 	font-size: 0.8rem;
 }
+.top-line{
+	border-top: 1px solid #e0c6cb;
+}	
+.bottom-line{
+	border-bottom: 1px solid #e1e0e1;
+}
 .p-titl{
 	height: 2.24rem;
 	line-height: 2.24rem;
 	background: #ffe5e9;
 	color:#ff002a;
-	font-size: 0.8rem;	
+	font-size: 0.8rem;
+	border-bottom: 1px solid #dddddd;	
 }
 .p-titl i.iconfont{
 	font-size: 1.013333rem;
@@ -33,13 +40,12 @@ header .back i.iconfont{
 }
 .base-info{
 	margin-left: 1.653333rem;
+	padding-bottom: 0.8rem;
 }
-.bottom-line{
-	border-bottom: 1px solid #e1e0e1;
-}
+
 .info-line{
 	position: relative;
-	height: 2.346667rem;
+	min-height: 2.346667rem;
 	line-height: 2.346667rem;
 	padding-left: 4.0rem;
 	font-size: 0.746667rem;
@@ -55,10 +61,13 @@ header .back i.iconfont{
 	display: flex;
 }
 .textarea-box{
-	width: 12.96rem;
+	width: 80%;
 	height: 5.226667rem;
 	border: 1px solid #d1d1d1;
 	border-radius: 0.16rem;
+	padding: 0.533333rem;
+	font-size: 0.746667rem;
+	line-height: 0.853333rem;
 }
 .radioclass{
 	margin-right: 0.6rem;
