@@ -1,0 +1,727 @@
+.zhezhao {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 98;
+	height: 100%;
+	width: 100%;
+}
+
+input {
+	outline: 0;
+}
+
+/* ngselect */
+.ng-select-box {
+	position: relative;
+	width: 100%;
+	height: 25px;
+	background: #fff;
+	border-radius: 14px;
+}
+
+.ng-select-box .select-bg {
+	position: absolute;
+	top: 0;
+	right: 1px;
+	z-index: 99;
+	content: '';
+	display: block;
+	width: 30px;
+	height: 25px;
+	border-left: 1px solid #ccc;
+	background: url('../images/select_bg-blue.png') 45% center no-repeat;
+	cursor: pointer;
+}
+
+.ng-select-box input {
+	position: relative;
+	z-index: 10;
+	width: 100%;
+	height: 25px;
+	padding: 0 12px;
+	border: 1px solid #ccc;
+	border-radius: 14px;
+	background: none;
+	line-height: 25px;
+	cursor: pointer;
+}
+
+.ng-select-box.disabled input[type="text"] {
+	background-color: #eee;
+}
+
+.ng-select-box input:focus {
+	outline: 0;
+}
+
+.ng-select-box span {
+	position: absolute;
+	right: 34px;
+	top: 7px;
+	width: 13px;
+	height: 13px;
+	color: #6d90e3;
+	text-align: center;
+	line-height: 13px;
+	cursor: pointer;
+	z-index: 15;
+}
+
+.select-opt-list {
+	position: absolute;
+	left: 0;
+	top: 26px;
+	width: 100%;
+	z-index: 9999;
+	background: #fff;
+	border: 1px solid #ccc;
+}
+
+.select-opt-list li {
+	height: 30px;
+	line-height: 30px;
+	padding: 0 10px;
+	cursor: pointer;
+}
+
+.select-opt-list li:hover {
+	background: #6d90e3;
+	color: #fff;
+}
+
+/* ngselect */
+
+/* ng-multi-select */
+.choice-box {
+	position: absolute;
+	top: 30px;
+	z-index: 999;
+	width: 520px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	overflow: hidden;
+}
+
+.keepleft {
+	left: 0px;
+}
+
+.keepright {
+	right: 0px;
+}
+
+.choice-box-head {
+	padding: 3px 0;
+	background: #fafafa;
+	line-height: 31px;
+	border-bottom: 1px dashed #e5e5e5;
+}
+
+.choice-box-title {
+	padding-left: 10px;
+	color: #777677;
+}
+
+.choice-box-msg {
+	color: #24c7b6;
+}
+
+.choice-list {
+	margin-top: 0;
+	margin-left: 75px;
+	margin-right: 55px;
+	width: calc(100% - 125px);
+	max-height: 50px;
+	vertical-align: top;
+	overflow: auto;
+}
+
+.choice-list li {
+	position: relative;
+	float: left;
+	display: inline-block;
+	margin-top: 5px;
+	margin-right: 5px;
+	padding: 0 16px 0 4px;
+	max-width: 100px;
+	height: 20px;
+	line-height: 20px;
+	border: 1px solid #c7c7c7;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+
+.choice-list li .choice-del {
+	position: absolute;
+	right: 3px;
+	top: 0;
+	cursor: pointer;
+}
+
+.choice-footer {
+	padding: 0 0 10px;
+	text-align: center;
+}
+
+.btn-choice {
+	border: 1px solid #6d90e3;
+	font-weight: 400;
+	border-radius: 15px;
+	padding: 5px 20px;
+	margin: 0 5px;
+	cursor: pointer;
+	line-height: normal;
+	color: #6d90e3;
+	background-color: #d1dfff;
+}
+
+.btn-choice:hover {
+	background-color: #6180c9;
+	border-color: #6180c9;
+	color: #fff;
+}
+
+.choice-content {
+	padding: 10px;
+	color: #000;
+}
+
+.choice-brand-list {
+	margin-left: 36px;
+	max-height: 160px;
+	width: calc(100% - 40px);
+	overflow: auto;
+}
+
+.choice-content-list li {
+	float: left;
+	display: inline-block;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	padding: 0 5px;
+	height: 22px;
+	line-height: 22px;
+	text-align: left;
+	border: 1px solid #fff;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+
+.choice-content-list li:hover {
+	background-color: #6d90e3;
+	color: #fff;
+}
+
+.choice-content-list li.selected {
+	color: #fff;
+	background-color: #6d90e3;
+}
+
+.choice-phone-title {
+	height: 22px;
+	color: #777677;
+	line-height: 22px;
+}
+
+.choice-phone-list {
+	margin-left: 36px;
+}
+
+.choice-phone-list li {
+	float: left;
+	display: inline-block;
+	margin-right: 1px;
+	margin-bottom: 3px;
+	padding: 0 3px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	border: 1px solid #fff;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+
+.choice-phone-list li:hover {
+	border: 1px solid #6d90e3;
+}
+
+.choice-phone-list li.selected {
+	border: 1px solid #6d90e3;
+}
+
+.choice-phone-form {
+	position: relative;
+	margin-left: 36px;
+	width: 200px;
+	padding-right: 75px;
+}
+
+.choice-phone-form .choice-phone-input {
+	height: 27px;
+	line-height: 27px;
+	border: 1px solid #b0b0b0;
+}
+
+.multi-select {
+	position: relative;
+}
+
+.multi-select .select-bg {
+	position: absolute;
+	top: 0;
+	right: 1px;
+	z-index: 99;
+	content: '';
+	display: block;
+	width: 30px;
+	height: 25px;
+	border-left: 1px solid #ccc;
+	background: url('../images/select_bg-blue.png') 45% center no-repeat;
+	cursor: pointer;
+	border-top-right-radius: 14px;
+	border-bottom-right-radius: 14px;
+}
+
+.multi-select.disabled input[type="text"] {
+	background-color: #eee;
+}
+
+.multi-select input[type="text"].prv-input {
+	position: relative;
+	z-index: 10;
+	width: 100% !important;
+	height: 25px;
+	padding: 0 34px 0 12px;
+	border: 1px solid #ccc;
+	border-radius: 14px;
+	line-height: 25px;
+	cursor: pointer;
+}
+
+.del-multi-select {
+	position: absolute;
+	right: 34px;
+	top: 7px;
+	width: 13px;
+	height: 13px;
+	color: #6d90e3;
+	text-align: center;
+	line-height: 13px;
+	cursor: pointer;
+	z-index: 15;
+}
+
+/* ng-multi-select */
+
+/* ng-pages */
+.pagination {
+	margin: 0;
+}
+
+.pagination > li > a, .pagination > li > span {
+	color: #666;
+}
+
+.pagination-sm > li > a, .pagination-sm > li > span {
+	padding: 3px 18px;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+	background-color: #6d90e3;
+	border-color: #6d90e3;
+}
+
+.page {
+	position: relative;
+	height: 26px;
+	margin-bottom: 10px;
+}
+
+.page-size {
+	position: absolute;
+	top: 2px;
+	left: 10px;
+	height: 22px;
+	color: #4c4c4c;
+	line-height: 22px;
+}
+
+.size-select {
+	margin: 0 2px;
+	vertical-align: inherit;
+}
+
+.page-num {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	height: 16px;
+	color: #4c4c4c;
+	line-height: 16px;
+}
+
+.page-num .number {
+	display: inline-block;
+	height: 16px;
+	line-height: 16px;
+	margin: 0 3px;
+	padding: 0 4px;
+	background-color: #6d90e3;
+	border-radius: 5px;
+	color: #fff;
+}
+
+/* ng-pages */
+
+/* ng-city-check */
+.ng-city-check {
+	position: relative;
+	width: 100%;
+}
+
+.ng-city-check input {
+	width: 100%;
+	height: 25px;
+	padding: 0 12px;
+	border: 1px solid #ccc;
+	border-radius: 14px;
+	background: #fff;
+	line-height: 25px;
+	cursor: pointer;
+}
+
+.city-check-box {
+	position: absolute;
+	top: 30px;
+	left: 0;
+	z-index: 100;
+	width: 100%;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.btn-location {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 30px;
+	height: 25px;
+	padding: 0;
+	background-color: transparent;
+	border: 1px solid #ccc;
+	border-radius: 0 15px 15px 0;
+	line-height: 25px;
+	color: #6d90e3;
+	text-align: center;
+	overflow: hidden;
+}
+
+.btn-location .iconfont {
+	font-size: 16px;
+}
+
+.city-check-box .nav-tabs {
+	background-color: #f5f5f5;
+}
+
+.city-check-box .nav-tabs > li > a {
+	margin-right: 0;
+	border-radius: 0;
+}
+
+.city-check-box .nav-tabs > li.active > a,
+.city-check-box .nav-tabs > li.active > a:focus,
+.city-check-box .nav-tabs > li.active > a:hover,
+.city-check-box .nav-tabs > li > a {
+	height: 30px;
+	margin-left: -1px;
+	padding: 0 15px;
+	line-height: 30px;
+}
+
+.city-check-box .nav-tabs > li.active > a,
+.city-check-box .nav-tabs > li.active > a:focus,
+.city-check-box .nav-tabs > li.active > a:hover {
+	border: 1px solid #ddd;
+	border-top: none;
+	border-bottom: none;
+	border-radius: 0;
+}
+
+.city-content {
+	padding: 10px;
+}
+
+.city-item {
+	display: inline-block;
+	height: 26px;
+	margin: 2px;
+	padding: 0 8px;
+	line-height: 26px;
+	color: #666;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.city-item.current {
+	background-color: #6d90e3;
+	color: #fff;
+	border-radius: 5px;
+}
+
+input.not-allow {
+	background-color: #eee;
+}
+
+/* ng-city-check */
+
+/* ng-date-option */
+.date-option-input {
+	position: relative;
+	width: 100%;
+	height: 25px;
+}
+
+.date-option-input input {
+	width: 100%;
+	height: 25px;
+	padding: 0 12px;
+	border: 1px solid #ccc;
+	border-radius: 14px;
+	background: #fff;
+	line-height: 25px;
+	cursor: pointer;
+}
+
+/* ng-date-option */
+
+/* amount-input */
+.amount-input-box {
+	margin: auto;
+	padding: 0;
+	width: 100%;
+	height: 25px;
+	line-height: 25px;
+	border: 1px solid #bbbac2;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.amount-input-box input {
+	float: left;
+	display: inline-block;
+	margin: 0;
+	width: calc(100% - 36px);
+	height: 23px;
+	text-align: center;
+	border: none;
+	vertical-align: top;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+.amount-input-box a {
+	float: left;
+	display: inline-block;
+	width: 18px;
+	height: 23px;
+	background: #fff;
+	color: #ccc;
+	font-size: 16px;
+	text-align: center;
+	font-weight: 700;
+	vertical-align: middle;
+	line-height: 23px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* amount-input */
+
+.input-type-box {
+	width: 100%;
+}
+
+.input-type-box input {
+	width: 100%;
+	height: 25px;
+	padding: 0 12px;
+	border: 1px solid #ccc;
+	border-radius: 14px;
+	line-height: 25px;
+}
+
+.input-type-box input.invalid, .input-type-box textarea.invalid {
+	border: 1px solid #f00;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(255, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1px rgba(255, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.input-type-box .remind-word {
+	position: absolute;
+	width: 117px;
+	height: 27px;
+	font-size: 12px;
+	left: 90px;
+	bottom: -30px;
+	padding-top: 6px;
+	line-height: 18px;
+	color: #ff3535;
+	background: url('../images/icon-remind-bg.png') no-repeat;
+	text-align: center;
+	z-index: 99;
+}
+
+/* ng-city-check */
+.ng-tree-check {
+	position: relative;
+	width: 100%;
+}
+
+.ng-tree-check input {
+	width: 100%;
+	height: 25px;
+	padding: 0 12px;
+	border: 1px solid #ccc;
+	border-radius: 14px;
+	background: #fff;
+	line-height: 25px;
+	cursor: pointer;
+}
+
+.ng-tree-check.disabled input[type="text"], .ng-tree-check.disabled button {
+	background-color: #eee;
+}
+
+.organization-tree {
+	position: absolute;
+	top: 30px;
+	left: 0;
+	width: 255px;
+	height: 248px;
+	border: 1px solid #d6d6d6;
+	background-color: #fff;
+	font-size: 12px;
+	overflow: hidden;
+	z-index: 100;
+}
+
+.organization-tree .tree-header {
+	height: 32px;
+	border-bottom: 1px dashed #e5e5e5;
+	background-color: #fafafa;
+	line-height: 32px;
+	text-indent: 10px;
+}
+
+.organization-tree .tree-body {
+	height: 152px;
+	margin: 10px;
+	overflow-y: auto;
+}
+
+.first-level {
+	position: relative;
+}
+
+.first-level .title {
+	height: 24px;
+	line-height: 24px;
+	color: #4571d9;
+}
+
+.first-level .title .icon {
+	position: relative;
+	display: inline-block;
+	width: 16px;
+	height: 24px;
+	cursor: pointer;
+	vertical-align: top;
+}
+
+.first-level .title .icon::before {
+	position: absolute;
+	left: 0;
+	content: '\e620';
+	font-family: iconfont;
+	color: #4571d9;
+	font-size: 12px;
+}
+
+.first-level .title .icon.on::before {
+	content: '\e61e';
+}
+
+.first-level .title span.curr {
+	background-color: #4571d9;
+	color: #fff;
+}
+
+.second-level {
+	position: relative;
+	margin-left: 20px;
+}
+
+.second-level .title {
+	cursor: pointer;
+}
+
+.third-level {
+	position: relative;
+	margin-left: 16px;
+}
+
+.third-level .title {
+	cursor: pointer;
+}
+
+.third-level .title .icon {
+	width: 14px;
+	cursor: default;
+}
+
+.third-level .title .icon::before {
+	content: '\e6b7';
+	color: #90aae8;
+}
+
+.organization-tree .tree-footer {
+	height: 39px;
+	border-top: 1px dashed #e5e5e5;
+	background-color: #fafafa;
+	text-align: center;
+}
+
+.organization-tree .tree-footer .btn-confirm {
+	padding: 6px 20px;
+	margin: 7px 10px 0 0;
+	border: 0;
+	background-color: #6d90e3;
+	color: #fff;
+	border-radius: 15px;
+}
+
+.organization-tree .tree-footer .btn-cancel {
+	padding: 5px 19px;
+	margin: 7px 0 0 0;
+	border: 1px solid #89a6ed;
+	background-color: #d7e3ff;
+	color: #89a6ed;
+	border-radius: 15px;
+}
+
+/* ng-city-check */
