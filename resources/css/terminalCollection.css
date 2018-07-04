@@ -1,0 +1,22 @@
+.wrap{
+    max-width: 28rem;
+    margin: 0 auto;
+}
+header{
+	position: relative;
+    height: 2.506667rem;
+    line-height: 2.506667rem;
+    background: #333;
+    color: #fff;
+    font-size: 0.906667rem;
+    text-align: center;
+}
+header .back{
+	position: absolute;
+	left: 0.72rem;
+	font-size: 0.8rem;
+	color: #fff;
+}
+header .back i.iconfont{
+	font-size: 0.8rem;
+}

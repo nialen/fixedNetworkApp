@@ -3,4 +3,4 @@
 ### 页面名称字典
 
 * **基础设置**
-    * 终端分类配置 **terminalClassifyConfig** 
+    * 终端分类配置 **terminalClassifyConfig**
