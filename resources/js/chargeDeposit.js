@@ -17,7 +17,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
         })
         .controller('chargeDepositCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
 
-            $scope.stepNumber = 1;
+            $scope.stepNumber = 0;
 
             $scope.nextStep = function(){
                 $scope.stepNumber++;
