@@ -1,3 +1,11 @@
+input{
+	border:0;
+	outline: none;
+	-webkit-appearance: none;
+}
+button{
+	padding: 0;
+}
 .wrap{
     max-width: 20rem;
     margin: 0 auto;

@@ -77,4 +77,11 @@ body {
 textarea {
 	resize: none;
 }
-
+input{
+	border:0;
+	outline: none;
+	-webkit-appearance: none;
+}
+button{
+	padding: 0;
+}

@@ -1,7 +1,8 @@
-define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'angular-animate', 'datepicker'], function (angular, $, _, Mock) {
+define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls', 'angular-animate', 'datepicker', 'iscroll'], function (angular, $, _, Mock) {
     angular
         .module('partsTransferInDepotModule', ['httpMethod'])
         .run(['$rootScope', function ($rootScope) {
+          
         }])
         .filter('prodTypeFilter', function () {
             return function (val) {
@@ -15,7 +16,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'angular-animate', 
                 }
             }
         })
-        .controller('partsTransferCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
+        .controller('partsTransferCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
             $('#startDt').date({}, function(datestr) {
                 $scope.couponStartDt = datestr;
                 $scope.$apply();
@@ -25,10 +26,5 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'angular-animate', 
                 $scope.$apply();
             });
         }])
-        .controller('terminalCodeCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
-        
-        }])
-        .controller('productQueryCodeCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
-        
-        }])
+       
 });
