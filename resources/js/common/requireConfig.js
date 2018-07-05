@@ -11,7 +11,6 @@ require.config({
 		'angular-sanitize': './angular-sanitize.min',
 		'jquery': './jquery.min',
 		'jqueryDialog': './jquery.dialog',
-		'ui-bootstrap-tpls': './ui-bootstrap-tpls-2.1.3',
 		'angular-locale_zh-cn': './angular-locale_zh-cn',
 		'lodash': './lodash',
 		'mock': './mock',
@@ -19,9 +18,8 @@ require.config({
 		'ngStorage': './ngStorage',
 		'httpServer': './httpServer',
 		'httpMethod': './httpMethod',
-		'moment': './moment',
-		'ajaxfileupload': './ajaxfileupload',
-		'ngCommonModule': './ngCommonModule'
+		'ngCommonModule': './ngCommonModule',
+		'datepicker': './datepicker',
 	},
 	shim: {
 		'angular': {
@@ -38,10 +36,7 @@ require.config({
 		'angular-sanitize': {
 			deps: ['angular'],
 			exports: 'angular-sanitize'
-		},
-		'ui-bootstrap-tpls': {
-			deps: ['angular']
-		},
+		},		
 		'angular-locale_zh-cn': {
 			deps: ['angular']
 		},
@@ -55,19 +50,15 @@ require.config({
 		'httpMethod': {
 			deps: ['angular', 'httpServer'],
 			exports: 'httpMethod'
-		},
-		'moment': {
-			init: function (moment) {
-				return moment;
-			}
-		},
-		'ajaxfileupload': {
-			deps: ['jquery']
-		},
-		ngCommonModule: {
+		},		
+		'ngCommonModule': {
 			deps: ['angular', 'jqueryDialog'],
 			exports: 'ngCommonModule'
-		}
+		},
+		// 'datepicker': {
+		// 	deps: ['angular', 'jqueryDialog'],
+		// 	exports: 'ngCommonModule'
+		// }
 	}
 });
 
@@ -78,6 +69,5 @@ require(['jquery'], function ($) {
 	// mockData 加载与否决定是否启用模拟数据
 	require(['angular', currentPage], function (angular) {
 		angular.bootstrap(document, [targetModule]);
-		parent.$('.iframe-box').height(parent.$('.tabs-content').height());
 	});
 });

@@ -1,5 +1,5 @@
 .wrap{
-    max-width: 28rem;
+    max-width: 20rem;
     margin: 0 auto;
 }
 header{
@@ -172,6 +172,7 @@ header .back i.iconfont{
 	color: #fff;
 	font-size: 0.64rem;
 	border-radius: 0.213333rem;
+	border:0;
 }
 .add-btn i{
 	font-size: 0.64rem;
@@ -188,7 +189,7 @@ header .back i.iconfont{
 	margin-right: 0.346667rem;
 }
 .info-radioclass{
-	margin-right: 0.346667rem;
+	/*margin-right: 0.346667rem;*/
 }
 .info-radioclass:last-child{
 	margin-right:0;
