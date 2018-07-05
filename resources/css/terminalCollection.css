@@ -3,13 +3,17 @@
     margin: 0 auto;
 }
 header{
-	position: relative;
+	position: fixed;
+	top:0;
+	left:0;
+	width: 100%;
     height: 2.506667rem;
     line-height: 2.506667rem;
     background: #333;
     color: #fff;
     font-size: 0.906667rem;
     text-align: center;
+    z-index: 100;
 }
 header .back{
 	position: absolute;
@@ -20,6 +24,11 @@ header .back{
 header .back i.iconfont{
 	font-size: 0.8rem;
 }
+.content{
+	margin-top:  2.506667rem;
+	padding-bottom: 2.666667rem;
+}
+/*拆机终端收取*/
 .top-line{
 	border-top: 1px solid #e0c6cb;
 }	
@@ -40,7 +49,6 @@ header .back i.iconfont{
 }
 .base-info{
 	margin-left: 1.653333rem;
-	padding-bottom: 0.8rem;
 }
 
 .info-line{
@@ -60,8 +68,11 @@ header .back i.iconfont{
 .info-radio{
 	display: flex;
 }
+.info-p{
+	width: calc(100% - 2.0rem);
+}
 .textarea-box{
-	width: 80%;
+	width: calc(100% - 2.0rem);
 	height: 5.226667rem;
 	border: 1px solid #d1d1d1;
 	border-radius: 0.16rem;
@@ -103,23 +114,136 @@ header .back i.iconfont{
 	background: url('../../resources/images/icon-checked.png') no-repeat;
 	background-size: 1.066667rem 1.066667rem;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*.detail-info{
+	margin-top: 0.72rem;
+}*/
+.detail-list{
+	width: 94%;
+	margin: 0.72rem auto;
+	border: 1px solid #ccc;
+	border-radius: 0.213333rem;
+}
+.detail-p{
+	position: relative;
+	height: 2.133333rem;
+	line-height: 2.133333rem;
+	background: #f5f5f5;
+	border-bottom: 1px solid #ccc;
+	font-size: 0.746667rem;
+}
+.detail-p span{
+	color: #ff002a;
+}
+.detail-p .delete-btn{
+	position: absolute;
+	right: 0.746667rem;
+	font-size: 0.96rem;
+	color: #fc9ead;
+}
+.detail-p-list{
+	font-size: 0.64rem;
+	padding: 0 0.533333rem;
+	margin: 0.666667rem 0;
+	line-height: 0.64rem;
+}
+.detail-p-list span{
+	color: #7f7e7e;
+}
+.search-btn{
+	display: inline-block;
+	width: 1.6rem;
+	height: 1.226667rem;
+	line-height: 1.226667rem;
+	border-radius: 0.266667rem;
+	color: #fff;
+	background: #ff002a;
+	text-align: center;
+	font-size: 0.64rem;
+	margin-left: 0.266667rem;
+}
+.detail-btns{
+	width: 94%;
+	margin: 0.72rem auto;
+}
+.add-btn{
+	padding: 0 0.48rem;
+	height: 1.44rem;
+	background: #ff002a;
+	color: #fff;
+	font-size: 0.64rem;
+	border-radius: 0.213333rem;
+}
+.add-btn i{
+	font-size: 0.64rem;
+}
+.detail-list .info-radio{
+	height: 2.08rem;
+	padding: 0 0.533333rem;
+	line-height: 2.08rem;
+	border-top: 1px solid #ccc;
+	font-size: 0.533333rem;
+}
+.detail-list .info-radio span{
+	color: #7f7e7e;
+	margin-right: 0.346667rem;
+}
+.info-radioclass{
+	margin-right: 0.346667rem;
+}
+.info-radioclass:last-child{
+	margin-right:0;
+}
+.info-radioclass input[type=radio] {
+	display: none;
+}
+.info-radioclass input[type=radio] + span {
+	position: relative;
+	display: inline-block;
+	padding-left: 0.96rem;
+}
+.info-radioclass input[type=radio] + span::after {
+	content: '';
+	position: absolute;
+	top: 0.64rem;
+	left: 0;
+	width: 0.746667rem;
+	height: 0.746667rem;
+	background: url('../../resources/images/icon-radionocheck.png') no-repeat;
+	background-size: 0.746667rem 0.746667rem;
+}
+.info-radioclass input[type=radio]:checked + span::after {
+	content: '';
+	position: absolute;
+	top: 0.64rem;
+	left: 0;
+	width: 0.746667rem;
+	height: 0.746667rem;
+	background: url('../../resources/images/icon-radiochecked.png') no-repeat;
+	background-size: 0.746667rem 0.746667rem;
+}
+.bottom-btns{
+	position: fixed;
+	display: flex;
+	bottom: 0;
+	left:0;
+	width: 100%;
+	height: 2.666667rem;
+}
+.bottom-btns button{
+	width: 50%;
+	height: 2.666667rem;
+	font-size: 0.906667rem;
+}
+.bottom-btns .submit-btn{
+	background: #ff002a;
+	color: #fff;
+}
+.bottom-btns .cancel-btn{
+	background: #ededed;
+	color: #999;
+}
+/*拆机终端收取*/
+/*终端扫码录入*/
 
 
 
