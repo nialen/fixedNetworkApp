@@ -1,6 +1,6 @@
-define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', 'ui-bootstrap-tpls', 'angular-animate', 'angular-sanitize', 'ngStorage'], function (angular, $, _, Mock) {
+define(['angular'], function (angular) {
     angular
-        .module('lendPhoneOutputModule', ['ngCommonModule', 'httpMethod'])
+        .module('lendPhoneOutputModule', [])
         .run(['$rootScope', function ($rootScope) {
         }])
         .filter('prodTypeFilter', function () {
@@ -15,7 +15,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 }
             }
         })
-        .controller('lendPhoneOutputCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
+        .controller('lendPhoneOutputCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
 
             $scope.isHideInfo = true;
 

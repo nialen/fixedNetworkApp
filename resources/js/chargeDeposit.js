@@ -1,6 +1,6 @@
-define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', 'ui-bootstrap-tpls', 'angular-animate', 'angular-sanitize', 'ngStorage'], function (angular, $, _, Mock) {
+define(['angular'], function (angular) {
     angular
-        .module('chargeDepositModule', ['ngCommonModule', 'httpMethod'])
+        .module('chargeDepositModule', [])
         .run(['$rootScope', function ($rootScope) {
         }])
         .filter('prodTypeFilter', function () {
@@ -15,7 +15,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 }
             }
         })
-        .controller('chargeDepositCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
+        .controller('chargeDepositCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
 
             $scope.stepNumber = 0;
 
