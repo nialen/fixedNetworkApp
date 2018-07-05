@@ -13,3 +13,4 @@
     * 借机退库 **lendPhoneRefund**
     * 终端查询选择 **terminalQuerySelection**
     * 串码详情 **codeDetails**
+    * 终端回收 **terminalRecycling**
