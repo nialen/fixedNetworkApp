@@ -134,13 +134,18 @@ header .back .iconfont{
 }
 .content .info-area-item select{
 	position: relative;
-	width: 100%;
+	width: 70%;
 }
 .content .info-area-item select option{
 	width: 100%;
 }
 .content .info-area-item select.select-up{
 	background: url('../../resources/images/icon-select.jpg') no-repeat 93% center;
+	background-size: 0.746667rem 0.426667rem;
+	font-size: 0.746667rem;
+}
+.content .info-area-item select:disabled.select-up{
+	background: url('../../resources/images/icon-select-disabled.png') #f1f0f0 no-repeat 93% center;
 	background-size: 0.746667rem 0.426667rem;
 	font-size: 0.746667rem;
 }

@@ -102,17 +102,18 @@ header .back .iconfont{
 }
 .content .info-item{
 	position: relative;
+	margin-left: 1.76rem;
 	min-height: 2.346667rem;
 	height: auto;
 	line-height: 2.346667rem;
-	padding-left: 6.32rem;
+	padding-left: 4.03rem;
 	padding-right: 1.786667rem;
 }
 .content .info-item label{
 	position: absolute;
 	left: 0;
 	top: 0;
-	width: 6.32rem;
+	width: 4.03rem;
 	font-size: 0.746667rem;
 	color: #7f7e7e;
 	text-align: right;
