@@ -1,5 +1,5 @@
 body{
-	background: #fafafa;
+	background: #fff;
 }
 .mt10{
 	margin-top: 0.4rem;
@@ -117,26 +117,47 @@ header .back .iconfont{
 	-moz-box-sizing: border-box;
 }
 .content .info-item input{
-	width: 100%;
+	width: 92%;
 }
-.content .info-item select{
+.content .info-item input:disabled{
+	background: #eeeeee;
+	border: 1px solid #d1d1d1;
+}
+.content .info-item textarea{
+	margin-top: 0.4rem;
+	width: 92%;
+	height: 5.333333rem;
+	border: 1px solid #d1d1d1;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+.content .info-item .code-bg{
+	background: url('../images/icon-code.jpg') no-repeat 93% center;
+	background-size: 0.96rem;
+}
+.content .info-item .info-number{
 	position: relative;
-	width: 7.68rem;
+	width: 8.0rem;
+	margin: 0.34rem 0 0 0;
 }
-.content .info-item select option{
-	width: 100%;
+.content .info-item .info-item-star{
+	color: #ff4040;
 }
-.content .info-item select.select-up{
-	background: url('../../resources/images/icon-select.jpg') no-repeat 93% center;
-	background-size: 0.746667rem 0.426667rem;
+.ml9{
+	margin-left: 0.24rem;
 }
 .content .btn-query{
-	float: right;
+	float: left;
 	display: inline-block;
 	margin-top: 0.373333rem;
-	width: 3.733333rem;
+	margin-left: 0.566667rem;
+	width: 2.666667rem;
 	height: 1.653333rem;
-	margin-left: 0.8rem;
 	background: #ff002a;
 	border: none;
 	color: #fff;
@@ -144,46 +165,6 @@ header .back .iconfont{
 }
 .content .result-box{
 	border-top: 1px solid #cccccc;
-}
-
-.result-box .top-title{
-	height: 2.666667rem;
-	line-height: 2.666667rem;
-	padding-left: 0.777778rem;
-	color: #ff002a;
-	font-size: 0.8rem;
-}
-.result-box .top-title .iconfont{
-	color: #ff002a;
-	font-size: 1.066667rem;
-	vertical-align: top;
-}
-.result-box .result-info{
-	padding: 0 0.8rem;
-}
-.result-box .result-info ul li{
-	float: left;
-	display: inline-block;
-	width: 50%;
-	height: 1.6rem;
-	color: #7f7e7e;
-	font-size: 0.64rem;
-}
-.result-box .result-info ul li span{
-	color: #333;
-}
-.result-box .result-info .notice{
-	width: 100%;
-	min-height: 1.866667rem;
-	height: auto;
-	background: #fce6d7;
-	line-height: 1.866667rem;
-}
-.result-box .result-info .notice .notice-text{
-	margin-top: 0.266667rem;
-	padding: 0 0.533333rem;
-	font-size: 0.64rem;
-	color: #fd8126;
 }
 
 footer{

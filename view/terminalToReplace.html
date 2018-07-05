@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="../resources/css/common/reset.css" />
+	<link rel="stylesheet" href="../resources/css/common/common.css" />
+	<link rel="stylesheet" href="../resources/css/terminalToReplace.css" />
+	<title>终端替换</title>
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<div class="header-title">终端替换</div>
+			<div class="back"><span class="iconfont">&#xe658;</span>返回</div>
+		</header>
+		<div class="content">
+			<div class="top">
+				<div class="top-title"><span class="iconfont">&#xe693;</span>终端替换</div>
+			</div>
+			<div class="prod-info">
+				<form>
+					<div class="info-area">
+						<div class="info-area-item">
+							<label for="">操作人员：</label>
+							<p class="info-area-detail">李明</p>
+						</div>
+					</div>
+					<div class="info-area">
+						<div class="info-area-item">
+							<label for="">操作日期：</label>
+							<p class="info-area-detail">2018-06-01</p>
+						</div>
+					</div>
+					<div class="info-item mt10">
+						<label for="">施工单号：</label>
+						<input type="text" value="" placeholder="输入单号">
+						<span class="info-item-star"><span class="iconfont">&#xe659;</span></span>
+					</div>
+					<div class="info-item">
+						<label for="">产品接入号码：</label>
+						<input class="info-number fn-left" type="text">
+						<button class="btn-query fn-left"><span class="iconfont">&#xe600;</span></button>
+						<div class="info-item-star ml9 fn-left"><span class="iconfont">&#xe659;</span></div>
+					</div>
+					<div class="info-item">
+						<label for="">产品ID：</label>
+						<input type="text" value="" disabled>
+					</div>
+					<div class="info-item">
+						<label for="">客户名称：</label>
+						<input type="text" value="" disabled>
+					</div>
+					<div class="info-item">
+						<label for="">捆绑旧终端串码：</label>
+						<input class="code-bg" type="text" value="" placeholder="输入串号">
+						<span class="info-item-star"><span class="iconfont">&#xe659;</span></span>
+					</div>
+					<div class="info-item">
+						<label for="">捆绑新终端串码：</label>
+						<input class="code-bg" type="text" value="" placeholder="输入串号">
+						<span class="info-item-star"><span class="iconfont">&#xe659;</span></span>
+					</div>
+					<div class="info-item">
+						<label for="">备注：</label>
+						<textarea></textarea>
+					</div>
+				</form>
+			</div>
+		</div>
+		<footer>
+			<button class="btn btn-confirm">提交</button><button class="btn btn-cancel">取消</button>
+		</footer>
+	</div>	
+	
+	<script type="text/javascript" async="true">
+	    function _adaptFont(maxWidth, baseWidth, baseSize) {
+	        maxWidth = 750; //最大值750px
+	        baseWidth = 320;
+	        baseSize = 16;
+	        var winWidth = parseInt(window.innerWidth); /*s4手机读到的winWidth是分辨率的宽*/
+	        var docWidth = parseInt(document.documentElement.clientWidth || document.body.clientWidth); //和winWidth区别是,减去右边滚动条
+	        var docWidth = Math.min(winWidth, docWidth);
+	        docWidth > maxWidth && (docWidth = maxWidth);
+	        docWidth < baseWidth && (docWidth = baseWidth);
+	        //设置基准值
+	        document.documentElement.style.fontSize = (docWidth / baseWidth) * baseSize + 'px';
+	    }
+	    (function() {
+	        _adaptFont();
+	        window.addEventListener("resize", _adaptFont);
+	    })();
+    </script>
+</body>
+
+</html>

@@ -5,37 +5,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="../resources/css/common/reset.css" />
 	<link rel="stylesheet" href="../resources/css/common/common.css" />
-	<link rel="stylesheet" href="../resources/css/productQuery.css" />
-	<title>产品查询</title>
+	<link rel="stylesheet" href="../resources/css/chargeDeposit.css" />
+	<title>押金收取</title>
 </head>
 <body>
-	<div class="wrapper">
+	<div class="wrapper" ng-controller="chargeDepositCtrl" ng-cloak>
 		<header>
-			<div class="header-title">产品查询</div>
+			<div class="header-title">押金收取</div>
 			<div class="back"><span class="iconfont">&#xe658;</span>返回</div>
 		</header>
-		<div class="content">
+		<div class="content" ng-if="stepNumber == 0">
 			<div class="top">
-				<div class="top-title"><span class="iconfont">&#xe693;</span>产品查询</div>
+				<div class="top-title"><span class="iconfont">&#xe684;</span>押金信息查询</div>
 			</div>
 			<div class="prod-info">
 				<form>
-					<div class="info-area">
-						<div class="info-area-item">
-							<label for="">产品地区：</label>
-							<p class="info-area-detail">长春市</p>
-						</div>
-					</div>
-					<div class="info-item mt10">
-						<label for="">产品接入号码：</label>
-						<input type="text" value="043188953276">
-					</div>
 					<div class="info-item">
 						<label for="">产品类型：</label>
 						<select class="select-up" name="" id="">
 							<option value="">宽带</option>
 							<option value="">ITV</option>
 						</select>
+					</div>
+					<div class="info-item">
+						<label for="">产品接入号码：</label>
+						<input type="text" value="043188953276">
 						<button class="btn-query">查询</button>
 					</div>
 				</form>
@@ -48,15 +42,36 @@
 						<li>产品号码：<span>043188953276</span></li>
 						<li>产品类型：<span>宽带</span></li>
 						<li>所属客户：<span>张明菊</span></li>
+						<li>应交押金金额：<span class="result-info-note">100元</span></li>
+						<li>是否已收取：<span class="result-info-note">未收取</span></li>
 					</ul>
-					<div class="notice">
-						<div class="notice-text"><span class="iconfont">&#xe683;</span>&nbsp;提示：无法找到对应产品，请确认输入条件是否正确。</div>
-					</div>
 				</div>	
 			</div>
 		</div>
+		<div class="content" ng-if="stepNumber == 1">
+			<div class="top">
+				<div class="top-title"><span class="iconfont">&#xe684;</span>押金信息查询</div>
+			</div>
+			<div class="payment-list">
+				<ul>
+					<li>
+						<input type="radio" name="radio" id="alipay">
+						<label for="alipay"><img src="../resources/images/icon-alipay.jpg" alt="">支付宝</label>
+					</li>
+					<li>
+						<input type="radio" name="radio" id="wechat">
+						<label for="wechat"><img src="../resources/images/icon-wechat.jpg" alt="">微信</label>
+					</li>
+					<li>
+						<input type="radio" name="radio" id="unionpay">
+						<label for="unionpay"><img src="../resources/images/icon-unionpay.jpg" alt="">建设银行储蓄卡</label>
+					</li>
+				</ul>
+			</div>
+		</div>
 		<footer>
-			<button class="btn btn-confirm">确定</button><button class="btn btn-cancel">取消</button>
+			<button ng-if="stepNumber == 0" class="btn btn-confirm" ng-click="nextStep()">收取押金</button>
+			<button ng-if="stepNumber == 1" class="btn btn-confirm" ng-click="forwardStep()">确定</button>
 		</footer>
 	</div>	
 	
@@ -78,6 +93,8 @@
 	        window.addEventListener("resize", _adaptFont);
 	    })();
     </script>
+    <script src="../../resources/js/common/require.js" data-main="../../resources/js/common/requireConfig.js" id="page"
+        current-page="../../resources/js/chargeDeposit.js" target-module="chargeDepositModule"></script>
 </body>
 
 </html>
