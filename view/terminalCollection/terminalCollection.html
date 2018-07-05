@@ -13,8 +13,8 @@
 </head>
 
 <body>
-<!-- DOM结构开始 -->
-<div class="wrap" ng-controller="terminalCollectionCtrl">
+<!-- 拆机终端收取 -->
+<div class="wrap" ng-controller="terminalCollectionCtrl" style="display: none">
     <header>拆机终端收取<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
     <div class="content">
         <p class="p-titl"><i class="iconfont">&#xe737;</i>终端收取基本信息</p>
@@ -79,9 +79,25 @@
                     <label class="info-radioclass"><input type="radio" name="suggradio" value="1"><span>翻新</span></label>
                 </p>
             </li>
+            <div class="detail-btns fn-clear">
+                <button class="add-btn fn-right"><i class="iconfont">&#xe60e;</i> 增加一行</button>
+            </div>
         </ul>
     </div>
+    <div class="bottom-btns">
+        <button class="submit-btn">提交</button>
+        <button class="cancel-btn">取消</button>
+    </div>
 </div>
+<!-- 终端扫码录入 -->
+<div class="wrap" ng-controller="terminalCodeCtrl">
+    <header>终端扫码录入<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
+    <div class="content">
+        <p class="p-titl"><i class="iconfont">&#xe737;</i>终端扫码录入</p>
+        
+    </div>
+</div>
+
 <script type="text/javascript" async="true">
     function _adaptFont(maxWidth, baseWidth, baseSize) {
         maxWidth = 750; //最大值750px

@@ -3,13 +3,17 @@
     margin: 0 auto;
 }
 header{
-	position: relative;
+	position: fixed;
+	top:0;
+	left:0;
+	width: 100%;
     height: 2.506667rem;
     line-height: 2.506667rem;
     background: #333;
     color: #fff;
     font-size: 0.906667rem;
     text-align: center;
+    z-index: 100;
 }
 header .back{
 	position: absolute;
@@ -20,6 +24,11 @@ header .back{
 header .back i.iconfont{
 	font-size: 0.8rem;
 }
+.content{
+	margin-top:  2.506667rem;
+	padding-bottom: 2.666667rem;
+}
+/*拆机终端收取*/
 .top-line{
 	border-top: 1px solid #e0c6cb;
 }	
@@ -152,6 +161,21 @@ header .back i.iconfont{
 	font-size: 0.64rem;
 	margin-left: 0.266667rem;
 }
+.detail-btns{
+	width: 94%;
+	margin: 0.72rem auto;
+}
+.add-btn{
+	padding: 0 0.48rem;
+	height: 1.44rem;
+	background: #ff002a;
+	color: #fff;
+	font-size: 0.64rem;
+	border-radius: 0.213333rem;
+}
+.add-btn i{
+	font-size: 0.64rem;
+}
 .detail-list .info-radio{
 	height: 2.08rem;
 	padding: 0 0.533333rem;
@@ -197,11 +221,29 @@ header .back i.iconfont{
 	background: url('../../resources/images/icon-radiochecked.png') no-repeat;
 	background-size: 0.746667rem 0.746667rem;
 }
-
-
-
-
-
+.bottom-btns{
+	position: fixed;
+	display: flex;
+	bottom: 0;
+	left:0;
+	width: 100%;
+	height: 2.666667rem;
+}
+.bottom-btns button{
+	width: 50%;
+	height: 2.666667rem;
+	font-size: 0.906667rem;
+}
+.bottom-btns .submit-btn{
+	background: #ff002a;
+	color: #fff;
+}
+.bottom-btns .cancel-btn{
+	background: #ededed;
+	color: #999;
+}
+/*拆机终端收取*/
+/*终端扫码录入*/
 
 
 
