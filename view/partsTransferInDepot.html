@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no"/>
-    <title>拆机终端收取</title>
+    <title>调拨入库</title>
     <link rel="stylesheet" href="../resources/css/common/reset.css">
     <link rel="stylesheet" href="../resources/css/common/common.css">
     <link rel="stylesheet" href="../../resources/css/common/datepicker.css">
@@ -33,7 +33,7 @@
 				</div>
 				<button class="more">更多 <i class="iconfont">&#xe608;</i><!-- <i class="iconfont">&#xe607;</i> --></button>
 			</div>
-			<div class="parts-info">
+			<div class="parts-info fn-clear">
 				<div class="from-item">
                     <label class="txt-label">单据日期：</label>
                     <div class="date-wrap">
@@ -50,8 +50,17 @@
                 </div>
 				<div class="from-item">
                     <label class="txt-label">制单人：</label>
-                    <input ng-model="couponName" class="txt-wrap txt-input" type="text" />
+                    <input class="txt-input" type="text"/>
                 </div>
+                <div class="from-item">
+                    <label class="txt-label">入库仓库：</label>
+                    <div class="search-item disabled"><input type="text" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
+                </div>
+                <div class="from-item">
+                    <label class="txt-label">调出仓库：</label>
+                    <div class="search-item"><input type="text" placeholder="请选择" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
+                </div>
+                <button class="query-btn fn-right">查 询</button>
 			</div>
 		</div>
 	</div>

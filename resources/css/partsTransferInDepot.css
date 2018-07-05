@@ -125,12 +125,66 @@ header .back i.iconfont{
 	display: flex;
 	height: 2.346667rem;
 	line-height: 2.346667rem;
+	padding-right: 0.533333rem;
 	border-bottom: 1px solid #e1e0e1;
 }
 .from-item .txt-label{
+	flex: 0 0 4.4rem;
 	width: 4.4rem;
 	text-align: right;
 	color: #7f7e7e;
+}
+.from-item .txt-input{
+	flex: 1;
+	height: 1.653333rem;
+	line-height: 1.653333rem;
+	padding: 0 0.426667rem;
+	margin-top: 0.266667rem;
+	border: 1px solid #d1d1d1;
+	border-radius: 0.16rem;
+}
+.from-item .search-item{
+	position: relative;
+	display: flex;
+	flex: 1;
+	height: 1.653333rem;
+	line-height: 1.653333rem;
+	margin-top: 0.266667rem;
+	border: 1px solid #d1d1d1;
+	border-radius: 0.16rem;
+	background: #fff;
+	overflow: hidden;
+}
+.from-item .search-item.disabled input{
+	background: #ebebeb;
+}
+.from-item .search-item.disabled .ser-btn{
+	color: #bebebe;
+	background: #ebebeb;
+}
+.from-item .ser-btn{
+	width: 2.133333rem;
+	right: 0;
+	font-size: 0.96rem;
+	color: #ff002a;
+	background: #fff;
+	border:0;
+}
+.from-item .search-item input{
+	flex:1;
+	height: 1.653333rem;
+	padding: 0 0.426667rem;
+	line-height: 1.653333rem;
+}
+.query-btn{
+	width: 7.146667rem;
+	height: 1.706667rem;
+	background: #ff002a;
+	color: #fff;
+	font-size: 0.746667rem;
+	margin: 0.426667rem 0.533333rem;
+	border: 0;
+	border-radius: 0.16rem;
 }
 /*时间*/
 .date-wrap {
@@ -141,7 +195,7 @@ header .back i.iconfont{
     position: relative;
 }
 .date-input {
-    width: 5.2rem;
+    width: 4.49rem;
     height: 1.6rem;
     padding: 0 15px;
     border: 1px solid #d1d1d1;
@@ -157,7 +211,8 @@ header .back i.iconfont{
     font-size: 0.8rem;
 }
 .date-wrap .line {
-    flex: 1;
+    flex: 0 0 1.866667rem;
+    width: 1.866667rem;
     text-align: center;
     color: #7f7e7e;
 }
