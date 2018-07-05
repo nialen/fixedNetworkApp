@@ -81,6 +81,12 @@ header .back .iconfont{
 	padding-left: 4.266667rem;
 	border-bottom: 1px solid #e1e0e0;
 }
+.info-people-box{
+	border-bottom: 1px solid #e1e0e0;
+}
+.info-area .info-people-box .info-area-item{
+	border-bottom: none;
+}
 .content .info-area .info-area-item label{
 	position: absolute;
 	left: 0;
@@ -111,7 +117,7 @@ header .back .iconfont{
 	color: #7f7e7e;
 	text-align: right;
 }
-.content .info-item input, .content .info-item select{
+.content .info-area-item select{
 	padding: 0 0.4rem;
 	margin: 0;
 	height: 1.653333rem;
@@ -125,12 +131,40 @@ header .back .iconfont{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 }
-.content .info-item input{
-	width: 92%;
+.content .info-area-item select{
+	position: relative;
+	width: 100%;
 }
-.content .info-item input:disabled{
-	background: #eeeeee;
-	border: 1px solid #d1d1d1;
+.content .info-area-item select option{
+	width: 100%;
+}
+.content .info-area-item select.select-up{
+	background: url('../../resources/images/icon-select.jpg') no-repeat 93% center;
+	background-size: 0.746667rem 0.426667rem;
+	font-size: 0.746667rem;
+}
+.content .info-people{
+	width: 45%;
+}
+.content .info-date{
+	width: 50%;
+}
+.content .info-date .info-date-item{
+	position: relative;
+	padding-left: 3.733333rem;
+}
+.content .info-date .info-date-item label{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3.9rem;
+    font-size: 0.746667rem;
+    color: #7f7e7e;
+    text-align: right;
+}
+.content .info-date .info-date-item .info-area-detail{
+	font-size: 0.853333rem;
+	color: #000;
 }
 .content .info-item textarea{
 	width: 92%;
@@ -138,6 +172,7 @@ header .back .iconfont{
 	margin-top: 0.4rem;
 	border: 1px solid #d1d1d1;
 	font-size: 0.746667rem;
+	border-radius: 0.266667rem;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	-o-appearance: none;
