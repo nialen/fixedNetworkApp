@@ -32,6 +32,26 @@
 				</div>
 				<button class="more">更多 <i class="iconfont">&#xe608;</i><!-- <i class="iconfont">&#xe607;</i> --></button>
 			</div>
+			<div class="parts-info">
+				<div class="from-item">
+                    <label class="txt-label">单据日期：</label>
+                    <div class="date-wrap">
+                        <div class="date">
+                            <input ng-model="couponStartDt" id="startDt" class="date-input" type="text" readonly />
+                            <i class="date-icon iconfont">&#xe64b;</i>
+                        </div>
+                        <span class="line">至</span>
+                        <div class="date">
+                            <input ng-model="couponEndDt" id="endDt" class="date-input" type="text" readonly />
+                            <i class="date-icon iconfont">&#xe64b;</i>
+                        </div>
+                    </div>
+                </div>
+				<div class="from-item">
+                    <label class="txt-label">制单人：</label>
+                    <input ng-model="couponName" class="txt-wrap txt-input" type="text" />
+                </div>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript" async="true">

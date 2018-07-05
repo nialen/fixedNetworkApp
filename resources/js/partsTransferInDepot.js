@@ -1,9 +1,7 @@
-define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', 'ui-bootstrap-tpls', 'angular-animate', 'angular-sanitize', 'ngStorage'], function (angular, $, _, Mock) {
+define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'angular-animate', 'datepicker'], function (angular, $, _, Mock) {
     angular
-        .module('terminalCollectionModule', ['ngCommonModule', 'httpMethod'])
+        .module('partsTransferInDepotModule', ['httpMethod'])
         .run(['$rootScope', function ($rootScope) {
-            $rootScope.termRecoverBaseInfo = null; //获取终端替换页面基本信息
-            $rootScope.allotItemList = []; //待提交的终端列表
         }])
         .filter('prodTypeFilter', function () {
             return function (val) {
@@ -18,7 +16,14 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
             }
         })
         .controller('partsTransferCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
-        
+            $('#startDt').date({}, function(datestr) {
+                $scope.couponStartDt = datestr;
+                $scope.$apply();
+            });
+            $('#endDt').date({}, function(datestr) {
+                $scope.couponEndDt = datestr;
+                $scope.$apply();
+            });
         }])
         .controller('terminalCodeCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
         

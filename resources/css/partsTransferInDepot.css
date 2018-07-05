@@ -73,6 +73,7 @@ header .back i.iconfont{
 .step .line.red-color{
 	background: #fc4e66;
 }
+/*调拨入库*/
 .search{
 	display: flex;
 	height: 2.293333rem;
@@ -115,9 +116,51 @@ header .back i.iconfont{
 	border-left: 1px solid #fb2649;
 	background: #f3d8dd;
 }
-
-
-
+.parts-info{
+	padding:0 0.373333rem;
+	background: #fff;
+	font-size: 0.746667rem;
+}
+.from-item{
+	display: flex;
+	height: 2.346667rem;
+	line-height: 2.346667rem;
+	border-bottom: 1px solid #e1e0e1;
+}
+.from-item .txt-label{
+	width: 4.4rem;
+	text-align: right;
+	color: #7f7e7e;
+}
+/*时间*/
+.date-wrap {
+    display: flex;
+    flex: 1;
+}
+.date-wrap .date {
+    position: relative;
+}
+.date-input {
+    width: 5.2rem;
+    height: 1.6rem;
+    padding: 0 15px;
+    border: 1px solid #d1d1d1;
+    line-height: 1.6rem;
+    font-size: 0.746667rem;
+    border-radius: 0.16rem;
+}
+.date-icon {
+    position: absolute;
+    top: 0.0625rem;
+    right: 0.25rem;
+    color: #ff4664;
+    font-size: 0.8rem;
+}
+.date-wrap .line {
+    flex: 1;
+    text-align: center;
+    color: #7f7e7e;
+}
 
 
 
