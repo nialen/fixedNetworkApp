@@ -23,4 +23,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
         .controller('terminalCodeCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
         
         }])
+        .controller('productQueryCodeCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
+        
+        }])
 });
