@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="../resources/css/common/reset.css" />
+	<link rel="stylesheet" href="../resources/css/common/common.css" />
+	<link rel="stylesheet" href="../resources/css/codeDetails.css" />
+	<title>终端查询选择</title>
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<div class="header-title">选择借机出库终端</div>
+			<div class="back"><span class="iconfont">&#xe658;</span>返回</div>
+		</header>
+		<div class="content">
+			<div class="top">
+				<div class="top-title"><span class="iconfont">&#xe693;</span>终端扫码录入</div>
+			</div>
+			<div class="result-box">
+				<div class="result-info">
+					<dl class="fn-clear">
+						<dd><div class="result-title">终端名称：</div><span>中兴-ONMI2543</span></dd>
+						<dd><div class="result-title">终端编码：</div><span>12005345345</span></dd>
+						<dd><div class="result-title">终端分类：</div><span>ONU终端</span></dd>
+						<dd><div class="result-title">终端品牌：</div><span>中兴</span></dd>
+						<dt><div class="result-title">终端型号：</div><span>ONMI2543</span></dt>
+						<dt><div class="result-title">配置：</div><span>--</span></dt>
+					</dl>
+				</div>	
+			</div>
+			<div class="code">
+				<div class="top-title"><span class="iconfont">&#xe60b;</span>终端串码列表</div>
+			</div>
+			<div class="code-list fn-clear">
+				<ul>
+					<li>
+						<span>1</span>20181340HWC142963
+					</li>
+					<li>
+						<span>1</span>20181340HWC142963
+					</li>
+					<li>
+						<span>1</span>20181340HWC142963
+					</li>
+					<li>
+						<span>1</span>20181340HWC142963
+					</li>
+					<li>
+						<span>1</span>20181340HWC142963
+					</li>
+					<li>
+						<span>1</span>20181340HWC142963
+					</li>
+					<li>
+						<span>1</span>20181340HWC142963
+					</li>
+					<li>
+						<span>1</span>20181340HWC142963
+					</li>
+					<li>
+						<span>1</span>20181340HWC142963
+					</li>
+				</ul>
+			</div>
+			<div class="code">
+				<div class="top-title"><span class="iconfont">&#xe60b;</span>终端串码列表</div>
+			</div>
+			<div class="code-mac-list fn-clear">
+				<ul>
+					<li>
+						<span>3</span>
+						<div class="fn-left">
+							串：20181340HWC142963<br/>
+							M：54:93:59:64:D2:24
+						</div>
+					</li>
+					<li>
+						<span>4</span>
+						<div class="fn-left">
+							串：20181340HWC142963<br/>
+							M：54:93:59:64:D2:24
+						</div>
+					</li>
+					<li>
+						<span>3</span>
+						<div class="fn-left">
+							串：20181340HWC142963<br/>
+							M：54:93:59:64:D2:24
+						</div>
+					</li>
+					<li>
+						<span>4</span>
+						<div class="fn-left">
+							串：20181340HWC142963<br/>
+							M：54:93:59:64:D2:24
+						</div>
+					</li>
+					<li>
+						<span>3</span>
+						<div class="fn-left">
+							串：20181340HWC142963<br/>
+							M：54:93:59:64:D2:24
+						</div>
+					</li>
+					<li>
+						<span>4</span>
+						<div class="fn-left">
+							串：20181340HWC142963<br/>
+							M：54:93:59:64:D2:24
+						</div>
+					</li>
+					<li>
+						<span>3</span>
+						<div class="fn-left">
+							串：20181340HWC142963<br/>
+							M：54:93:59:64:D2:24
+						</div>
+					</li>
+					<li>
+						<span>4</span>
+						<div class="fn-left">
+							串：20181340HWC142963<br/>
+							M：54:93:59:64:D2:24
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>	
+	
+	<script type="text/javascript" async="true">
+	    function _adaptFont(maxWidth, baseWidth, baseSize) {
+	        maxWidth = 750; //最大值750px
+	        baseWidth = 320;
+	        baseSize = 16;
+	        var winWidth = parseInt(window.innerWidth); /*s4手机读到的winWidth是分辨率的宽*/
+	        var docWidth = parseInt(document.documentElement.clientWidth || document.body.clientWidth); //和winWidth区别是,减去右边滚动条
+	        var docWidth = Math.min(winWidth, docWidth);
+	        docWidth > maxWidth && (docWidth = maxWidth);
+	        docWidth < baseWidth && (docWidth = baseWidth);
+	        //设置基准值
+	        document.documentElement.style.fontSize = (docWidth / baseWidth) * baseSize + 'px';
+	    }
+	    (function() {
+	        _adaptFont();
+	        window.addEventListener("resize", _adaptFont);
+	    })();
+    </script>
+</body>
+
+</html>
