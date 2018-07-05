@@ -4,3 +4,7 @@
 
 * **基础设置**
     * 终端分类配置 **terminalClassifyConfig**
+    * 产品查询 **productQuery**
+    * 终端绑定 **terminalBound**
+    * 终端替换 **terminalToReplace**
+    * 押金收取 **chargeDeposit**
