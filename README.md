@@ -8,3 +8,6 @@
     * 终端绑定 **terminalBound**
     * 终端替换 **terminalToReplace**
     * 押金收取 **chargeDeposit**
+
+    * 借机出库 **lendPhoneOutput**
+    * 借机退库 **lendPhoneRefund**
