@@ -14,3 +14,4 @@
     * 终端查询选择 **terminalQuerySelection**
     * 串码详情 **codeDetails**
     * 终端回收 **terminalRecycling**
+    * 调拨申请 **transfersApply**
