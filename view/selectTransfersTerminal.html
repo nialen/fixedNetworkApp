@@ -12,23 +12,136 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="wrapper" ng-controller="partsTransferCtrl">
         <header>
-            <div class="header-title">终端捆绑</div>
+            <div class="header-title">选择调拨终端</div>
             <div class="back"><span class="iconfont">&#xe658;</span>返回</div>
         </header>
+        <div class="search">
+            <div class="search-left">
+                <input type="text" placeholder="终端名称或型号搜索">
+                <button class="search-btn iconfont">&#xe600;</button>
+            </div>
+            <button ng-click="showScreen()" class="more">筛选 <i class="iconfont">&#xe685;</i></button>
+        </div>
         <div class="content">
-            <div class="search">
-                <div class="search-left">
-                    <input type="text" placeholder="终端名称或型号搜索">
-                    <button class="search-btn iconfont">&#xe600;</button>
-                </div>
-                <button class="more">筛选 <i class="iconfont">&#xe685;</i></button>
+            <div class="transfers-list">
+                <ul>
+                    <li>
+                        <div class="transfer-info-head">
+                            <input type="radio" name="radio" id="radio1">
+                            <label for="radio1">【机顶盒】华为-EC6108V9</label>
+                        </div>
+                        <div class="transfer-info">
+                            <div class="transfer-info-item"><span>品牌：</span>华为<span class="transfer-info-type">实例化管理</span></div>
+                            <div class="transfer-info-item"><span>型号：</span>EC6108V9</div>
+                            <div class="transfer-info-item"><span>配置：</span>--</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="transfer-info-head">
+                            <input type="radio" name="radio" id="radio2">
+                            <label for="radio2">【机顶盒】华为-EC6108V9</label>
+                        </div>
+                        <div class="transfer-info">
+                            <div class="transfer-info-item"><span>品牌：</span>华为<span class="transfer-info-type">实例化管理</span></div>
+                            <div class="transfer-info-item"><span>型号：</span>EC6108V9</div>
+                            <div class="transfer-info-item"><span>配置：</span>--</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="transfer-info-head">
+                            <input type="radio" name="radio" id="radio3">
+                            <label for="radio3">【机顶盒】华为-EC6108V9</label>
+                        </div>
+                        <div class="transfer-info">
+                            <div class="transfer-info-item"><span>品牌：</span>华为<span class="transfer-info-type">实例化管理</span></div>
+                            <div class="transfer-info-item"><span>型号：</span>EC6108V9</div>
+                            <div class="transfer-info-item"><span>配置：</span>--</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="transfer-info-head">
+                            <input type="radio" name="radio" id="radio4">
+                            <label for="radio4">【机顶盒】华为-EC6108V9</label>
+                        </div>
+                        <div class="transfer-info">
+                            <div class="transfer-info-item"><span>品牌：</span>华为<span class="transfer-info-type">实例化管理</span></div>
+                            <div class="transfer-info-item"><span>型号：</span>EC6108V9</div>
+                            <div class="transfer-info-item"><span>配置：</span>--</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="transfer-info-head">
+                            <input type="radio" name="radio" id="radio5">
+                            <label for="radio5">【机顶盒】华为-EC6108V9</label>
+                        </div>
+                        <div class="transfer-info">
+                            <div class="transfer-info-item"><span>品牌：</span>华为<span class="transfer-info-type">实例化管理</span></div>
+                            <div class="transfer-info-item"><span>型号：</span>EC6108V9</div>
+                            <div class="transfer-info-item"><span>配置：</span>--</div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
+        <div class="loading"><span class="iconfont">&#xe677;</span>加载中</div>
         <footer>
             <button class="btn btn-confirm">提交</button><button class="btn btn-cancel">取消</button>
         </footer>
+        <div class="screen-box" ng-class="{'show-screen': isShowScreen === true, 'hide-screen': isShowScreen === false}" ng-cloak>
+            <div class="screen-info-box">
+                <div class="screen-info-head">
+                    <div class="screen-info-title">筛选</div>
+                </div>
+                <div class="screen-info-list">
+                    <div class="info-list-title">分类</div>
+                    <div class="info-list-item fn-clear">
+                        <ul>
+                            <li class="checked">机顶盒</li>
+                            <li>家庭网关</li>
+                            <li>ONU终端</li>
+                        </ul>
+                    </div>
+                    <div class="info-list-title">品牌<div class="info-list-toggle"></div></div>
+                    <div class="info-list-item fn-clear">
+                        <ul>
+                            <li class="checked">华为</li>
+                            <li>中兴</li>
+                            <li>小米</li>
+                            <li>创维</li>
+                            <li>联想</li>
+                            <li>oppo</li>
+                            <li>VIVO</li>
+                            <li>熊猫</li>
+                            <li>夏普</li>
+                        </ul>
+                    </div>
+                    <div class="info-list-title">型号<div class="info-list-toggle"></div></div>
+                    <div class="info-list-model fn-clear">
+                        <ul>
+                            <li class="checked"><p>MI-12345678809876665</p></li>
+                            <li><p>MI-12345678809876665</p></li>
+                            <li><p>MI-12345678809876665</p></li>
+                            <li><p>MI-12345678809876665</p></li>
+                            <li><p>MI-12345678809876665</p></li>
+                            <li><p>MI-12345678809876665</p></li>
+                            <li><p>MI-12345678809876665</p></li>
+                            <li><p>MI-12345678809876665</p></li>
+                            <li><p>MI-12345678809876665</p></li>
+                            <li><p>MI-12345678809876665</p></li>
+                            <li><p>MI-12345678809876665</p></li>
+                            <li><p>MI-12345678809876665</p></li>
+                        </ul>
+                    </div>
+                </div>    
+                <div class="screen-info-foot">
+                    <button ng-click="hideScreen()" class="btn-reset">重置</button><button ng-click="hideScreen()" class="btn-confirm">确定</button>
+                </div>
+            </div>
+            <div class="shade"></div>
+        </div>
+
     </div>
 	<script type="text/javascript" async="true">
     function _adaptFont(maxWidth, baseWidth, baseSize) {

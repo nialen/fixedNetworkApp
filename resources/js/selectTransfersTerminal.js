@@ -17,14 +17,15 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             }
         })
         .controller('partsTransferCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
-            $('#startDt').date({}, function(datestr) {
-                $scope.couponStartDt = datestr;
-                $scope.$apply();
-            });
-            $('#endDt').date({}, function(datestr) {
-                $scope.couponEndDt = datestr;
-                $scope.$apply();
-            });
+
+            $scope.showScreen = function(){
+                $scope.isShowScreen = true;
+            };
+
+            $scope.hideScreen = function(){
+                $scope.isShowScreen = false;
+            };
+
         }])
        
 });
