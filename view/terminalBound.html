@@ -9,7 +9,7 @@
 	<title>终端捆绑</title>
 </head>
 <body>
-	<div class="wrapper" ng-controller="terminalBoundCtrl">
+	<div class="wrapper" ng-controller="terminalBoundCtrl" ng-cloak>
 		<header>
 			<div class="header-title">终端捆绑</div>
 			<div class="back"><span class="iconfont">&#xe658;</span>返回</div>
@@ -23,13 +23,13 @@
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">施工人员：</label>
-							<p class="info-area-detail">李明</p>
+							<p class="info-area-detail" ng-bind="termBindOrderBaseinfo.staffName"></p>
 						</div>
 					</div>
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">捆绑日期：</label>
-							<p class="info-area-detail">2018-06-01</p>
+							<p class="info-area-detail" ng-bind="termBindOrderBaseinfo.operateDt"></p>
 						</div>
 					</div>
 					<div class="info-item mt10">
@@ -40,7 +40,7 @@
 					<div class="info-item">
 						<label for="">产品接入号码：</label>
 						<input class="info-number fn-left" type="text">
-						<button class="btn-query fn-left"><span class="iconfont">&#xe600;</span></button>
+						<button ng-click="qryProduct()" class="btn-query fn-left"><span class="iconfont">&#xe600;</span></button>
 						<div class="info-item-star ml9 fn-left"><span class="iconfont">&#xe659;</span></div>
 					</div>
 					<div class="info-item">
