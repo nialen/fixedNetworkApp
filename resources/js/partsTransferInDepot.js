@@ -27,10 +27,18 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             });
         }])
         .controller('chooseDepotCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
-           
+            $scope.showScreen = function(){
+                $scope.isShowScreen = true;
+            };
+
+            $scope.hideScreen = function(){
+                $scope.isShowScreen = false;
+            };
         }])
         .controller('confirmDepotCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
            
         }])
-       
+        .controller('srialCodeCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
+           
+        }])             
 });

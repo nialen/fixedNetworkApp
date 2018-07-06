@@ -143,7 +143,7 @@
 		</div>
 	</div>
 	<!-- 选择仓库（筛选条件）-->
-	<div class="wrap" ng-controller="chooseDepotCtrl" style="display:none">
+	<div class="wrap chooseDepot" ng-controller="chooseDepotCtrl" >
 		<header>调拨入库-选择仓库<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
 		<div class="content">
 			<p class="p-titl"><i class="iconfont">&#xe600;</i>查询条件<button class="more-btn iconfont">&#xe608;</button>
@@ -155,7 +155,7 @@
                 </div>
                 <div class="from-item">
                     <label class="txt-label">归属组织：</label>
-                    <div class="search-item"><input type="text" placeholder="请选择" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
+                    <div class="search-item"><input type="text" placeholder="请选择" readonly/><button class="ser-btn iconfont" ng-click="showScreen()">&#xe600;</button></div>
                 </div>
                 <div class="from-item">
                     <label class="txt-label">仓库名称：</label>
@@ -176,6 +176,34 @@
 	            <button class="query-btn fn-right">查 询</button>
 			</div>
 			<p class="p-titl"><i class="iconfont">&#xe60b;</i>仓库列表：</p>
+			<div class="transfers-list">
+                <ul>
+                    <li>
+                        <div class="transfer-info-head">                       
+                            <label class="info-radioclass"><input type="radio" name="suggradio" value="1" checked><span><b class="red-color">【网格库】</b>南安区装维库</span></label>
+                        </div>
+                        <div class="transfer-info">
+                            <div class="transfer-info-item"><p><span>编码：</span>01</p><p><span>级别：</span>三级库</p></div>
+                            <div class="transfer-info-item"><span>归属地区：</span>长春</div>
+                            <div class="transfer-info-item"><span>归属组织：</span>南安区装维库</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="transfer-info-head">                       
+                            <label class="info-radioclass"><input type="radio" name="suggradio" value="1"><span><b class="red-color">【网格库】</b>南安区装维库</span></label>
+                        </div>
+                        <div class="transfer-info">
+                            <div class="transfer-info-item"><p><span>编码：</span>01</p><p><span>级别：</span>三级库</p></div>
+                            <div class="transfer-info-item"><span>归属地区：</span>长春</div>
+                            <div class="transfer-info-item"><span>归属组织：</span>南安区装维库</div>
+                        </div>
+                    </li>                
+                </ul>
+            </div>
+            <div class="bottom-btns">
+		        <button class="submit-btn">提交</button>
+		        <button class="cancel-btn">拒绝</button>
+		    </div>
 		</div>
 	</div>
 	<!-- 调拨入库确认 -->
@@ -261,9 +289,62 @@
 	    </div>
 	</div>
 	<!-- 录入串码 -->
-	<div class="wrap" ng-controller="srialCodeCtrl">
+	<div class="wrap" ng-controller="srialCodeCtrl" style="display:none">
 
 	</div>
+	<!-- 筛选条件 -->
+	<div class="screen-box" ng-class="{'show-screen': isShowScreen === true, 'hide-screen': isShowScreen === false}" ng-cloak>
+        <div class="screen-info-box">
+            <div class="screen-info-head">
+                <div class="screen-info-title">筛选</div>
+            </div>
+            <div class="screen-info-list">
+                <div class="info-list-title">分类</div>
+                <div class="info-list-item fn-clear">
+                    <ul>
+                        <li class="checked">机顶盒</li>
+                        <li>家庭网关</li>
+                        <li>ONU终端</li>
+                    </ul>
+                </div>
+                <div class="info-list-title">品牌<div class="info-list-toggle"></div></div>
+                <div class="info-list-item fn-clear">
+                    <ul>
+                        <li class="checked">华为</li>
+                        <li>中兴</li>
+                        <li>小米</li>
+                        <li>创维</li>
+                        <li>联想</li>
+                        <li>oppo</li>
+                        <li>VIVO</li>
+                        <li>熊猫</li>
+                        <li>夏普</li>
+                    </ul>
+                </div>
+                <div class="info-list-title">型号<div class="info-list-toggle"></div></div>
+                <div class="info-list-model fn-clear">
+                    <ul>
+                        <li class="checked"><p>MI-12345678809876665</p></li>
+                        <li><p>MI-12345678809876665</p></li>
+                        <li><p>MI-12345678809876665</p></li>
+                        <li><p>MI-12345678809876665</p></li>
+                        <li><p>MI-12345678809876665</p></li>
+                        <li><p>MI-12345678809876665</p></li>
+                        <li><p>MI-12345678809876665</p></li>
+                        <li><p>MI-12345678809876665</p></li>
+                        <li><p>MI-12345678809876665</p></li>
+                        <li><p>MI-12345678809876665</p></li>
+                        <li><p>MI-12345678809876665</p></li>
+                        <li><p>MI-12345678809876665</p></li>
+                    </ul>
+                </div>
+            </div>    
+            <div class="screen-info-foot">
+                <button ng-click="hideScreen()" class="btn-reset">重置</button><button ng-click="hideScreen()" class="btn-confirm">确定</button>
+            </div>
+        </div>
+        <div class="shade"></div>
+    </div>
 	<script type="text/javascript" async="true">
     function _adaptFont(maxWidth, baseWidth, baseSize) {
         maxWidth = 750; //最大值750px
