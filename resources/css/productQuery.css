@@ -142,6 +142,9 @@ header .back .iconfont{
 	color: #fff;
 	font-size: 0.746667rem;
 }
+.content .btn-query:disabled{
+	opacity: 0.7;
+}
 .content .result-box{
 	border-top: 1px solid #cccccc;
 }
@@ -164,10 +167,18 @@ header .back .iconfont{
 .result-box .result-info ul li{
 	float: left;
 	display: inline-block;
-	width: 50%;
 	height: 1.6rem;
 	color: #7f7e7e;
 	font-size: 0.64rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.result-box .result-info ul li:nth-child(odd){
+	width: 55%;
+}
+.result-box .result-info ul li:nth-child(even){
+	width: 45%;
 }
 .result-box .result-info ul li span{
 	color: #333;
@@ -207,6 +218,9 @@ footer .btn.btn-confirm{
 	background: #ff002a;
 	color: #fff;
 	border-top-color: #ff002a;
+}
+footer .btn.btn-confirm:disabled{
+	opacity: 0.7;
 }
 footer .btn.btn-cancel{
 	background: #ededed;
