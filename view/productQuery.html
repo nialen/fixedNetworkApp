@@ -9,7 +9,7 @@
 	<title>产品查询</title>
 </head>
 <body>
-	<div class="wrapper">
+	<div class="wrapper" ng-controller="productQueryCtrl" ng-cloak>
 		<header>
 			<div class="header-title">产品查询</div>
 			<div class="back"><span class="iconfont">&#xe658;</span>返回</div>
@@ -23,20 +23,18 @@
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">产品地区：</label>
-							<p class="info-area-detail">长春市</p>
+							<p class="info-area-detail" ng-bind="orderBaseinfo.regionName"></p>
 						</div>
 					</div>
 					<div class="info-item mt10">
 						<label for="">产品接入号码：</label>
-						<input type="text" value="043188953276">
+						<input type="text" ng-model="qryProdInfoForm.productNum">
 					</div>
 					<div class="info-item">
 						<label for="">产品类型：</label>
-						<select class="select-up" name="" id="">
-							<option value="">宽带</option>
-							<option value="">ITV</option>
+						<select class="select-up" ng-model="qryProdInfoForm.prodType" ng-options="item.prodType as item.prodName for item in prodTypeList">
 						</select>
-						<button class="btn-query">查询</button>
+						<button ng-click="qryProdInfo()" class="btn-query">查询</button>
 					</div>
 				</form>
 			</div>
@@ -44,10 +42,10 @@
 				<div class="top-title"><span class="iconfont">&#xe60b;</span>&nbsp;查询结果</div>
 				<div class="result-info">
 					<ul class="fn-clear">
-						<li>产品ID：<span>100023123</span></li>
-						<li>产品号码：<span>043188953276</span></li>
-						<li>产品类型：<span>宽带</span></li>
-						<li>所属客户：<span>张明菊</span></li>
+						<li>产品ID：<span ng-bind="prodInfo.productId || '--'"></span></li>
+						<li>产品号码：<span ng-bind="prodInfo.productNum || '--'"></span></li>
+						<li>产品类型：<span ng-bind="prodInfo.prodType || '--'"></span></li>
+						<li>所属客户：<span ng-bind="prodInfo.custName || '--'"></span></li>
 					</ul>
 					<div class="notice">
 						<div class="notice-text"><span class="iconfont">&#xe683;</span>&nbsp;提示：无法找到对应产品，请确认输入条件是否正确。</div>
