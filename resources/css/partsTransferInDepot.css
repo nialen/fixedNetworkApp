@@ -7,6 +7,9 @@ body{
 .border-top{
 	border-top: 1px solid #e1e0e1;
 }
+.red-color{
+	color: #ff002a;
+}
 .wrap{
     max-width: 20rem;
     margin: 0 auto;
@@ -400,6 +403,290 @@ header .back i.iconfont{
 .detail-p-list .p-num{
 	width: 33%;
 }
+/*入库确认*/
+/*选择仓库（筛选条件）*/
+.chooseDepot{
+	background: #fafafa;
+}
+.content .transfers-list{
+	width: 100%;
+	margin-bottom: 0.8rem;
+	background: #fafafa;
+	padding: 0.8rem 0;
+}
+.content .transfers-list ul li{
+	width: 94%;
+	margin: 0 auto 0.96rem;
+	background: #fafafa;
+	border: 1px solid #ccc;
+	border-radius: 0.16rem;
+}
+.transfer-info-head{
+	height: 2.08rem;
+	background: #ffffff;
+	border-bottom: 1px solid #e9e9e9;
+	line-height: 2.08rem;
+}
+.info-radioclass:last-child{
+	margin-right:0;
+}
+.info-radioclass input[type=radio] {
+	display: none;
+}
+.info-radioclass input[type=radio] + span {
+	position: relative;
+	display: inline-block;
+	padding-left: 1.706667rem;
+	font-size: 0.746667rem;
+}
+.info-radioclass input[type=radio] + span b{
+	font-weight: normal;
+}
+.info-radioclass input[type=radio] + span::after {
+	content: '';
+	position: absolute;
+	top: 0.48rem;
+	left: 0.64rem;
+	width: 1.066667rem;
+	height: 1.066667rem;
+	background: url('../../resources/images/icon-nocheckin.png') no-repeat;
+	background-size: 1.066667rem 1.066667rem;
+}
+.info-radioclass input[type=radio]:checked + span::after {
+	content: '';
+	position: absolute;
+	top: 0.48rem;
+	left: 0.64rem;
+	width: 1.066667rem;
+	height: 1.066667rem;
+	background: url('../../resources/images/icon-checkin.png') no-repeat;
+	background-size: 1.066667rem 1.066667rem;
+}
+.transfer-info{	
+	padding: 0.35rem 0 0.35rem 1.5rem;
+	font-size: 0.746667rem;
+	line-height: 1.28rem;
+}
+.transfer-info-item{
+	display: flex;
+	line-height: 1.386667rem;
+}
+.transfer-info-item p{
+	width: 50%;
+}
+.transfer-info-item span{
+	color: #7f7e7e;
+}
+.transfer-info-item .transfer-info-type{
+	display: inline-block;
+	float: right;
+	width: 4.346667rem;
+	height: 0.96rem;
+	margin-top: 0.20rem;
+	margin-right: 0.426667rem;
+	background: #ff5773;
+	color: #fff;
+	text-align: center;
+	font-size: 0.64rem;
+	line-height: 0.96rem;
+	border-radius: 1.333333rem;
+}
 
+.loading{
+	position: absolute;
+	display: none;
+	bottom: 2.666667rem;
+	left: 0;
+	width: 100%;
+	height: 1.68rem;
+	background: #ededed;
+	color: #9d9d9d;
+	border-top: 1px solid #d7d7d7;
+	font-size: 0.64rem;
+	text-align: center;
+	line-height: 1.68rem;
+	z-index: 99999;
+}
+.loading .iconfont{
+	margin-right: 0.133333rem;
+	font-size: 0.64rem;
+}
+/*选择仓库（筛选条件）*/
+/*筛选内容*/
+@keyframes moveIn
+{
+from {left:100%; opacity: 0;}
+to{left:0; opacity: 1;}
+}
 
+@-webkit-keyframes moveIn
+{
+from {left:100%; opacity: 0;}
+to{left:0; opacity: 1;}
+}
 
+@keyframes moveOut
+{
+from {left:0; opacity: 1;}
+to{left:100%; opacity: 0;}
+}
+
+@-webkit-keyframes moveOut
+{
+from {left:0; opacity: 1;}
+to{left:100%; opacity: 0;}
+}
+
+.screen-box{
+	opacity: 0;
+	bottom: 0;
+	width: 100%;
+	z-index: 9999;
+	position: absolute;
+}
+.hide-screen{
+	left: 100%;
+	top: 2.611111rem;
+	opacity: 0;
+	animation: moveOut 0.6s infinite;
+	animation-iteration-count: 1;
+}
+.show-screen{
+	left: 0;
+	top: 2.611111rem;
+	opacity: 1;
+	animation: moveIn 0.6s infinite;
+	animation-iteration-count: 1;
+}
+.shade{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.3;
+}
+.screen-info-box{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 85%;
+	height: 100%;
+	background: #fff;
+	z-index: 99999;
+}
+.screen-info-head{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 1.84rem;
+	background: #f6f5f5;
+	line-height: 1.84rem;
+}
+.screen-info-title{
+	padding-left: 0.72rem;
+	color: #7e7474;
+	font-size: 0.64rem;
+}
+.screen-info-foot{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 3.946667rem;
+	background: #fff;
+	text-align: right;
+}
+.screen-info-foot button{
+	margin-top: 1.066667rem;
+	width: 4.773333rem;
+	height: 1.866667rem;
+	border: none;
+	font-size: 0.8rem;
+	border-radius: 0.133333rem;
+}
+.screen-info-foot .btn-reset{
+	margin-right: 0.56rem;
+	background: #e7e5e5;
+	color: #0a0a0a;
+}
+.screen-info-foot .btn-confirm{
+	margin-right: 0.666667rem;
+	background: #ee302f;
+	color: #fff;
+}
+.screen-info-list{
+	position: absolute;
+	left: 0;
+	top: 1.84rem;
+	width: 100%;
+	bottom: 3.946667rem;
+	overflow: auto;
+}
+.info-list-title{
+	position: relative;
+	height: 1.76rem;
+	padding-left: 0.72rem;
+	color: #3a3a3a;
+	font-size: 0.64rem;
+	line-height: 1.76rem;
+}
+.info-list-item, .info-list-model{
+	width: 100%;
+	border-bottom: 1px solid #e6e6e6;
+}
+.info-list-item ul, .info-list-model ul{
+	padding-left: 0.72rem;
+}
+.info-list-item ul li{
+	float: left;
+	display: inline-block;
+	width: 4.8rem;
+	height: 1.813333rem;
+	margin-right: 0.453333rem;
+	margin-bottom: 0.453333rem;
+	background: #f6f5f5;
+	color: #3a3a3a;
+	text-align: center;
+	font-size: 0.64rem;
+	line-height: 1.813333rem;
+	word-break: break-all;
+	word-wrap: break-word;
+	border-radius: 0.133333rem;
+}
+.info-list-model ul li{
+	float: left;
+	display: inline-block;
+	width: 4.8rem;
+	height: 2.4rem;
+	margin-right: 0.453333rem;
+	margin-bottom: 0.453333rem;
+	background: #f6f5f5;
+	color: #3a3a3a;
+	text-align: center;
+	font-size: 0.64rem;
+	line-height: 0.96rem;
+	word-break: break-all;
+	word-wrap: break-word;
+	border-radius: 0.133333rem;
+}
+.info-list-model ul li p{
+	padding: 0.3rem 0.3rem 0;
+}
+.info-list-toggle{
+	position: absolute;
+	right: 1.153333rem;
+	top: 0;
+	width: 0.746667rem;
+	height: 1.76rem;
+	background: url('../images/icon-down.png') no-repeat right center;
+	background-size: 0.746667rem 0.426667rem;
+}
+.info-list-item ul li.checked, .info-list-model ul li.checked{
+	background: url('../images/icon-del.png') #fbe6e9 no-repeat right bottom;
+	background-size: 1.013333rem 0.853333rem;
+	color: #ea3d4b;
+}
+/*筛选内容*/
