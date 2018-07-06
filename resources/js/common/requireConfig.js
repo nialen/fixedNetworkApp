@@ -77,7 +77,7 @@ require(['jquery'], function ($) {
 	var targetModule = $('#page').attr('target-module');
 
 	// mockData 加载与否决定是否启用模拟数据
-	require(['angular', currentPage], function (angular) {
+	require(['angular', 'mockData', currentPage], function (angular) {
 		angular.bootstrap(document, [targetModule]);
 	});
 });
