@@ -120,6 +120,7 @@ header .back i.iconfont{
 	padding:0 0.373333rem;
 	background: #fff;
 	font-size: 0.746667rem;
+	border-bottom: 1px solid #ddd;
 }
 .from-item{
 	display: flex;
@@ -216,13 +217,33 @@ header .back i.iconfont{
     text-align: center;
     color: #7f7e7e;
 }
-
-
-
-
-
-
-
+/*时间*/
+.p-titl{
+	height: 2.24rem;
+	line-height: 2.24rem;
+	background: #ffe5e9;
+	color:#ff002a;
+	font-size: 0.8rem;
+	border-bottom: 1px solid #dddddd;	
+}
+.p-titl i.iconfont{
+	font-size: 1.013333rem;
+	margin: 0 0.293333rem 0 0.8rem;
+}
+.docu-num-list{
+	background: #fafafa;
+}
+.docu-num-list .docu-titl{
+	height: 2.08rem;
+	line-height: 2.08rem;
+	font-size: 0.746667rem;
+}
+.docu-titl .num-left{
+	margin-left: 0.746667rem;
+}
+.docu-titl .num-left label{
+	font-weight: bold;
+}
 
 
 
