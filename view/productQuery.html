@@ -12,7 +12,7 @@
 	<div class="wrapper" ng-controller="productQueryCtrl" ng-cloak>
 		<header>
 			<div class="header-title">产品查询</div>
-			<div class="back"><span class="iconfont">&#xe658;</span>返回</div>
+			<div class="back" ng-click="back()"><span class="iconfont">&#xe658;</span>返回</div>
 		</header>
 		<div class="content">
 			<div class="top">
@@ -34,7 +34,7 @@
 						<label for="">产品类型：</label>
 						<select class="select-up" ng-model="qryProdInfoForm.prodType" ng-options="item.prodType as item.prodName for item in prodTypeList">
 						</select>
-						<button ng-click="qryProdInfo()" class="btn-query">查询</button>
+						<button ng-click="qryProdInfo()" ng-disabled="!qryProdInfoForm.prodType || !qryProdInfoForm.productNum" class="btn-query">查询</button>
 					</div>
 				</form>
 			</div>
@@ -47,14 +47,14 @@
 						<li>产品类型：<span ng-bind="prodInfo.prodType || '--'"></span></li>
 						<li>所属客户：<span ng-bind="prodInfo.custName || '--'"></span></li>
 					</ul>
-					<div class="notice">
+					<div class="notice" ng-if="isShowNotice">
 						<div class="notice-text"><span class="iconfont">&#xe683;</span>&nbsp;提示：无法找到对应产品，请确认输入条件是否正确。</div>
 					</div>
 				</div>	
 			</div>
 		</div>
 		<footer>
-			<button class="btn btn-confirm">确定</button><button class="btn btn-cancel">取消</button>
+			<button ng-click="checkedProd()" ng-disabled="!prodInfo.productId" class="btn btn-confirm">确定</button><button ng-click="back()" class="btn btn-cancel">取消</button>
 		</footer>
 	</div>	
 	

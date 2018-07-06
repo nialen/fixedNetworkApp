@@ -26,6 +26,8 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
 				prodType: '2'
 			}];
 
+			$scope.isShowNotice = false;
+
 			$scope.qryProdInfo = function(){
 				var param = {
 					'prodType': $scope.qryProdInfoForm.prodType,
@@ -35,8 +37,20 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
 				};
 				httpMethod.prodInfoQuery(param).then(function(rsp){
 					$scope.prodInfo = rsp.data;
-					console.log($scope.prodInfo, 'info')
+					if($scope.prodInfo.productId){
+						$scope.isShowNotice = false;
+					}else{
+						$scope.isShowNotice = true;
+					}
 				})
+			};
+
+			$scope.checkedProd = function(){
+				debugger;
+			}
+
+			$scope.back = function(){
+				history.back();
 			};
         	
         }])   
