@@ -26,5 +26,8 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                 $scope.$apply();
             });
         }])
+        .controller('chooseDepotCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
+           
+        }])
        
 });

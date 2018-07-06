@@ -13,7 +13,7 @@
 
 <body>
 	<!-- 调拨入库 -->
-	<div class="wrap" ng-controller="partsTransferCtrl">
+	<div class="wrap" ng-controller="partsTransferCtrl" style="display:none">
 		<header>调拨入库<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
 		<div class="content">
 			<!-- step -->
@@ -65,29 +65,117 @@
 			<p class="p-titl"><i class="iconfont">&#xe60b;</i>待确认接收的调拨单据列表</p>
 			<ul class="docu-num">
 				<li class="docu-num-list">
-					<div class="docu-titl"><p class="num-left"><label>单据号：</label>1000000001421</p><p class="state-right"><span>状态：</span>待确认</p></div>
-					<div class="list-info">
-						<label class="info-label">调出仓库：</label>
-                		<p class="info-p">长春市库</p>
+					<div class="docu-titl"><p class="num-left"><b>单据号：</b><label>1000000001421</label></p><p class="state-right">状态：<span>待确认</span></p></div>
+					<div class="list-form">
+						<div class="list-info">
+							<label class="info-label">调出仓库：</label>
+	                		<p class="info-p">长春市库</p>
+						</div>
+						<div class="list-info">
+							<label class="info-label">调入仓库：</label>
+	                		<p class="info-p">中国电信鼓楼班组</p>
+						</div>
+						<div class="list-info">
+							<label class="info-label">制单人：</label>
+	                		<p class="info-p">销售店店长</p>
+						</div>
+						<div class="list-info">
+							<label class="info-label">制单日期：</label>
+	                		<p class="info-p">2018-06-18  20:12:40</p>
+						</div>
 					</div>
-					<div class="list-info">
-						<label class="info-label">调入仓库：</label>
-                		<p class="info-p">中国电信鼓楼班组</p>
-					</div>
-					<div class="list-info">
-						<label class="info-label">制单人：</label>
-                		<p class="info-p">销售店店长</p>
-					</div>
-					<div class="list-info">
-						<label class="info-label">制单日期：</label>
-                		<p class="info-p">2018-06-18  20:12:40</p>
-					</div>
-					<div class="docu-bottom">
+					<div class="docu-bottom text-right">
 						<button class="detail-btn">详情</button>
-						<button class="detail-btn"><i class="iconfont">&#xe6b2;</i>确认</button>
+						<button class="confirm-btn"><i class="iconfont">&#xe6b2;</i> 确认</button>
+					</div>
+				</li>
+				<li class="docu-num-list">
+					<div class="docu-titl"><p class="num-left"><b>单据号：</b><label>1000000001421</label></p><p class="state-right">状态：<span>待确认</span></p></div>
+					<div class="list-form">
+						<div class="list-info">
+							<label class="info-label">调出仓库：</label>
+	                		<p class="info-p">长春市库</p>
+						</div>
+						<div class="list-info">
+							<label class="info-label">调入仓库：</label>
+	                		<p class="info-p">中国电信鼓楼班组</p>
+						</div>
+						<div class="list-info">
+							<label class="info-label">制单人：</label>
+	                		<p class="info-p">销售店店长</p>
+						</div>
+						<div class="list-info">
+							<label class="info-label">制单日期：</label>
+	                		<p class="info-p">2018-06-18  20:12:40</p>
+						</div>
+					</div>
+					<div class="docu-bottom text-right">
+						<button class="detail-btn">详情</button>
+						<button class="confirm-btn"><i class="iconfont">&#xe6b2;</i> 确认</button>
+					</div>
+				</li>
+				<li class="docu-num-list">
+					<div class="docu-titl"><p class="num-left"><b>单据号：</b><label>1000000001421</label></p><p class="state-right">状态：<span>待确认</span></p></div>
+					<div class="list-form">
+						<div class="list-info">
+							<label class="info-label">调出仓库：</label>
+	                		<p class="info-p">长春市库</p>
+						</div>
+						<div class="list-info">
+							<label class="info-label">调入仓库：</label>
+	                		<p class="info-p">中国电信鼓楼班组</p>
+						</div>
+						<div class="list-info">
+							<label class="info-label">制单人：</label>
+	                		<p class="info-p">销售店店长</p>
+						</div>
+						<div class="list-info">
+							<label class="info-label">制单日期：</label>
+	                		<p class="info-p">2018-06-18  20:12:40</p>
+						</div>
+					</div>
+					<div class="docu-bottom text-right">
+						<button class="detail-btn">详情</button>
+						<button class="confirm-btn"><i class="iconfont">&#xe6b2;</i> 确认</button>
 					</div>
 				</li>
 			</ul>
+		</div>
+	</div>
+	<!-- 选择仓库 -->
+	<div class="wrap" ng-controller="chooseDepotCtrl">
+		<header>调拨入库-选择仓库<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
+		<div class="content">
+			<p class="p-titl"><i class="iconfont">&#xe600;</i>查询条件<button class="more-btn iconfont">&#xe608;</button>
+			<!-- <button class="more-btn iconfont">&#xe607;</button> --></p>
+			<div class="parts-info fn-clear">
+				<div class="from-item">
+                    <label class="txt-label">归属地区：</label>
+                    <p class="p-detail">长春市</p>
+                </div>
+                <div class="from-item">
+                    <label class="txt-label">归属组织：</label>
+                    <div class="search-item"><input type="text" placeholder="请选择" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
+                </div>
+                <div class="from-item">
+                    <label class="txt-label">仓库名称：</label>
+                    <input class="txt-input" type="text"/>
+                </div>
+                <div class="from-item">
+	                <label class="txt-label">仓库类型：</label>
+	                <select class="select-up" name="" id="">
+	                    <option value="">网格库</option>
+	                </select>
+	            </div>  
+	            <div class="from-item">
+	                <label class="txt-label">仓库级别：</label>
+	                <select class="select-up" name="" id="">
+	                    <option value="">网格库</option>
+	                </select>
+	            </div>  
+	            <button class="query-btn fn-right">查 询</button>
+			</div>
+			<p class="p-titl"><i class="iconfont">&#xe60b;</i>仓库列表：</p>
 		</div>
 	</div>
 	<script type="text/javascript" async="true">
