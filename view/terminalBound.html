@@ -9,7 +9,7 @@
 	<title>终端捆绑</title>
 </head>
 <body>
-	<div class="wrapper">
+	<div class="wrapper" ng-controller="terminalBoundCtrl">
 		<header>
 			<div class="header-title">终端捆绑</div>
 			<div class="back"><span class="iconfont">&#xe658;</span>返回</div>
@@ -90,6 +90,8 @@
 	        window.addEventListener("resize", _adaptFont);
 	    })();
     </script>
+    <script src="../resources/js/common/require.js" data-main="../resources/js/common/requireConfig.js" id="page"
+        current-page="../resources/js/terminalBound.js" target-module="terminalBoundModule"></script>
 </body>
 
 </html>
