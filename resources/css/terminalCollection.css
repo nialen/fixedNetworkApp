@@ -130,6 +130,7 @@ header .back i.iconfont{
 	margin: 0.72rem auto;
 	border: 1px solid #ccc;
 	border-radius: 0.213333rem;
+	overflow: hidden;
 }
 .detail-p{
 	position: relative;
