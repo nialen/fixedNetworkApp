@@ -142,8 +142,8 @@
 			</ul>
 		</div>
 	</div>
-	<!-- 选择仓库 -->
-	<div class="wrap" ng-controller="chooseDepotCtrl">
+	<!-- 选择仓库（筛选条件）-->
+	<div class="wrap" ng-controller="chooseDepotCtrl" style="display:none">
 		<header>调拨入库-选择仓库<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
 		<div class="content">
 			<p class="p-titl"><i class="iconfont">&#xe600;</i>查询条件<button class="more-btn iconfont">&#xe608;</button>
@@ -177,6 +177,92 @@
 			</div>
 			<p class="p-titl"><i class="iconfont">&#xe60b;</i>仓库列表：</p>
 		</div>
+	</div>
+	<!-- 调拨入库确认 -->
+	<div class="wrap" ng-controller="confirmDepotCtrl" style="display:none">
+		<header>调拨入库<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
+	    <div class="content">
+	    	<!-- step -->
+			<div class="step">
+				<div class="step-item">
+					<span>1</span> 查找待确认调拨单
+				</div>
+				<div class="line red-color"></div>
+				<div class="step-item red-color">
+					<span>2</span> 调拨入库确认
+				</div>
+			</div>
+	        <p class="p-titl"><i class="iconfont">&#xe737;</i>调拨入库单据基本信息<button class="more-btn iconfont">&#xe608;</button>
+			<!-- <button class="more-btn iconfont">&#xe607;</button> --></p>
+	        <div class="parts-info">
+	            <div class="from-item border-bottom">
+	                <label class="txt-label">单据号：</label>
+	                <p class="p-detail">201806040000</p>
+	            </div>	       
+	            <div class="from-item border-bottom">
+	            	<div class="half-from-item">
+		                <label class="txt-label">制单人：</label>
+		                <p class="info-p">李敏</p>
+		            </div>
+		            <div class="half-from-item">
+		                <label class="txt-label">调入日期：</label>
+		                <p class="info-p">2018-06-04</p>
+		            </div>
+	            </div>
+	            <div class="from-item border-bottom">
+	                <label class="txt-label">调出单号：</label>
+	                <p class="info-p">201806009874</p>
+	            </div>
+	            <div class="from-item border-bottom">
+	                <label class="txt-label">调入仓库：</label>
+	                <p class="info-p">省中心库</p>
+	            </div>
+	            <div class="from-item border-bottom">
+	                <label class="txt-label">调出仓库：</label>
+	                <p class="info-p">长春市局库</p>
+	            </div>	     
+	            <div class="from-item">
+	                <label class="txt-label">备注：</label>
+	                <textarea class="textarea-box"></textarea>
+	            </div>
+	        </div>
+	        <p class="p-titl"><i class="iconfont">&#xe737;</i>调拨入库终端明细<button class="more-btn iconfont">&#xe608;</button>
+			<!-- <button class="more-btn iconfont">&#xe607;</button> --></p>
+	        <ul class="detail-info">
+	            <li class="detail-list">
+	                <p class="detail-p"><span>【机顶盒】</span>华为-EC6108V9 <a href="javascript:" class="iconfont delete-btn">&#xe610;</a></p>
+	                <p class="detail-p-list"><span>品牌：</span>华为</p>
+	                <p class="detail-p-list"><span>型号：</span>EC6108V9</p>
+	                <p class="detail-p-list"><span>配置：</span>--</p>
+	                <div class="detail-p-list">
+	                	<p class="p-num"><span>申请数量：</span><b>1</b></p><p class="p-num"><span>分配数量：</span><b>1</b></p><p class="p-num"><span>录入数量：</span><b>1</b></p>
+	                </div>
+	                <div class="docu-bottom text-right border-top">
+						<button class="detail-btn">录入串号</button>
+					</div>
+	            </li>
+	            <li class="detail-list">
+	                <p class="detail-p"><span>【机顶盒】</span>华为-EC6108V9 <a href="javascript:" class="iconfont delete-btn">&#xe610;</a></p>
+	                <p class="detail-p-list"><span>品牌：</span>华为</p>
+	                <p class="detail-p-list"><span>型号：</span>EC6108V9</p>
+	                <p class="detail-p-list"><span>配置：</span>--</p>
+	                <div class="detail-p-list">
+	                	<p class="p-num"><span>申请数量：</span><b>1</b></p><p class="p-num"><span>分配数量：</span><b>1</b></p><p class="p-num"><span>录入数量：</span><b>1</b></p>
+	                </div>
+	                <div class="docu-bottom text-right border-top">
+						<button class="detail-btn">录入串号</button>
+					</div>
+	            </li>
+	        </ul>
+	    </div>
+	    <div class="bottom-btns">
+	        <button class="submit-btn">提交</button>
+	        <button class="cancel-btn">拒绝</button>
+	    </div>
+	</div>
+	<!-- 录入串码 -->
+	<div class="wrap" ng-controller="srialCodeCtrl">
+
 	</div>
 	<script type="text/javascript" async="true">
     function _adaptFont(maxWidth, baseWidth, baseSize) {

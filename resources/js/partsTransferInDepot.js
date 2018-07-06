@@ -29,5 +29,8 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
         .controller('chooseDepotCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
            
         }])
+        .controller('confirmDepotCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
+           
+        }])
        
 });

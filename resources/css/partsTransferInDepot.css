@@ -1,6 +1,12 @@
 body{
 	background: #e7e7e7;
 }
+.border-bottom{
+	border-bottom: 1px solid #e1e0e1;
+}
+.border-top{
+	border-top: 1px solid #e1e0e1;
+}
 .wrap{
     max-width: 20rem;
     margin: 0 auto;
@@ -30,6 +36,29 @@ header .back i.iconfont{
 .content{
 	margin-top:  2.506667rem;
 	padding-bottom: 2.666667rem;
+}
+/*底部按钮*/
+.bottom-btns{
+	position: fixed;
+	display: flex;
+	bottom: 0;
+	left:0;
+	width: 100%;
+	height: 2.666667rem;
+}
+.bottom-btns button{
+	width: 50%;
+	height: 2.666667rem;
+	font-size: 0.906667rem;
+	border:0;
+}
+.bottom-btns .submit-btn{
+	background: #ff002a;
+	color: #fff;
+}
+.bottom-btns .cancel-btn{
+	background: #ededed;
+	color: #999;
 }
 /*步骤*/
 .step{
@@ -124,10 +153,9 @@ header .back i.iconfont{
 }
 .from-item{
 	display: flex;
-	height: 2.346667rem;
+	min-height: 2.346667rem;
 	line-height: 2.346667rem;
 	padding-right: 0.533333rem;
-	border-bottom: 1px solid #e1e0e1;
 }
 .from-item .txt-label{
 	flex: 0 0 4.4rem;
@@ -137,6 +165,10 @@ header .back i.iconfont{
 }
 .from-item .p-detail{
 	flex: 1;
+}
+.from-item .half-from-item{
+	display: flex;
+	width: 50%;
 }
 .from-item .select-up{
 	flex: 1;
@@ -157,6 +189,16 @@ header .back i.iconfont{
 	margin-top: 0.266667rem;
 	border: 1px solid #d1d1d1;
 	border-radius: 0.16rem;
+}
+.from-item .textarea-box{
+	flex: 1;
+	height: 4.4rem;
+	padding: 0.533333rem;
+	margin: 0.533333rem 0;
+	line-height: 0.853333rem;
+	border: 1px solid #d1d1d1;
+	border-radius: 0.16rem;
+	font-size: 0.746667rem;
 }
 .from-item .search-item{
 	position: relative;
@@ -201,37 +243,6 @@ header .back i.iconfont{
 	border: 0;
 	border-radius: 0.16rem;
 }
-/*时间*/
-.date-wrap {
-    display: flex;
-    flex: 1;
-}
-.date-wrap .date {
-    position: relative;
-}
-.date-input {
-    width: 4.49rem;
-    height: 1.6rem;
-    padding: 0 15px;
-    border: 1px solid #d1d1d1;
-    line-height: 1.6rem;
-    font-size: 0.746667rem;
-    border-radius: 0.16rem;
-}
-.date-icon {
-    position: absolute;
-    top: 0.0625rem;
-    right: 0.25rem;
-    color: #ff4664;
-    font-size: 0.8rem;
-}
-.date-wrap .line {
-    flex: 0 0 1.866667rem;
-    width: 1.866667rem;
-    text-align: center;
-    color: #7f7e7e;
-}
-/*时间*/
 .p-titl{
 	position: relative;
 	height: 2.24rem;
@@ -316,13 +327,79 @@ header .back i.iconfont{
 	color: #fff;
 	background: #ff002a;
 }
-
-
-
-
-
-
-
+/*时间*/
+.date-wrap {
+    display: flex;
+    flex: 1;
+}
+.date-wrap .date {
+    position: relative;
+}
+.date-input {
+    width: 4.49rem;
+    height: 1.6rem;
+    padding: 0 15px;
+    border: 1px solid #d1d1d1;
+    line-height: 1.6rem;
+    font-size: 0.746667rem;
+    border-radius: 0.16rem;
+}
+.date-icon {
+    position: absolute;
+    top: 0.0625rem;
+    right: 0.25rem;
+    color: #ff4664;
+    font-size: 0.8rem;
+}
+.date-wrap .line {
+    flex: 0 0 1.866667rem;
+    width: 1.866667rem;
+    text-align: center;
+    color: #7f7e7e;
+}
+/*时间*/
+/*入库确认*/
+.detail-info{
+	background: #fff;
+	padding: 0.72rem 0;
+}
+.detail-list{
+	width: 94%;
+	margin: 0 auto 0.72rem;
+	border: 1px solid #ccc;
+	border-radius: 0.213333rem;
+	overflow: hidden;
+}
+.detail-p{
+	position: relative;
+	height: 2.133333rem;
+	line-height: 2.133333rem;
+	background: #f5f5f5;
+	border-bottom: 1px solid #ccc;
+	font-size: 0.746667rem;
+}
+.detail-p span{
+	color: #ff002a;
+}
+.detail-p .delete-btn{
+	position: absolute;
+	right: 0.746667rem;
+	font-size: 0.96rem;
+	color: #fc9ead;
+}
+.detail-p-list{
+	display: flex;
+	font-size: 0.64rem;
+	padding: 0 0.533333rem;
+	margin: 0.666667rem 0;
+	line-height: 0.64rem;
+}
+.detail-p-list span{
+	color: #7f7e7e;
+}
+.detail-p-list .p-num{
+	width: 33%;
+}
 
 
 
