@@ -333,34 +333,49 @@ header .back .iconfont{
 	border-radius: 0.266667rem;
 }
 .btn-nub-reduce, .btn-nub-add{
-	float: left;
+	position: absolute;
 	display: inline-block;
 	width: 1.466667rem;
 	height: 1.386667rem;
 	text-align: center;
 	line-height:  1.386667rem;
 }
+.btn-nub-reduce button, .btn-nub-add button{
+	background: none;
+	border: none;
+	font-size: 0.746667rem;
+}
 .btn-nub-reduce{
-	float: left;
-	border-right: 1px solid #d1d1d1;
+	left: 0;
+	top: 0;
 }
 .btn-nub-add{
-	float: right;
-	border-left: 1px solid #d1d1d1;
+	right: 0;
+	top: 0;
 }
 .adjust-number-input{
+	position: absolute;
+	left: 1.466667rem;
+	top: 0;
+	right: 1.466667rem;
 	width: 2.293333rem;
 	height: 1.386667rem;
 }
 .adjust-number-input input{
+	margin: 0;
+	padding: 0;
 	width: 100%;
-	height: 1.28rem;
-	line-height: 1.28rem;
+	height: 1.386667rem;
+	line-height: 1.386667rem;
 	text-align: center;
 	font-size: 0.746667rem;
 	font-weight: bold;
 	vertical-align: top;
-	border: none;
+	border-top: none;
+	border-bottom: none;
+	border-left: 1px solid #d1d1d1;
+	border-right: 1px solid #d1d1d1;
+	border-radius: 0;
 }
 
 footer{

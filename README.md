@@ -15,3 +15,4 @@
     * 串码详情 **codeDetails**
     * 终端回收 **terminalRecycling**
     * 调拨申请 **transfersApply**
+    * 选择调拨终端 **selectTransfersTerminal**
