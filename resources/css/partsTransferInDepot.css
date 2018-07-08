@@ -672,3 +672,25 @@ to{left:100%; opacity: 0;}
 	color: #ea3d4b;
 }
 /*筛选内容*/
+
+/*录入串码*/
+.p-titl .leadingin-btn{
+	position: absolute;
+	top: 0.266667rem;
+	right: 0.586667rem;
+	height: 1.6rem;
+	line-height: 1.4rem;
+	padding: 0 0.32rem;
+	color: #ff002a;
+	font-size: 0.746667rem;
+	border: 1px solid #ff002a;
+	background: #fff;
+	border-radius: 0.16rem;
+}
+.p-titl .leadingin-btn i.iconfont{
+	font-size: 0.853333rem;
+	margin:0;
+}
+
+
+
