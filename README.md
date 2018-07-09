@@ -16,3 +16,8 @@
     * 终端回收 **terminalRecycling**
     * 调拨申请 **transfersApply**
     * 选择调拨终端 **selectTransfersTerminal**
+
+    * 拆机终端收取 **terminalCollection**
+    * 调拨入库 **partsTransferInDepot**
+
+

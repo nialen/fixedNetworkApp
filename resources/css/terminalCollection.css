@@ -44,6 +44,7 @@ header .back i.iconfont{
 	border-bottom: 1px solid #e1e0e1;
 }
 .p-titl{
+	position: relative;
 	height: 2.24rem;
 	line-height: 2.24rem;
 	background: #ffe5e9;
@@ -54,6 +55,17 @@ header .back i.iconfont{
 .p-titl i.iconfont{
 	font-size: 1.013333rem;
 	margin: 0 0.293333rem 0 0.8rem;
+}
+.p-titl .more-btn{
+	position: absolute;
+	top:0;
+	right:0;
+	width: 2.88rem;
+	height: 2.24rem;
+	border: 0;
+	background: #ffe5e9;
+	color:#ff002a;
+	font-size: 0.906667rem;
 }
 .base-info{
 	margin-left: 1.653333rem;
@@ -105,7 +117,7 @@ header .back i.iconfont{
 .radioclass input[type=radio] + span::after {
 	content: '';
 	position: absolute;
-	top: 0.533333rem;
+	top: 0.633333rem;
 	left: 0;
 	width: 1.066667rem;
 	height: 1.066667rem;
@@ -316,7 +328,6 @@ header .back i.iconfont{
 	border-radius: 0.16rem;
 	padding:0;
 }
-
 .result-box .top-title{
 	height: 2.666667rem;
 	line-height: 2.666667rem;
@@ -360,6 +371,12 @@ header .back i.iconfont{
 /*终端扫码录入*/
 
 /*产品查询*/
+.productQuery{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #fafafa;
+}
 .content .prod-info{
 	width: 100%;
 	background: #fff;
@@ -449,12 +466,32 @@ header .back i.iconfont{
 	min-height: 1.866667rem;
 	margin: 0 auto;
 	background: #fce6d7;
-	line-height: 1.866667rem;
+	line-height: 1.1rem;
 }
 .result-info .notice .notice-text{
 	margin-top: 0.266667rem;
-	padding: 0 0.533333rem;
+	padding: 0.43rem 0.533333rem;
 	font-size: 0.64rem;
 	color: #fd8126;
 }
 /*产品查询*/
+
+.scan-btn:disabled, .submit-btn:disabled{
+	background: #dadada;
+	color: #333;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

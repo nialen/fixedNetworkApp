@@ -10,91 +10,72 @@
     <link rel="stylesheet" href="../resources/css/terminalCollection.css">
 </head>
 
-<body>
+<body ng-cloak>
 <!-- 拆机终端收取 -->
-<div class="wrap" ng-controller="terminalCollectionCtrl">
+<div class="wrap" ng-controller="terminalCollectionCtrl" ng-if="step === 1">
     <header>拆机终端收取<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
-    <div class="content">
-        <p class="p-titl"><i class="iconfont">&#xe737;</i>终端收取基本信息</p>
-        <div class="base-info">
+    <div class="content" ng-cloak>
+        <p class="p-titl"><i class="iconfont">&#xe737;</i>终端收取基本信息<button class="more-btn iconfont" ng-click="infoShowMore()" ng-if="infoShow">&#xe607;</button><button class="more-btn iconfont" ng-click="infoShowMore()" ng-if="!infoShow">&#xe608;</button></p>
+        <div class="base-info" ng-if="infoShow">
             <div class="info-line bottom-line">
                 <label class="info-label">单据号：</label>
-                <p class="info-p">201806040000</p>
+                <p class="info-p" ng-bind="termTakeBaseInfo.takeRecordId"></p>
             </div>
             <div class="info-line bottom-line">
                 <label class="info-label">收取人员：</label>
-                <p class="info-p">李敏</p>
+                <p class="info-p" ng-bind="termTakeBaseInfo.staffName"></p>
             </div>
             <div class="info-line bottom-line">
                 <label class="info-label">收取日期：</label>
-                <p class="info-p">2018-06-04</p>
-            </div>
-            <div class="info-line bottom-line">
-                <label class="info-label">单据号：</label>
-                <p class="info-p">201806040000</p>
-            </div>
+                <p class="info-p" ng-bind="termTakeBaseInfo.operateDt"></p>
+            </div>         
             <div class="info-line">
                 <label class="info-label">收取方式：</label>
                 <p class="info-radio">
-                    <label class="radioclass"><input type="radio" name="buinessradio" value="1" checked><span>上门向客户收取</span></label>
-                    <label class="radioclass"><input type="radio" name="buinessradio" value="1"><span>到营业厅收取</span></label>
+                    <label class="radioclass" ng-repeat="x in operateTypeList"><input type="radio" name="buinessradio" ng-value="x.operateType" ng-model="operateType"><span>{{x.operateName}}</span></label>
+                    <!-- <label class="radioclass"><input type="radio" name="buinessradio" ng-value="2" ng-model="termTakeBaseInfo.operateType"><span>营业厅收取</span></label> -->
                 </p>
             </div>
             <div class="info-line">
                 <label class="info-label">备注：</label>
-                <textarea class="textarea-box"></textarea>
+                <textarea class="textarea-box" ng-model="termTakeBaseInfo.remark"></textarea>
             </div>
         </div>
-        <p class="p-titl top-line"><i class="iconfont">&#xe737;</i>收取的终端明细信息</p>
-        <ul class="detail-info">
-            <li class="detail-list">
-                <p class="detail-p"><span>【机顶盒】</span>华为-EC6108V9 <a href="javascript:" class="iconfont delete-btn">&#xe610;</a></p>
-                <p class="detail-p-list"><span>品牌：</span>华为</p>
-                <p class="detail-p-list"><span>型号：</span>EC6108V9</p>
-                <p class="detail-p-list"><span>串码：</span>20181340HWC142963</p>
-                <p class="detail-p-list"><span>MAC码：</span>54:93:59:64:D2:24</p>
-                <p class="detail-p-list"><span>终端原来绑定产品：</span>043186534687<a href="javascript:" class="iconfont search-btn">&#xe600;</a></p>
+        <p class="p-titl top-line"><i class="iconfont">&#xe737;</i>收取的终端明细信息<button class="more-btn iconfont" ng-click="detailShowMore()" ng-if="!detailShow">&#xe608;</button><button class="more-btn iconfont" ng-click="detailShowMore()" ng-if="detailShow">&#xe607;</button></p>
+        <ul class="detail-info" ng-if="detailShow">
+            <li class="detail-list" ng-repeat="item in addOneTakeOffer">
+                <p class="detail-p"><span>【{{item.sortName}}】</span>{{item.offerName}} <a href="javascript:" class="iconfont delete-btn" ng-click="deleteTakeOffer($index)">&#xe610;</a></p>
+                <p class="detail-p-list"><span>品牌：</span>{{item.brandName}}</p>
+                <p class="detail-p-list"><span>型号：</span>{{item.offerModelName}}</p>
+                <p class="detail-p-list"><span>串码：</span>{{item.instCode}}</p>
+                <p class="detail-p-list"><span>MAC码：</span>{{item.macCode}}</p>
+                <p class="detail-p-list"><span>终端原来绑定产品：</span>{{item.oldBindProductId}}<a href="javascript:" class="iconfont search-btn" ng-click="searchProductId(item)">&#xe600;</a></p>
                 <p class="info-radio">
                     <span>旧终端处理意见</span>
-                    <label class="info-radioclass"><input type="radio" name="suggradio" value="1" checked><span>报废</span></label>
-                    <label class="info-radioclass"><input type="radio" name="suggradio" value="1"><span>维修</span></label>
-                    <label class="info-radioclass"><input type="radio" name="suggradio" value="1"><span>直接二次入库</span></label>
-                    <label class="info-radioclass"><input type="radio" name="suggradio" value="1"><span>翻新</span></label>
-                </p>
-            </li>
-            <li class="detail-list">
-                <p class="detail-p"><span>【机顶盒】</span>华为-EC6108V9 <a href="javascript:" class="iconfont delete-btn">&#xe610;</a></p>
-                <p class="detail-p-list"><span>品牌：</span>华为</p>
-                <p class="detail-p-list"><span>型号：</span>EC6108V9</p>
-                <p class="detail-p-list"><span>串码：</span>20181340HWC142963</p>
-                <p class="detail-p-list"><span>MAC码：</span>54:93:59:64:D2:24</p>
-                <p class="detail-p-list"><span>终端原来绑定产品：</span>043186534687<a href="javascript:" class="iconfont search-btn">&#xe600;</a></p>
-                <p class="info-radio">
-                    <span>旧终端处理意见</span>
-                    <label class="info-radioclass"><input type="radio" name="suggradio" value="1" checked><span>报废</span></label>
-                    <label class="info-radioclass"><input type="radio" name="suggradio" value="1"><span>维修</span></label>
-                    <label class="info-radioclass"><input type="radio" name="suggradio" value="1"><span>直接二次入库</span></label>
-                    <label class="info-radioclass"><input type="radio" name="suggradio" value="1"><span>翻新</span></label>
+                    <label class="info-radioclass" ng-repeat="x in processTypeList">
+                        <input type="radio"  ng-value="x.processType" ng-model="item.processType">
+                        <span>{{x.processName}}</span>
+                    </label>
                 </p>
             </li>
             <div class="detail-btns fn-clear">
-                <button class="add-btn fn-right"><i class="iconfont">&#xe60e;</i> 增加一行</button>
+                <button class="add-btn fn-right" ng-click="addNewOne()"><i class="iconfont">&#xe60e;</i> 增加一行</button>
             </div>
         </ul>
     </div>
     <div class="bottom-btns">
-        <button class="submit-btn">提交</button>
+        <button class="submit-btn" ng-disabled="!addOneTakeOffer.length">提交</button>
         <button class="cancel-btn">取消</button>
     </div>
 </div>
 <!-- 终端扫码录入 -->
-<div class="wrap terminalCode" ng-controller="terminalCodeCtrl" style="display: none">
-    <header>终端扫码录入<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
+<div class="wrap terminalCode" ng-controller="terminalCodeCtrl" ng-if="step === 2">
+    <header>终端扫码录入<a href="javascript:" class="back" ng-click="goback(2)"><i class="iconfont">&#xe658;</i> 返回</a></header>
     <div class="content">
         <div class="scan-code bottom-line">
             <label class="scan-label">终端串码：</label>
-            <div class="scan"><input type="text" name="" readonly></div>
-            <button class="scan-btn">扫码查询</button>        
+            <div class="scan"><input type="text" name="" ng-model="instCode"></div>
+            <button class="scan-btn" ng-click="qryTakeOffer()" ng-disabled="!instCode">扫码查询</button>        
         </div>
         <div class="result-box">
             <div class="top-title"><span class="iconfont">&#xe60b;</span>&nbsp;查询结果</div>
@@ -102,61 +83,64 @@
                 <div class="in-row">
                     <div class="scan-line">
                         <label>终端名称：</label>
-                        <p class="scan-p">中兴ONMI2543中兴ONMI2543中兴ONMI2543</p>
+                        <p class="scan-p" ng-bind="takeOffer.offerName || '--'"></p>
                     </div>
                     <div class="scan-line">
                         <label>终端编码：</label>
-                        <p class="scan-p">12005345345</p>
+                        <p class="scan-p" ng-bind="takeOffer.offerCode || '--'"></p>
                     </div>
                 </div>
                 <div class="in-row">
                     <div class="scan-line">
                         <label>终端分类：</label>
-                        <p class="scan-p">ONU终端</p>
+                        <p class="scan-p" ng-bind="takeOffer.sortName || '--'"></p>
                     </div>
                     <div class="scan-line">
                         <label>终端品牌：</label>
-                        <p class="scan-p">中兴</p>
+                        <p class="scan-p" ng-bind="takeOffer.brandName || '--'"></p>
                     </div>
                 </div>
                 <div class="in-row">
                     <div class="scan-line long">
                         <label>终端型号：</label>
-                        <p class="scan-p">ONMI2543</p>
+                        <p class="scan-p" ng-bind="takeOffer.offerModelName || '--'"></p>
                     </div>
                 </div>
                 <div class="in-row">
                     <div class="scan-line long">
                         <label>终端串码：</label>
-                        <p class="scan-p">20181340HWC142963</p>
+                        <p class="scan-p" ng-bind="takeOffer.instCode || '--'"></p>
                     </div>
                 </div>
                 <div class="in-row">
                     <div class="scan-line long">
                         <label>MAC码：</label>
-                        <p class="scan-p">54:93:59:64:D2:24</p>
+                        <p class="scan-p" ng-bind="takeOffer.macCode || '--'"></p>
                     </div>
                 </div>
                 <div class="in-row">
                     <div class="scan-line long">
                         <label>配置：</label>
-                        <p class="scan-p">--</p>
+                        <p class="scan-p" ng-bind="takeOffer.offerConfig || '--'"></p>
                     </div>
+                </div>
+                <div class="notice" ng-if="onFlag && !takeOffer">
+                    <div class="notice-text"><span class="iconfont">&#xe683;</span>&nbsp;提示：根据输入的串码无法找到对应的终端信息，只能作为未识别终端录入。</div>
                 </div>
             </div>  
         </div>
     </div>
     <div class="bottom-btns">
-        <button class="submit-btn">确定</button>
-        <button class="cancel-btn">取消</button>
+        <button class="submit-btn" ng-click="confirm()" ng-disabled="!takeOffer">确定</button>
+        <button class="cancel-btn" ng-click="cancel()">取消</button>
     </div>
 </div>
 <!-- 产品查询 -->
-<div class="wrap productQuery" ng-controller="productQueryCodeCtrl"  style="display: none">
-    <header>产品查询<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
+<div class="wrap productQuery" ng-controller="productQueryCodeCtrl" ng-if="step === 3">
+    <header>产品查询<a href="javascript:" class="back" ng-click="goback(3)"><i class="iconfont">&#xe658;</i> 返回</a></header>
     <div class="content">
         <p class="p-titl"><i class="iconfont">&#xe737;</i>产品查询</p>
-        <div class="prod-info">         
+        <div class="prod-info bottom-line">         
             <div class="info-area">
                 <div class="info-area-item">
                     <label for="">产品地区：</label>
@@ -165,15 +149,16 @@
             </div>
             <div class="info-item mt10">
                 <label for="">产品接入号码：</label>
-                <input type="text" value="043188953276">
+                <input type="text" ng-model="productNum">
             </div>
             <div class="info-item">
                 <label for="">产品类型：</label>
-                <select class="select-up" name="" id="">
-                    <option value="">宽带</option>
-                    <option value="">ITV</option>
+                <select class="select-up" ng-model="prodType">
+                    <!-- <option value="">宽带</option>
+                    <option value="">ITV</option> -->
+                    <option ng-repeat="item in prodTypeList" value="{{item.prodType}}">{{item.prodName}}</option>
                 </select>
-                <button class="btn-query">查询</button>
+                <button class="btn-query" ng-click="productQuery">查询</button>
             </div>  
         </div>        
         <div class="result-box">
@@ -182,32 +167,32 @@
                 <div class="in-row">
                     <div class="scan-line">
                         <label>产品ID：</label>
-                        <p class="scan-p">--</p>
+                        <p class="scan-p" ng-bind="prodInfo.productId || '--'"></p>
                     </div>
                     <div class="scan-line">
                         <label>产品号码：</label>
-                        <p class="scan-p">--</p>
+                        <p class="scan-p" ng-bind="prodInfo.productNum || '--'"></p>
                     </div>
                 </div>
                 <div class="in-row">
                     <div class="scan-line">
                         <label>产品类型：</label>
-                        <p class="scan-p">--</p>
+                        <p class="scan-p" ng-bind="prodInfo.prodType | prodName"></p>
                     </div>
                     <div class="scan-line">
                         <label>所属客户：</label>
-                        <p class="scan-p">--</p>
+                        <p class="scan-p" ng-bind="prodInfo.custName || '--'"></p>
                     </div>
                 </div>
-                <div class="notice">
+                <div class="notice" ng-if="onFlag && !prodInfo">
                     <div class="notice-text"><span class="iconfont">&#xe683;</span>&nbsp;提示：无法找到对应产品，请确认输入条件是否正确。</div>
                 </div>
             </div>  
         </div>
     </div>
     <div class="bottom-btns">
-        <button class="submit-btn">确定</button>
-        <button class="cancel-btn">取消</button>
+        <button class="submit-btn" ng-click="confirm()">确定</button>
+        <button class="cancel-btn" ng-click="cancel()">取消</button>
     </div>
 </div>
 <script type="text/javascript" async="true">
