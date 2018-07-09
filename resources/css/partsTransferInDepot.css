@@ -149,7 +149,7 @@ header .back i.iconfont{
 	background: #f3d8dd;
 }
 .parts-info{
-	padding:0 0.373333rem;
+	padding:0.266667rem 0.373333rem;
 	background: #fff;
 	font-size: 0.746667rem;
 	border-bottom: 1px solid #ddd;
@@ -691,6 +691,85 @@ to{left:100%; opacity: 0;}
 	font-size: 0.853333rem;
 	margin:0;
 }
+.add-search{
+	display: flex;
+	height: 2.933333rem;
+	padding: 0 1.44rem;
+	border-bottom: 1px solid #d8d8d8;
+}
+.add-search input{
+	/*width: 12.0rem;*/
+	flex: 1;
+	height: 1.6rem;
+	border: 1px solid #d1d1d1;
+	padding: 0 0.426667rem;
+	margin: 0.586667rem 0.693333rem 0 0;
+	border-radius: 0.16rem;
+}
+.add-search-btn{
+	width: 4.32rem;
+	height: 1.706667rem;
+	margin-top: 0.586667rem;
+	font-size: 0.746667rem;
+	color: #fff;
+	background: #ff002a;
+	border:0;
+	border-radius: 0.106667rem;
+}
+.srialCode{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #fafafa;
+}
+.srial-code-list{
+	background: #fff;
+}
+.code-li{
+	position: relative;
+	display: flex;
+	width: calc(50% - 1px);
+	padding: 0.45rem 0 0.2rem;
+	border-right: 1px solid #d1d1d1;
+	border-bottom: 1px solid #d1d1d1;
+}
+.code-li:nth-of-type(2n){
+	border-right: 0;
+}
+.order-num{
+	width: 0.8rem;
+	height: 0.8rem;
+	line-height: 0.85rem;
+	margin: 0 0.4rem 0 0.266667rem;
+	border: 1px solid #f14763;
+	background: #ffe5e9;
+	border-radius: 0.96rem;
+	text-align: center;
+	color: #f14763;
+	font-size: 0.64rem;
+}
+.code-num .p-code{
+	margin: 0.16rem 0 0.266667rem;
+	font-size: 0.64rem;
+	line-height: 0.64rem;
+}
+.code-li .del-btn{
+	position: absolute;
+	top: 0;
+	right: -1px;
+	width: 0.933333rem;
+	height: 0.906667rem;
+	background: url('../images/icon-code-del.png');
+	background-size: 0.933333rem 0.906667rem;
+	border: 0;
+}
+
+
+
+
+
+
+
 
 
 
