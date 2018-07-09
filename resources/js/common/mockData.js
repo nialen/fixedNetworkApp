@@ -37,6 +37,34 @@
 			'regionName': '@city'
 		}
 	});
+	//3、终端捆绑提交接口
+	Mock.mock(new RegExp('/terminal/construction/bindTermSumbit'), {
+		'success': 'true',
+		'code': '',
+		'msg': '操作成功',
+		'error': ''
+	});
+	//4、终端替换页面基本信息获取接口
+	Mock.mock(new RegExp('/terminal/construction/qryTermReplaceBaseInfo'), {
+		'success': 'true',
+		'code': '',
+		'msg': '操作成功',
+		'error': null,
+		'data': {
+			'operateDt': '@date()',
+			'staffId': '@id',
+			'staffName': '@cname',
+			'commonRegionId': '@id',
+			'regionName': '@city'
+		}
+	});
+	//5、终端替换提交接口
+	Mock.mock(new RegExp('/terminal/construction/bindReplaceSumbit'), {
+		'success': 'true',
+		'code': '',
+		'msg': '操作成功',
+		'error': ''
+	});
 	//6、拆机终端收取页面基本信息获取
 	Mock.mock(new RegExp('/terminal/recover/qryTermTakeBaseInfo'), {
 		'success': 'true',
@@ -82,6 +110,7 @@
 		"msg":"操作成功",
 		"error":""
 	});
+
 });
 
 
