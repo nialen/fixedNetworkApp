@@ -195,6 +195,9 @@ footer .btn.btn-cancel{
 	border-top-color: #cccccc;
 	border-radius: 0;
 }
+footer .btn.btn-confirm:disabled{
+	opacity: 0.7;
+}
 
 
 body{
@@ -346,9 +349,6 @@ header .back .iconfont{
 }
 .terminal-bound .content .info-item .info-item-star{
 	color: #ff4040;
-}
-.ml9{
-	margin-left: 0.24rem;
 }
 .terminal-bound .content .btn-query{
 	float: left;

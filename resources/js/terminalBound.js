@@ -18,10 +18,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
 
             $scope.terminalBoundForm = {
                 instCode: '',
-                staffId: '',
-                operateDt: '',
                 constructionNo: '',
-                bindBumber: '',
                 crmOrderNo: '',
                 remark: ''
             };
@@ -40,19 +37,20 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
 
             $scope.bindTermSumbit = function(){
                 var param = {
-                    'instCode': $scope.terminalBoundForm.instCode,
-                    'staffId': $rootScope.termBindOrderBaseinfo.staffId,
-                    'operateDt': $rootScope.termBindOrderBaseinfo.operateDt,
-                    'constructionNo': $scope.terminalBoundForm.constructionNo,
-                    'bindBumber': $rootScope.accessInfo.number,
-                    'custName': $rootScope.productInfo.custName,
-                    'bindProductId': $rootScope.productInfo.bindProductId,
-                    'crmOrderNo': $scope.terminalBoundForm.crmOrderNo,
-                    'remark': $scope.terminalBoundForm.remark
+                    'instCode': _.get($scope.terminalBoundForm, 'instCode'),
+                    'staffId': _.get($rootScope.termBindOrderBaseinfo, 'staffId'),
+                    'operateDt': _.get($rootScope.termBindOrderBaseinfo, 'operateDt'),
+                    'constructionNo': _.get($scope.terminalBoundForm, 'constructionNo'),
+                    'bindNumber': _.get($rootScope.accessInfo, 'number'),
+                    'custName': _.get($rootScope.productInfo, 'custName'),
+                    'bindProductId': _.get($rootScope.productInfo, 'bindProductId'),
+                    'crmOrderNo': _.get($scope.terminalBoundForm, 'crmOrderNo'),
+                    'remark': _.get($scope.terminalBoundForm, 'remark')
                 };
                 httpMethod.bindTermSumbit(param).then(function(rsp){
                     if(rsp.success){
-                        console.log('提交成功!')
+                        console.log('提交成功!');
+                        location.reload();
                     }
                 })
             };
@@ -81,9 +79,9 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
 
             $rootScope.qryProdInfo = function(){
                 var param = {
-                    'prodType': $scope.qryProdInfoForm.prodType,
-                    'productNum': $rootScope.accessInfo.number,
-                    'commonRegionId': $rootScope.termBindOrderBaseinfo.commonRegionId,
+                    'prodType': _.get($scope.qryProdInfoForm, 'prodType'),
+                    'productNum': _.get($rootScope.accessInfo, 'number'),
+                    'commonRegionId': _.get($rootScope.termBindOrderBaseinfo, 'commonRegionId'),
                     'statusCd': '1'
                 };
                 httpMethod.prodInfoQuery(param).then(function(rsp){

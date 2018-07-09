@@ -14,45 +14,43 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
             };
             $rootScope.productInfo = {};
         }])
-        .controller('terminalBoundCtrl', ['$scope', '$rootScope', 'httpMethod', '$sessionStorage', function($scope, $rootScope, httpMethod, $sessionStorage){
+        .controller('terminalToReplaceCtrl', ['$scope', '$rootScope', 'httpMethod', '$sessionStorage', function($scope, $rootScope, httpMethod, $sessionStorage){
 
-            $scope.terminalBoundForm = {
-                instCode: '',
-                staffId: '',
-                operateDt: '',
+            $scope.terminalToReplaceForm = {
+                newInstCode: '',
+                oldInstCode: '',
                 constructionNo: '',
-                bindBumber: '',
-                crmOrderNo: '',
                 remark: ''
             };
 
-        	//终端捆绑页面基本信息获取接口
-        	httpMethod.qryTermBindOrderBaseinfo().then(function(rsp){
-        		$rootScope.termBindOrderBaseinfo = rsp.data;
+        	//终端替换页面基本信息获取接口
+        	httpMethod.qryTermReplaceBaseInfo().then(function(rsp){
+        		$rootScope.termReplaceBaseInfo = rsp.data;
         	});
 
             $scope.qryProdInfo = function(){
                 $rootScope.stepNum = 1;
                 if($rootScope.accessInfo.number){
                     $rootScope.qryProdInfo();
-                }
+                };
             };
 
-            $scope.bindTermSumbit = function(){
+            $scope.bindReplaceSumbit = function(){
                 var param = {
-                    'instCode': $scope.terminalBoundForm.instCode,
-                    'staffId': $rootScope.termBindOrderBaseinfo.staffId,
-                    'operateDt': $rootScope.termBindOrderBaseinfo.operateDt,
-                    'constructionNo': $scope.terminalBoundForm.constructionNo,
-                    'bindBumber': $rootScope.accessInfo.number,
-                    'custName': $rootScope.productInfo.custName,
-                    'bindProductId': $rootScope.productInfo.bindProductId,
-                    'crmOrderNo': $scope.terminalBoundForm.crmOrderNo,
-                    'remark': $scope.terminalBoundForm.remark
+                    'staffId': _.get($rootScope.termReplaceBaseInfo, 'staffId'),
+                    'operateDt': _.get($rootScope.termReplaceBaseInfo, 'operateDt'),
+                    'constructionNo': _.get($scope.terminalToReplaceForm, 'constructionNo'),
+                    'bindNumber': _.get($rootScope.accessInfo, 'number'),
+                    'custName': _.get($rootScope.productInfo, 'custName'),
+                    'bindProductId': _.get($rootScope.productInfo, 'bindProductId'),
+                    'newInstCode': _.get($scope.terminalToReplaceForm, 'newInstCode'),
+                    'oldInstCode': _.get($scope.terminalToReplaceForm, 'oldInstCode'),
+                    'remark': _.get($scope.terminalToReplaceForm, 'remark')
                 };
-                httpMethod.bindTermSumbit(param).then(function(rsp){
+                httpMethod.bindReplaceSumbit(param).then(function(rsp){
                     if(rsp.success){
-                        console.log('提交成功!')
+                        console.log('提交成功!');
+                        location.reload();
                     }
                 })
             };
@@ -81,9 +79,9 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
 
             $rootScope.qryProdInfo = function(){
                 var param = {
-                    'prodType': $scope.qryProdInfoForm.prodType,
-                    'productNum': $rootScope.accessInfo.number,
-                    'commonRegionId': $rootScope.termBindOrderBaseinfo.commonRegionId,
+                    'prodType': _.get($scope.qryProdInfoForm, 'prodType'),
+                    'productNum': _.get($rootScope.accessInfo, 'number'),
+                    'commonRegionId': _.get($rootScope.termReplaceBaseInfo, 'commonRegionId'),
                     'statusCd': '1'
                 };
                 httpMethod.prodInfoQuery(param).then(function(rsp){

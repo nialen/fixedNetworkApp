@@ -9,7 +9,7 @@
 	<title>终端替换</title>
 </head>
 <body>
-	<div class="wrapper" ng-controller="terminalBoundCtrl" ng-show="stepNum == 0" ng-cloak>
+	<div class="wrapper" ng-controller="terminalToReplaceCtrl" ng-show="stepNum == 0" ng-cloak>
 		<div class="terminal-to-replace">
 			<header>
 				<div class="header-title">终端替换</div>
@@ -24,18 +24,18 @@
 						<div class="info-area">
 							<div class="info-area-item">
 								<label for="">操作人员：</label>
-								<p class="info-area-detail" ng-bind="termBindOrderBaseinfo.staffName"></p>
+								<p class="info-area-detail" ng-bind="termReplaceBaseInfo.staffName"></p>
 							</div>
 						</div>
 						<div class="info-area">
 							<div class="info-area-item">
 								<label for="">操作日期：</label>
-								<p class="info-area-detail" ng-bind="termBindOrderBaseinfo.operateDt"></p>
+								<p class="info-area-detail" ng-bind="termReplaceBaseInfo.operateDt"></p>
 							</div>
 						</div>
 						<div class="info-item mt10">
 							<label for="">施工单号：</label>
-							<input type="text" value="" placeholder="输入单号" ng-model="terminalBoundForm.constructionNo">
+							<input type="text" value="" placeholder="输入单号" ng-model="terminalToReplaceForm.constructionNo">
 							<span class="info-item-star"><span class="iconfont">&#xe659;</span></span>
 						</div>
 						<div class="info-item">
@@ -54,23 +54,23 @@
 						</div>
 						<div class="info-item">
 							<label for="">捆版旧终端串码：</label>
-							<input class="code-bg" type="text" value="" placeholder="输入串号" ng-model="terminalBoundForm.instCode">
+							<input class="code-bg" type="text" value="" placeholder="输入旧终端串码" ng-model="terminalToReplaceForm.oldInstCode">
 							<span class="info-item-star"><span class="iconfont">&#xe659;</span></span>
 						</div>
 						<div class="info-item">
 							<label for="">捆版新终端串码：</label>
-							<input class="code-bg" type="text" value="" placeholder="输入串号" ng-model="terminalBoundForm.instCode">
+							<input class="code-bg" type="text" value="" placeholder="输入新终端串码" ng-model="terminalToReplaceForm.newInstCode">
 							<span class="info-item-star"><span class="iconfont">&#xe659;</span></span>
 						</div>
 						<div class="info-item">
 							<label for="">备注：</label>
-							<textarea ng-model="terminalBoundForm.remark"></textarea>
+							<textarea ng-model="terminalToReplaceForm.remark"></textarea>
 						</div>
 					</form>
 				</div>
 			</div>
 			<footer>
-				<button class="btn btn-confirm" ng-disabled="!terminalBoundForm.instCode || !terminalBoundForm.constructionNo || !accessInfo.number || !productInfo.custName || !productInfo.bindProductId || !terminalBoundForm.crmOrderNo || !terminalBoundForm.remark" ng-click="bindTermSumbit()">提交</button><button class="btn btn-cancel">取消</button>
+				<button class="btn btn-confirm" ng-click="bindReplaceSumbit()">提交</button><button class="btn btn-cancel">取消</button>
 			</footer>
 		</div>
 	</div>
@@ -89,7 +89,7 @@
 						<div class="info-area">
 							<div class="info-area-item">
 								<label for="">产品地区：</label>
-								<p class="info-area-detail" ng-bind="termBindOrderBaseinfo.regionName"></p>
+								<p class="info-area-detail" ng-bind="termReplaceBaseInfo.regionName"></p>
 							</div>
 						</div>
 						<div class="info-item mt10">
