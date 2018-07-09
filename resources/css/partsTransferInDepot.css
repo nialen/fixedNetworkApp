@@ -149,7 +149,7 @@ header .back i.iconfont{
 	background: #f3d8dd;
 }
 .parts-info{
-	padding:0 0.373333rem;
+	padding:0.266667rem 0.373333rem;
 	background: #fff;
 	font-size: 0.746667rem;
 	border-bottom: 1px solid #ddd;
@@ -546,14 +546,14 @@ to{left:100%; opacity: 0;}
 }
 .hide-screen{
 	left: 100%;
-	top: 2.611111rem;
+	top: 2.506667rem;
 	opacity: 0;
 	animation: moveOut 0.6s infinite;
 	animation-iteration-count: 1;
 }
 .show-screen{
 	left: 0;
-	top: 2.611111rem;
+	top: 2.506667rem;
 	opacity: 1;
 	animation: moveIn 0.6s infinite;
 	animation-iteration-count: 1;
@@ -628,46 +628,37 @@ to{left:100%; opacity: 0;}
 .info-list-title{
 	position: relative;
 	height: 1.76rem;
-	padding-left: 0.72rem;
-	color: #3a3a3a;
-	font-size: 0.64rem;
+	padding: 0 0.72rem;
 	line-height: 1.76rem;
+	color: #3a3a3a;
+	font-size: 0.64rem;	
 }
-.info-list-item, .info-list-model{
+.info-list-title button.iconfont{
+	position: absolute;
+	color: #ff002a;
+	top: 0;
+	right: 0.8rem;
+	height: 1.76rem;
+	border:0;
+	background: #fff;
+}
+.info-list-item{
 	width: 100%;
 	border-bottom: 1px solid #e6e6e6;
 }
-.info-list-item ul, .info-list-model ul{
-	padding-left: 0.72rem;
+.info-list-item ul{
+	padding-left: 0.78rem;
 }
 .info-list-item ul li{
 	float: left;
-	display: inline-block;
-	width: 4.8rem;
-	height: 1.813333rem;
-	margin-right: 0.453333rem;
-	margin-bottom: 0.453333rem;
+	width: 7.413333rem;
+	height: 1.786667rem;
+	line-height: 1.786667rem;
+	margin: 0 0.586667rem 0.48rem 0;
 	background: #f6f5f5;
 	color: #3a3a3a;
 	text-align: center;
 	font-size: 0.64rem;
-	line-height: 1.813333rem;
-	word-break: break-all;
-	word-wrap: break-word;
-	border-radius: 0.133333rem;
-}
-.info-list-model ul li{
-	float: left;
-	display: inline-block;
-	width: 4.8rem;
-	height: 2.4rem;
-	margin-right: 0.453333rem;
-	margin-bottom: 0.453333rem;
-	background: #f6f5f5;
-	color: #3a3a3a;
-	text-align: center;
-	font-size: 0.64rem;
-	line-height: 0.96rem;
 	word-break: break-all;
 	word-wrap: break-word;
 	border-radius: 0.133333rem;
@@ -675,18 +666,110 @@ to{left:100%; opacity: 0;}
 .info-list-model ul li p{
 	padding: 0.3rem 0.3rem 0;
 }
-.info-list-toggle{
-	position: absolute;
-	right: 1.153333rem;
-	top: 0;
-	width: 0.746667rem;
-	height: 1.76rem;
-	background: url('../images/icon-down.png') no-repeat right center;
-	background-size: 0.746667rem 0.426667rem;
-}
-.info-list-item ul li.checked, .info-list-model ul li.checked{
+.info-list-item ul li.checked{
 	background: url('../images/icon-del.png') #fbe6e9 no-repeat right bottom;
 	background-size: 1.013333rem 0.853333rem;
 	color: #ea3d4b;
 }
 /*筛选内容*/
+
+/*录入串码*/
+.p-titl .leadingin-btn{
+	position: absolute;
+	top: 0.266667rem;
+	right: 0.586667rem;
+	height: 1.6rem;
+	line-height: 1.4rem;
+	padding: 0 0.32rem;
+	color: #ff002a;
+	font-size: 0.746667rem;
+	border: 1px solid #ff002a;
+	background: #fff;
+	border-radius: 0.16rem;
+}
+.p-titl .leadingin-btn i.iconfont{
+	font-size: 0.853333rem;
+	margin:0;
+}
+.add-search{
+	display: flex;
+	height: 2.933333rem;
+	padding: 0 1.44rem;
+	border-bottom: 1px solid #d8d8d8;
+}
+.add-search input{
+	/*width: 12.0rem;*/
+	flex: 1;
+	height: 1.6rem;
+	border: 1px solid #d1d1d1;
+	padding: 0 0.426667rem;
+	margin: 0.586667rem 0.693333rem 0 0;
+	border-radius: 0.16rem;
+}
+.add-search-btn{
+	width: 4.32rem;
+	height: 1.706667rem;
+	margin-top: 0.586667rem;
+	font-size: 0.746667rem;
+	color: #fff;
+	background: #ff002a;
+	border:0;
+	border-radius: 0.106667rem;
+}
+.srialCode{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #fafafa;
+}
+.srial-code-list{
+	background: #fff;
+}
+.code-li{
+	position: relative;
+	display: flex;
+	width: calc(50% - 1px);
+	padding: 0.45rem 0 0.2rem;
+	border-right: 1px solid #d1d1d1;
+	border-bottom: 1px solid #d1d1d1;
+}
+.code-li:nth-of-type(2n){
+	border-right: 0;
+}
+.order-num{
+	width: 0.8rem;
+	height: 0.8rem;
+	line-height: 0.85rem;
+	margin: 0 0.4rem 0 0.266667rem;
+	border: 1px solid #f14763;
+	background: #ffe5e9;
+	border-radius: 0.96rem;
+	text-align: center;
+	color: #f14763;
+	font-size: 0.64rem;
+}
+.code-num .p-code{
+	margin: 0.16rem 0 0.266667rem;
+	font-size: 0.64rem;
+	line-height: 0.64rem;
+}
+.code-li .del-btn{
+	position: absolute;
+	top: 0;
+	right: -1px;
+	width: 0.933333rem;
+	height: 0.906667rem;
+	background: url('../images/icon-code-del.png');
+	background-size: 0.933333rem 0.906667rem;
+	border: 0;
+}
+
+
+
+
+
+
+
+
+
+

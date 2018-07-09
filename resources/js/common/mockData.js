@@ -48,9 +48,9 @@
 	Mock.mock(new RegExp('/terminal/construction/qryTermReplaceBaseInfo'), {
 		'success': 'true',
 		'code': '',
-		'msg': '成功',
+		'msg': '操作成功',
 		'error': null,
-		'data':{
+		'data': {
 			'operateDt': '@date()',
 			'staffId': '@id',
 			'staffName': '@cname',
@@ -65,4 +65,69 @@
 		'msg': '操作成功',
 		'error': ''
 	});
+	//6、拆机终端收取页面基本信息获取
+	Mock.mock(new RegExp('/terminal/recover/qryTermTakeBaseInfo'), {
+		'success': 'true',
+		'code': '',
+		'msg': '成功',
+		'error': null,
+		'data':{
+			"takeRecordId":"@id",
+			"operateDt":"@date",
+			"staffId":'@id',
+			"staffName":"@cname",
+			"commonRegionId":'@id',
+			"regionName":"@city"
+		}
+	});
+	//7、选择收取终端
+	Mock.mock(new RegExp('/terminal/recover/qryTakeOffer'), {
+		'success': 'true',
+		'code': '',
+		'msg': '成功',
+		'error': null,
+		'data':{
+			"instCode":"@id",
+			"offerId":'@id',
+			"offerName":"@cword(4,8)",
+			"offerCode":"@id",
+			"sortCd":"@id",
+			"sortName":"@cword(3,6)",
+			"brandCd":'@id',
+			"brandName":"@cword(3,6)",
+			"offerModelId":'@id',
+			"offerModelName":"@cword(3,6)",
+			"offerConfig":"@cword(3,8)",
+			"oldBindNumber": "@id",
+			"oldBindProductId": "@id",
+			"oldCustName": "@cname"
+		}
+	});
+	//8、拆机终端收取提交
+	Mock.mock(new RegExp('/terminal/recover/termTakeOrderSubmit'), {
+		'success': 'true',
+		'code': '',
+		"msg":"操作成功",
+		"error":""
+	});
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -26,6 +26,17 @@ angular
 		httpMethod.bindReplaceSumbit = function (params) {
 			return httpServer(httpConfig.siteUrl + '/terminal/construction/bindReplaceSumbit', params, 'POST');
 		};
-		
+		//6、拆机终端收取页面基本信息获取
+		httpMethod.qryTermTakeBaseInfo = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/recover/qryTermTakeBaseInfo', params, 'POST');
+		};
+		//7、选择收取终端
+		httpMethod.qryTakeOffer = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/recover/qryTakeOffer', params, 'POST');
+		};
+		//8、拆机终端收取提交
+		httpMethod.termTakeOrderSubmit = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/recover/termTakeOrderSubmit', params, 'POST');
+		};
 		return httpMethod;
 	}]);
