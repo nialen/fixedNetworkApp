@@ -1,6 +1,6 @@
 define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bootstrap-tpls', 'angular-animate', 'datepicker', 'iscroll'], function (angular, $, _, Mock) {
     angular
-        .module('terminalBoundModule', ['httpMethod', 'ngStorage'])
+        .module('terminalToReplaceModule', ['httpMethod', 'ngStorage'])
         .run(['$rootScope', function ($rootScope) {
             $rootScope.stepNum = 0; // 当前显示的step索引值（Number类型）
             $rootScope.goBack = function(num) { // 返回（num-1）

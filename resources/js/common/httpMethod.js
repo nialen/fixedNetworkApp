@@ -14,5 +14,18 @@ angular
 		httpMethod.qryTermBindOrderBaseinfo = function (params) {
 			return httpServer(httpConfig.siteUrl + '/terminal/construction/qryTermBindOrderBaseinfo', params, 'POST');
 		};
+		//3、终端捆绑提交接口
+		httpMethod.bindTermSumbit = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/construction/bindTermSumbit', params, 'POST');
+		};
+		//4、终端捆绑提交接口
+		httpMethod.qryTermReplaceBaseInfo = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/construction/qryTermReplaceBaseInfo', params, 'POST');
+		};
+		//5、终端替换提交接口
+		httpMethod.bindReplaceSumbit = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/construction/bindReplaceSumbit', params, 'POST');
+		};
+		
 		return httpMethod;
 	}]);

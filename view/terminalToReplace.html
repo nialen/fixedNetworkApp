@@ -9,68 +9,120 @@
 	<title>终端替换</title>
 </head>
 <body>
-	<div class="wrapper">
-		<header>
-			<div class="header-title">终端替换</div>
-			<div class="back"><span class="iconfont">&#xe658;</span>返回</div>
-		</header>
-		<div class="content">
-			<div class="top">
-				<div class="top-title"><span class="iconfont">&#xe693;</span>终端替换</div>
-			</div>
-			<div class="prod-info">
-				<form>
-					<div class="info-area">
-						<div class="info-area-item">
-							<label for="">操作人员：</label>
-							<p class="info-area-detail">李明</p>
+	<div class="wrapper" ng-controller="terminalBoundCtrl" ng-show="stepNum == 0" ng-cloak>
+		<div class="terminal-to-replace">
+			<header>
+				<div class="header-title">终端替换</div>
+				<div class="back" ng-click="back()"><span class="iconfont">&#xe658;</span>返回</div>
+			</header>
+			<div class="content">
+				<div class="top">
+					<div class="top-title"><span class="iconfont">&#xe693;</span>终端替换</div>
+				</div>
+				<div class="prod-info">
+					<form>
+						<div class="info-area">
+							<div class="info-area-item">
+								<label for="">操作人员：</label>
+								<p class="info-area-detail" ng-bind="termBindOrderBaseinfo.staffName"></p>
+							</div>
 						</div>
-					</div>
-					<div class="info-area">
-						<div class="info-area-item">
-							<label for="">操作日期：</label>
-							<p class="info-area-detail">2018-06-01</p>
+						<div class="info-area">
+							<div class="info-area-item">
+								<label for="">操作日期：</label>
+								<p class="info-area-detail" ng-bind="termBindOrderBaseinfo.operateDt"></p>
+							</div>
 						</div>
-					</div>
-					<div class="info-item mt10">
-						<label for="">施工单号：</label>
-						<input type="text" value="" placeholder="输入单号">
-						<span class="info-item-star"><span class="iconfont">&#xe659;</span></span>
-					</div>
-					<div class="info-item">
-						<label for="">产品接入号码：</label>
-						<input class="info-number fn-left" type="text">
-						<button class="btn-query fn-left"><span class="iconfont">&#xe600;</span></button>
-						<div class="info-item-star ml9 fn-left"><span class="iconfont">&#xe659;</span></div>
-					</div>
-					<div class="info-item">
-						<label for="">产品ID：</label>
-						<input type="text" value="" disabled>
-					</div>
-					<div class="info-item">
-						<label for="">客户名称：</label>
-						<input type="text" value="" disabled>
-					</div>
-					<div class="info-item">
-						<label for="">捆绑旧终端串码：</label>
-						<input class="code-bg" type="text" value="" placeholder="输入串号">
-						<span class="info-item-star"><span class="iconfont">&#xe659;</span></span>
-					</div>
-					<div class="info-item">
-						<label for="">捆绑新终端串码：</label>
-						<input class="code-bg" type="text" value="" placeholder="输入串号">
-						<span class="info-item-star"><span class="iconfont">&#xe659;</span></span>
-					</div>
-					<div class="info-item">
-						<label for="">备注：</label>
-						<textarea></textarea>
-					</div>
-				</form>
+						<div class="info-item mt10">
+							<label for="">施工单号：</label>
+							<input type="text" value="" placeholder="输入单号" ng-model="terminalBoundForm.constructionNo">
+							<span class="info-item-star"><span class="iconfont">&#xe659;</span></span>
+						</div>
+						<div class="info-item">
+							<label for="">产品接入号码：</label>
+							<input class="info-number fn-left" type="text" ng-model="accessInfo.number">
+							<button ng-click="qryProdInfo()" class="btn-query fn-left"><span class="iconfont">&#xe600;</span></button>
+							<div class="info-item-star ml9 fn-left"><span class="iconfont">&#xe659;</span></div>
+						</div>
+						<div class="info-item">
+							<label for="">产品ID：</label>
+							<input type="text" value="" disabled ng-model="productInfo.bindProductId">
+						</div>
+						<div class="info-item">
+							<label for="">客户名称：</label>
+							<input type="text" value="" disabled ng-model="productInfo.custName">
+						</div>
+						<div class="info-item">
+							<label for="">捆版旧终端串码：</label>
+							<input class="code-bg" type="text" value="" placeholder="输入串号" ng-model="terminalBoundForm.instCode">
+							<span class="info-item-star"><span class="iconfont">&#xe659;</span></span>
+						</div>
+						<div class="info-item">
+							<label for="">捆版新终端串码：</label>
+							<input class="code-bg" type="text" value="" placeholder="输入串号" ng-model="terminalBoundForm.instCode">
+							<span class="info-item-star"><span class="iconfont">&#xe659;</span></span>
+						</div>
+						<div class="info-item">
+							<label for="">备注：</label>
+							<textarea ng-model="terminalBoundForm.remark"></textarea>
+						</div>
+					</form>
+				</div>
 			</div>
+			<footer>
+				<button class="btn btn-confirm" ng-disabled="!terminalBoundForm.instCode || !terminalBoundForm.constructionNo || !accessInfo.number || !productInfo.custName || !productInfo.bindProductId || !terminalBoundForm.crmOrderNo || !terminalBoundForm.remark" ng-click="bindTermSumbit()">提交</button><button class="btn btn-cancel">取消</button>
+			</footer>
 		</div>
-		<footer>
-			<button class="btn btn-confirm">提交</button><button class="btn btn-cancel">取消</button>
-		</footer>
+	</div>
+	<div class="wrapper" ng-controller="productQueryCtrl" ng-show="stepNum == 1" ng-cloak>
+		<div class="product-query">
+			<header>
+				<div class="header-title">产品查询</div>
+				<div class="back" ng-click="goBack(stepNum)"><span class="iconfont">&#xe658;</span>返回</div>
+			</header>
+			<div class="content">
+				<div class="top">
+					<div class="top-title"><span class="iconfont">&#xe693;</span>产品查询</div>
+				</div>
+				<div class="prod-info">
+					<form>
+						<div class="info-area">
+							<div class="info-area-item">
+								<label for="">产品地区：</label>
+								<p class="info-area-detail" ng-bind="termBindOrderBaseinfo.regionName"></p>
+							</div>
+						</div>
+						<div class="info-item mt10">
+							<label for="">产品接入号码：</label>
+							<input type="text" ng-model="accessInfo.number">
+						</div>
+						<div class="info-item">
+							<label for="">产品类型：</label>
+							<select class="select-up" ng-model="qryProdInfoForm.prodType" ng-options="item.prodType as item.prodName for item in prodTypeList">
+							</select>
+							<button ng-click="qryProdInfo()" ng-disabled="!qryProdInfoForm.prodType || !accessInfo.number" class="btn-query">查询</button>
+						</div>
+					</form>
+				</div>
+				<div class="result-box">
+					<div class="top-title"><span class="iconfont">&#xe60b;</span>&nbsp;查询结果</div>
+					<div class="result-info">
+						<ul class="fn-clear">
+							<li>产品ID：<span ng-bind="prodInfo.productId || '--'"></span></li>
+							<li>产品号码：<span ng-bind="prodInfo.productNum || '--'"></span></li>
+							<li>产品类型：<span ng-bind="prodInfo.prodType || '--'"></span></li>
+							<li>所属客户：<span ng-bind="prodInfo.custName || '--'"></span></li>
+						</ul>
+						<div class="notice" ng-if="isShowNotice">
+							<div class="notice-text"><span class="iconfont">&#xe683;</span>&nbsp;提示：无法找到对应产品，请确认输入条件是否正确。</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<footer>
+				<button ng-click="checkedProd()" ng-disabled="!prodInfo.productId" class="btn btn-confirm">确定</button><button ng-click="goBack(1)" class="btn btn-cancel">取消</button>
+			</footer>
+		</div>
 	</div>	
 	
 	<script type="text/javascript" async="true">
@@ -91,6 +143,8 @@
 	        window.addEventListener("resize", _adaptFont);
 	    })();
     </script>
+    <script src="../resources/js/common/require.js" data-main="../resources/js/common/requireConfig.js" id="page"
+        current-page="../resources/js/terminalToReplace.js" target-module="terminalToReplaceModule"></script>
 </body>
 
 </html>
