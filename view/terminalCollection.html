@@ -42,7 +42,7 @@
         </div>
         <p class="p-titl top-line"><i class="iconfont">&#xe737;</i>收取的终端明细信息<button class="more-btn iconfont" ng-click="detailShowMore()" ng-if="!detailShow">&#xe608;</button><button class="more-btn iconfont" ng-click="detailShowMore()" ng-if="detailShow">&#xe607;</button></p>
         <ul class="detail-info" ng-if="detailShow">
-            <li class="detail-list" ng-repeat="item in addOneTakeOffer">
+            <li class="detail-list" ng-repeat="item in addOneTakeOffer track by $index">
                 <p class="detail-p"><span>【{{item.sortName}}】</span>{{item.offerName}} <a href="javascript:" class="iconfont delete-btn" ng-click="deleteTakeOffer($index)">&#xe610;</a></p>
                 <p class="detail-p-list"><span>品牌：</span>{{item.brandName}}</p>
                 <p class="detail-p-list"><span>型号：</span>{{item.offerModelName}}</p>
@@ -63,8 +63,8 @@
         </ul>
     </div>
     <div class="bottom-btns">
-        <button class="submit-btn" ng-disabled="!addOneTakeOffer.length">提交</button>
-        <button class="cancel-btn">取消</button>
+        <button class="submit-btn" ng-click="submitTerminal()" ng-disabled="!addOneTakeOffer.length">提交</button>
+        <button class="cancel-btn" ng-click="cancel()">取消</button>
     </div>
 </div>
 <!-- 终端扫码录入 -->
@@ -148,7 +148,7 @@
             </div>
             <div class="info-item mt10">
                 <label for="">产品接入号码：</label>
-                <input type="text" ng-model="productItem.oldBindNumber">
+                <input type="text" ng-model="productItem.oldBindProductId">
             </div>
             <div class="info-item">
                 <label for="">产品类型：</label>

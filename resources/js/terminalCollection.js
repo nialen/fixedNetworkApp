@@ -64,21 +64,33 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
             };
             $scope.searchProductId = function (item) {
                 $rootScope.step = 3;
-                $rootScope.productItem = item;
-
-                // item.oldBindNumber = $rootScope.productItem.oldBindNumber;
-            };
+                $rootScope.productItem = item;               
+            };          
             $scope.deleteTakeOffer = function (index) {
                 $rootScope.addOneTakeOffer.splice(index, 1);
             };
+            $scope.submitTerminal = function(){               
+                var param={
+                    'takeRecordId': $scope.termTakeBaseInfo.takeRecordId,
+                    'staffId': $scope.termTakeBaseInfo.staffId,
+                    'operateType': _.get($scope, 'operateType'),
+                    'remark': $scope.termTakeBaseInfo.remark,
+                    'takeItemList': $rootScope.addOneTakeOffer
+                }
+                httpMethod.termTakeOrderSubmit(param).then(function(rsp){              
+                    if(rsp.success){
+                        // $scope.termTakeBaseInfo = rsp.data;
+                    }
+                });
+            }
         }])
-        // 串码录入
+        // 终端扫码录入
         .controller('terminalCodeCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
             $scope.onFlag = false;
             $scope.qryTakeOffer = function(){
                 var param = {
                     'instCode': $scope.instCode
-                }
+                };
                 httpMethod.qryTakeOffer(param).then(function(rsp){              
                     if(rsp.success){
                         $scope.takeOffer = rsp.data;
@@ -87,7 +99,33 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 })
             };
             $scope.confirm = function () {
-                $rootScope.addOneTakeOffer.push($scope.takeOffer);
+                _.map($rootScope.addOneTakeOffer, function(item){                   
+                    if($scope.takeOffer.offerId === item.offerId){
+                        var obj = {
+                            'instCode': $scope.takeOffer.instCode,
+                            'oldBindNumber': $scope.takeOffer.oldBindNumber,
+                            'oldBindProductId': $scope.takeOffer.oldBindProductId,
+                            'oldCustName': $scope.takeOffer.oldCustName,
+                            // 'processType': '1'
+                        }
+                        item.instCodeList.push(obj);
+                        item.offerQty = +1;                       
+                    }else{
+                        var obj = {
+                            'takeRecordId': $scope.termTakeBaseInfo.takeRecordId,
+                            'offerId': $scope.takeOffer.offerId,
+                            'offerQty': 1,
+                            'instCodeList':[{
+                                'instCode': $scope.takeOffe.instCode,
+                                'oldBindNumber': $scope.takeOffer.oldBindNumber,
+                                'oldBindProductId': $scope.takeOffer.oldBindProductId,
+                                'oldCustName': $scope.takeOffer.oldCustName,
+                                // 'processType': '1'
+                            }]
+                        }
+                        $rootScope.addOneTakeOffer.push(obj);
+                    }
+                });
                 $rootScope.step = 1;
                 $rootScope.detailShow = true;
             }
@@ -109,10 +147,10 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
             $scope.prodType = '1';
             $scope.productQuery = function () {
                 var param = {
-                    "prodType": _.get($scope, 'prodType'),
-                    "productNum": $rootScope.productItem.oldBindNumber,
-                    "commonRegionId": $scope.commonRegionId,
-                    "statusCd": $scope.statusCd
+                    'prodType': _.get($scope, 'prodType'),
+                    'productNum': $rootScope.productItem.oldBindNumber,
+                    'commonRegionId': $scope.commonRegionId,
+                    'statusCd': $scope.statusCd
                 };
                 httpMethod.prodInfoQuery(param).then(function(rsp){              
                     if(rsp.success){
@@ -122,12 +160,13 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 });
             }
             $scope.confirm = function () {
-                $rootScope.productItem.oldBindNumber = $scope.prodInfo.productNum;
+                $rootScope.productItem.oldBindProductId = $scope.prodInfo.productNum;
                 $rootScope.step = 1;
             }
             $scope.cancel = function () {
                 $rootScope.step = 1;
             }
+
         }])
 });
 

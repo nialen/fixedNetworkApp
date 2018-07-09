@@ -439,6 +439,7 @@ header .back i.iconfont{
 }
 .content .info-item input{
 	width: 100%;
+	font-size: 0.853333rem;
 }
 .content .info-item select{
 	position: relative;
