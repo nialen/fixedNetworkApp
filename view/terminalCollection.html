@@ -32,8 +32,7 @@
             <div class="info-line">
                 <label class="info-label">收取方式：</label>
                 <p class="info-radio">
-                    <label class="radioclass" ng-repeat="x in operateTypeList"><input type="radio" name="buinessradio" ng-value="x.operateType" ng-model="operateType"><span>{{x.operateName}}</span></label>
-                    <!-- <label class="radioclass"><input type="radio" name="buinessradio" ng-value="2" ng-model="termTakeBaseInfo.operateType"><span>营业厅收取</span></label> -->
+                    <label class="radioclass" ng-repeat="x in operateTypeList"><input type="radio" name="buinessradio" ng-value="x.operateType" ng-model="operateType"><span>{{x.operateName}}</span></label> 
                 </p>
             </div>
             <div class="info-line">
@@ -144,21 +143,19 @@
             <div class="info-area">
                 <div class="info-area-item">
                     <label for="">产品地区：</label>
-                    <p class="info-area-detail">长春市</p>
+                    <p class="info-area-detail" ng-bind="commonRegoinName"></p>
                 </div>
             </div>
             <div class="info-item mt10">
                 <label for="">产品接入号码：</label>
-                <input type="text" ng-model="productNum">
+                <input type="text" ng-model="productItem.oldBindNumber">
             </div>
             <div class="info-item">
                 <label for="">产品类型：</label>
-                <select class="select-up" ng-model="prodType">
-                    <!-- <option value="">宽带</option>
-                    <option value="">ITV</option> -->
+                <select class="select-up" ng-model="prodType">                  
                     <option ng-repeat="item in prodTypeList" value="{{item.prodType}}">{{item.prodName}}</option>
                 </select>
-                <button class="btn-query" ng-click="productQuery">查询</button>
+                <button class="btn-query" ng-click="productQuery()">查询</button>
             </div>  
         </div>        
         <div class="result-box">
@@ -177,7 +174,8 @@
                 <div class="in-row">
                     <div class="scan-line">
                         <label>产品类型：</label>
-                        <p class="scan-p" ng-bind="prodInfo.prodType | prodName"></p>
+                        <p class="scan-p" ng-bind="prodInfo.prodType | prodName" ng-if="prodInfo.prodType"></p>
+                        <p class="scan-p" ng-if="!prodInfo.prodType">--</p>
                     </div>
                     <div class="scan-line">
                         <label>所属客户：</label>

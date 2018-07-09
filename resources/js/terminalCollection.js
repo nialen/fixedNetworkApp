@@ -64,12 +64,15 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
             };
             $scope.searchProductId = function (item) {
                 $rootScope.step = 3;
-                $scope.productItem = item;
+                $rootScope.productItem = item;
+
+                // item.oldBindNumber = $rootScope.productItem.oldBindNumber;
             };
             $scope.deleteTakeOffer = function (index) {
                 $rootScope.addOneTakeOffer.splice(index, 1);
             };
         }])
+        // 串码录入
         .controller('terminalCodeCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
             $scope.onFlag = false;
             $scope.qryTakeOffer = function(){
@@ -93,6 +96,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
             }
             
         }])
+        // 产品查询
         .controller('productQueryCodeCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
             $scope.onFlag = false;
             $scope.prodTypeList = [{
@@ -105,8 +109,8 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
             $scope.prodType = '1';
             $scope.productQuery = function () {
                 var param = {
-                    "prodType": $scope.prodType,
-                    "productNum": $scope.productNum,
+                    "prodType": _.get($scope, 'prodType'),
+                    "productNum": $rootScope.productItem.oldBindNumber,
                     "commonRegionId": $scope.commonRegionId,
                     "statusCd": $scope.statusCd
                 };
@@ -118,7 +122,8 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 });
             }
             $scope.confirm = function () {
-               
+                $rootScope.productItem.oldBindNumber = $scope.prodInfo.productNum;
+                $rootScope.step = 1;
             }
             $scope.cancel = function () {
                 $rootScope.step = 1;
