@@ -4,6 +4,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
         .run(['$rootScope', function ($rootScope) {
             $rootScope.step = 1;
             $rootScope.detailShow = false;
+            $rootScope.infoShow = false;
             $rootScope.addOneTakeOffer = [];
             $rootScope.goback = function (index) {
                 $rootScope.step = index - 1;
@@ -38,6 +39,10 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
             _.map($scope.addOneTakeOffer, function(item){
                 item.processType = $scope.processTypeList[0].processType;
             });
+
+            $scope.termTakeBaseInfo = {
+                'operateType': '1'
+            };
             $scope.operateTypeList = [{
                 'operateType': '1',
                 'operateName': '上客户门收取'
@@ -45,16 +50,15 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 'operateType': '2',
                 'operateName': '营业厅收取'
             }];
-            $scope.operateType = '1';
 
-            $scope.infoShow = false;
+            // $scope.infoShow = false;
             $scope.infoShowMore = function () {
-                $scope.infoShow = !$scope.infoShow;
+                $rootScope.infoShow = !$rootScope.infoShow;
             };
             $scope.detailShowMore = function () {
-                $scope.detailShow = !$scope.detailShow;
+                $rootScope.detailShow = !$rootScope.detailShow;
             };
-            httpMethod.qryTermTakeBaseInfo().then(function(rsp){              
+            httpMethod.qryTermTakeBaseInfo().then(function(rsp){ 
                 if(rsp.success){
                     $scope.termTakeBaseInfo = rsp.data;
                 }
@@ -69,24 +73,41 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
             $scope.deleteTakeOffer = function (index) {
                 $rootScope.addOneTakeOffer.splice(index, 1);
             };
-            $scope.submitTerminal = function(){               
+
+            //提交
+            $scope.submitTerminal = function(){ 
+                var takeOfferList = [];
+                _.map($rootScope.addOneTakeOffer, function(item){                    
+                    var obj = {
+                        'takeRecordId': $scope.termTakeBaseInfo.takeRecordId,
+                        'offerId':item.offerId,
+                        'offerQty': 1,
+                        'instCodeList':[{
+                            'instCode': item.instCode,
+                            'oldBindNumber': item.oldBindNumber,
+                            'oldBindProductId': item.oldBindProductId,
+                            'oldCustName': item.oldCustName,
+                            'processType': item.processType
+                        }]
+                    }
+                    takeOfferList.push(obj);               
+                });              
                 var param={
                     'takeRecordId': $scope.termTakeBaseInfo.takeRecordId,
                     'staffId': $scope.termTakeBaseInfo.staffId,
-                    'operateType': _.get($scope, 'operateType'),
+                    'operateType': _.get($scope, 'termTakeBaseInfo.operateType'),
                     'remark': $scope.termTakeBaseInfo.remark,
-                    'takeItemList': $rootScope.addOneTakeOffer
-                }
+                    'takeItemList': takeOfferList
+                };
                 httpMethod.termTakeOrderSubmit(param).then(function(rsp){              
                     if(rsp.success){
-                        // $scope.termTakeBaseInfo = rsp.data;
+                        
                     }
                 });
             }
         }])
         // 终端扫码录入
         .controller('terminalCodeCtrl', ['$scope', '$rootScope', '$uibModal', 'httpMethod', 'JqueryDialog', function ($scope, $rootScope, $uibModal, httpMethod, JqueryDialog) {
-            $scope.onFlag = false;
             $scope.qryTakeOffer = function(){
                 var param = {
                     'instCode': $scope.instCode
@@ -94,44 +115,17 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 httpMethod.qryTakeOffer(param).then(function(rsp){              
                     if(rsp.success){
                         $scope.takeOffer = rsp.data;
-                        $scope.onFlag = true;
                     }
                 })
             };
-            $scope.confirm = function () {
-                _.map($rootScope.addOneTakeOffer, function(item){                   
-                    if($scope.takeOffer.offerId === item.offerId){
-                        var obj = {
-                            'instCode': $scope.takeOffer.instCode,
-                            'oldBindNumber': $scope.takeOffer.oldBindNumber,
-                            'oldBindProductId': $scope.takeOffer.oldBindProductId,
-                            'oldCustName': $scope.takeOffer.oldCustName,
-                            // 'processType': '1'
-                        }
-                        item.instCodeList.push(obj);
-                        item.offerQty = +1;                       
-                    }else{
-                        var obj = {
-                            'takeRecordId': $scope.termTakeBaseInfo.takeRecordId,
-                            'offerId': $scope.takeOffer.offerId,
-                            'offerQty': 1,
-                            'instCodeList':[{
-                                'instCode': $scope.takeOffe.instCode,
-                                'oldBindNumber': $scope.takeOffer.oldBindNumber,
-                                'oldBindProductId': $scope.takeOffer.oldBindProductId,
-                                'oldCustName': $scope.takeOffer.oldCustName,
-                                // 'processType': '1'
-                            }]
-                        }
-                        $rootScope.addOneTakeOffer.push(obj);
-                    }
-                });
+            $scope.confirm = function () {              
+                $rootScope.addOneTakeOffer.push($scope.takeOffer);                            
                 $rootScope.step = 1;
                 $rootScope.detailShow = true;
-            }
+            };
             $scope.cancel = function () {
                 $rootScope.step = 1;
-            }
+            };
             
         }])
         // 产品查询

@@ -12,11 +12,11 @@
 
 <body ng-cloak>
 <!-- 拆机终端收取 -->
-<div class="wrap" ng-controller="terminalCollectionCtrl" ng-if="step === 1">
+<div class="wrap" ng-controller="terminalCollectionCtrl" ng-show="step === 1">
     <header>拆机终端收取<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
     <div class="content" ng-cloak>
-        <p class="p-titl"><i class="iconfont">&#xe737;</i>终端收取基本信息<button class="more-btn iconfont" ng-click="infoShowMore()" ng-if="infoShow">&#xe607;</button><button class="more-btn iconfont" ng-click="infoShowMore()" ng-if="!infoShow">&#xe608;</button></p>
-        <div class="base-info" ng-if="infoShow">
+        <p class="p-titl"><i class="iconfont">&#xe737;</i>终端收取基本信息<button class="more-btn iconfont" ng-click="infoShowMore()" ng-show="infoShow">&#xe607;</button><button class="more-btn iconfont" ng-click="infoShowMore()" ng-show="!infoShow">&#xe608;</button></p>
+        <div class="base-info" ng-show="infoShow">
             <div class="info-line bottom-line">
                 <label class="info-label">单据号：</label>
                 <p class="info-p" ng-bind="termTakeBaseInfo.takeRecordId"></p>
@@ -31,8 +31,11 @@
             </div>         
             <div class="info-line">
                 <label class="info-label">收取方式：</label>
-                <p class="info-radio">
-                    <label class="radioclass" ng-repeat="x in operateTypeList"><input type="radio" name="buinessradio" ng-value="x.operateType" ng-model="operateType"><span>{{x.operateName}}</span></label> 
+                <p class="info-radio">                  
+                    <label class="radioclass" ng-repeat="x in operateTypeList">
+                        <input type="radio"  ng-value="x.operateType" ng-model="termTakeBaseInfo.operateType">
+                        <span>{{x.operateName}}</span>
+                    </label>
                 </p>
             </div>
             <div class="info-line">
@@ -40,15 +43,15 @@
                 <textarea class="textarea-box" ng-model="termTakeBaseInfo.remark"></textarea>
             </div>
         </div>
-        <p class="p-titl top-line"><i class="iconfont">&#xe737;</i>收取的终端明细信息<button class="more-btn iconfont" ng-click="detailShowMore()" ng-if="!detailShow">&#xe608;</button><button class="more-btn iconfont" ng-click="detailShowMore()" ng-if="detailShow">&#xe607;</button></p>
-        <ul class="detail-info" ng-if="detailShow">
+        <p class="p-titl top-line"><i class="iconfont">&#xe737;</i>收取的终端明细信息<button class="more-btn iconfont" ng-click="detailShowMore()" ng-show="!detailShow">&#xe608;</button><button class="more-btn iconfont" ng-click="detailShowMore()" ng-show="detailShow">&#xe607;</button></p>
+        <ul class="detail-info" ng-show="detailShow">
             <li class="detail-list" ng-repeat="item in addOneTakeOffer track by $index">
                 <p class="detail-p"><span>【{{item.sortName}}】</span>{{item.offerName}} <a href="javascript:" class="iconfont delete-btn" ng-click="deleteTakeOffer($index)">&#xe610;</a></p>
                 <p class="detail-p-list"><span>品牌：</span>{{item.brandName}}</p>
                 <p class="detail-p-list"><span>型号：</span>{{item.offerModelName}}</p>
                 <p class="detail-p-list"><span>串码：</span>{{item.instCode}}</p>
-                <p class="detail-p-list"><span>MAC码：</span>{{item.macCode}}</p>
-                <p class="detail-p-list"><span>终端原来绑定产品：</span>{{item.oldBindProductId}}<a href="javascript:" class="iconfont search-btn" ng-click="searchProductId(item)">&#xe600;</a></p>
+                <p class="detail-p-list" ng-show="item.isHaveMac == 'Y'"><span>MAC码：</span>{{item.macCode}}</p>
+                <p class="detail-p-list"><span>终端原来绑定产品：</span>{{item.oldBindProductId}}<a href="javascript:" class="iconfont search-btn" ng-click="searchProductId(item)" ng-if="item.offerId == '-1'">&#xe600;</a></p>
                 <p class="info-radio">
                     <span>旧终端处理意见</span>
                     <label class="info-radioclass" ng-repeat="x in processTypeList">
@@ -111,7 +114,7 @@
                         <p class="scan-p" ng-bind="takeOffer.instCode || '--'"></p>
                     </div>
                 </div>
-                <div class="in-row">
+                <div class="in-row" ng-show="takeOffer.isHaveMac == 'Y'">
                     <div class="scan-line long">
                         <label>MAC码：</label>
                         <p class="scan-p" ng-bind="takeOffer.macCode || '--'"></p>
@@ -123,7 +126,7 @@
                         <p class="scan-p" ng-bind="takeOffer.offerConfig || '--'"></p>
                     </div>
                 </div>
-                <div class="notice" ng-if="onFlag && !takeOffer">
+                <div class="notice" ng-show="takeOffer.offerId == '-1'">
                     <div class="notice-text"><span class="iconfont">&#xe683;</span>&nbsp;提示：根据输入的串码无法找到对应的终端信息，只能作为未识别终端录入。</div>
                 </div>
             </div>  
@@ -174,15 +177,15 @@
                 <div class="in-row">
                     <div class="scan-line">
                         <label>产品类型：</label>
-                        <p class="scan-p" ng-bind="prodInfo.prodType | prodName" ng-if="prodInfo.prodType"></p>
-                        <p class="scan-p" ng-if="!prodInfo.prodType">--</p>
+                        <p class="scan-p" ng-bind="prodInfo.prodType | prodName" ng-show="prodInfo.prodType"></p>
+                        <p class="scan-p" ng-show="!prodInfo.prodType">--</p>
                     </div>
                     <div class="scan-line">
                         <label>所属客户：</label>
                         <p class="scan-p" ng-bind="prodInfo.custName || '--'"></p>
                     </div>
                 </div>
-                <div class="notice" ng-if="onFlag && !prodInfo">
+                <div class="notice" ng-show="onFlag && !prodInfo">
                     <div class="notice-text"><span class="iconfont">&#xe683;</span>&nbsp;提示：无法找到对应产品，请确认输入条件是否正确。</div>
                 </div>
             </div>  
