@@ -117,9 +117,9 @@
 		'msg':'操作成功',
 		'error':'',
 		'data':{
-			'instCode':'@id',
-			'macCode|1': ['@id', ''],
-			'offerId': '@id',
+			'instCode|1': ['1001', '1002', '1003'],
+			'macCode': '@id',
+			'offerId|1': ['1001', '1002', '1003'],
 			'offerName':'@cword(3,5)',
 			'offerCode': '@id',
 			'sortCd': '@id',
