@@ -58,6 +58,18 @@ angular
 		httpMethod.borrowOrderInSubmit = function (params) {
 			return httpServer(httpConfig.siteUrl + '/terminal/construction/borrowOrderInSubmit', params, 'POST');
 		};
+		//14、终端回收页面基本信息获取接口
+		httpMethod.qryTermRecoverBaseInfo = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/recover/qryTermRecoverBaseInfo', params, 'POST');
+		};
+		//15、选择回收终端接口
+		httpMethod.qryRecoverOffer = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/recover/qryRecoverOffer', params, 'POST');
+		};
+		//16、终端回收提交接口
+		httpMethod.recoverOrderSubmit = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/recover/recoverOrderSubmit', params, 'POST');
+		};
 		//1000、借机人下拉数据接口
 		httpMethod.qryBorrowUser = function (params) {
 			return httpServer(httpConfig.siteUrl + '/terminal/construction/qryBorrowUser', params, 'POST');

@@ -176,6 +176,48 @@
 		'msg':'操作成功',
 		'error':''
 	});
+	//14、终端回收页面基本信息获取接口
+	Mock.mock(new RegExp('/terminal/recover/qryTermRecoverBaseInfo'), {
+		'success': 'true',
+		'code': '',
+		'msg': '成功',
+		'error': null,
+		'data':{
+			'recoverOrderId':'@id',
+			'createDt':'@date',
+			'staffId': '@id',
+			'staffName': '@cname',
+			'recoverStorageId': '@id',
+			'recoverStorageName':'@cword(4,6)'
+		}
+	});
+	//15、选择回收终端接口
+	Mock.mock(new RegExp('/terminal/recover/qryRecoverOffer'), {
+		'success':'true',
+		'code':'',
+		'msg':'操作成功',
+		'error':'',
+		'data':{
+			'instCode|1': ['1001', '1002', '1003'],
+			'offerId|1': ['1001', '1002', '1003'],
+			'offerName': '@cword(5,7)',
+			'offerCode': '@id',
+			'sortCd': '@id',
+			'sortName': '@cword(3,6)',
+			'bandCd': '@id',
+			'bandName': '@cword(2,6)',
+			'offerModelId': '@id',
+			'offerModelName': '@word(5,7)',
+			'offerConfig': '@cword(8, 16)'
+		}
+	});
+	//16、终端回收提交接口
+	Mock.mock(new RegExp('/terminal/recover/recoverOrderSubmit'), {
+		'success': 'true',
+		'code': '',
+		'msg':'操作成功',
+		'error':''
+	});
 	//1000、借机人下拉数据接口
 	Mock.mock(new RegExp('/terminal/construction/qryBorrowUser'), {
 		'rsphead': 's',
