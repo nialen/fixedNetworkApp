@@ -54,5 +54,37 @@ angular
 		httpMethod.qryBorrowUser = function (params) {
 			return httpServer(httpConfig.siteUrl + '/terminal/construction/qryBorrowUser', params, 'POST');
 		};
+		//24、调拨入库页面入库仓库信息查询
+		httpMethod.qryAllotOrderInBaseInfo = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/stock/qryAllotOrderInBaseInfo', params, 'POST');
+		};
+		//25、待确认调拨单查询接口
+		httpMethod.qryTbcAllotOrder = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/stock/qryTbcAllotOrder', params, 'POST');
+		};
+		//26、待确认调拨单详情查询接口
+		httpMethod.qryAllotOrderDetail = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/stock/qryAllotOrderDetail', params, 'POST');
+		};
+		//27、调拨入库确认/拒绝接口
+		httpMethod.changeAllotOrderStatus4JL = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/stock/changeAllotOrderStatus4JL', params, 'POST');
+		};
+		//28、仓库所属组织/门店下拉框数据获取接口
+		httpMethod.qryOrgOrShop = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/baseConfig/qryOrgOrShop', params, 'POST');
+		};
+		//29、仓库查询接口
+		httpMethod.qryStorage4Select = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/baseConfig/qryStorage4Select', params, 'POST');
+		};
+		//30、调拨入库页面终端串号录入接口
+		httpMethod.checkInstCodsByOffer = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/baseConfig/checkInstCodsByOffer', params, 'POST');
+		};
+		//31、调拨入库终端串号批量导入接口
+		httpMethod.checkInstCodsByOfferBatch = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/baseConfig/checkInstCodsByOfferBatch', params, 'POST');
+		};
 		return httpMethod;
 	}]);
