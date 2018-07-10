@@ -72,7 +72,7 @@
 </div>
 <!-- 终端扫码录入 -->
 <div class="wrap terminalCode" ng-controller="terminalCodeCtrl" ng-if="step === 2">
-    <header>终端扫码录入<a href="javascript:" class="back" ng-click="goback(2)"><i class="iconfont">&#xe658;</i> 返回</a></header>
+    <header>终端扫码录入<a href="javascript:" class="back" ng-click="goback(1)"><i class="iconfont">&#xe658;</i> 返回</a></header>
     <div class="content">
         <div class="scan-code bottom-line">
             <label class="scan-label">终端串码：</label>
@@ -139,14 +139,14 @@
 </div>
 <!-- 产品查询 -->
 <div class="wrap productQuery" ng-controller="productQueryCodeCtrl" ng-if="step === 3">
-    <header>产品查询<a href="javascript:" class="back" ng-click="goback(3)"><i class="iconfont">&#xe658;</i> 返回</a></header>
+    <header>产品查询<a href="javascript:" class="back" ng-click="goback(1)"><i class="iconfont">&#xe658;</i> 返回</a></header>
     <div class="content">
         <p class="p-titl"><i class="iconfont">&#xe737;</i>产品查询</p>
         <div class="prod-info bottom-line">         
             <div class="info-area">
                 <div class="info-area-item">
                     <label for="">产品地区：</label>
-                    <p class="info-area-detail" ng-bind="commonRegoinName"></p>
+                    <p class="info-area-detail" ng-bind="termTakeBaseInfo.regionName"></p>
                 </div>
             </div>
             <div class="info-item mt10">

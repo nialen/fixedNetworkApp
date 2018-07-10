@@ -98,7 +98,7 @@
 			"offerModelId":'@id',
 			"offerModelName":"@cword(3,6)",
 			"offerConfig":"@cword(3,8)",
-			"oldBindNumber": "@id",
+			"oldBindNumber": /\d{5,10}/,
 			"oldBindProductId": "@id",
 			"oldCustName": "@cname"
 		}
@@ -128,7 +128,7 @@
 			'bandName': '@cword(2,5)',
 			'offerModelId': '@id',
 			'offerModelName': '@cword(5,7)',
-			'batchNum': '@id',
+			'batchNum': /\d{5,10}/,
 			'price|1-99': 10,
 			'isHaveMac|1': ['Y', 'N'],
 			'offerConfig': '@cword(8, 15)'
@@ -333,7 +333,152 @@
 		}],
 		'errors': null
 	});
+	//24、调拨入库页面入库仓库信息查询
+	Mock.mock(new RegExp('/terminal/stock/qryAllotOrderInBaseInfo'), {
+		'success': 'true',
+		'code': '',
+		'msg': '成功',
+		'error': null,
+		'data':{
+			"targetStorageId": '@id',
+			"targetStorageName": '@cword(3,5)',
+			"commonRegionId":'@id',
+			"regionName":"@city"
+		}
+	});
+	//25、待确认调拨单查询接口
+	Mock.mock(new RegExp('/terminal/stock/qryTbcAllotOrder'), {
+		'success': 'true',
+		'code': '',
+		'msg': '成功',
+		'error': null,
+		'data':{
+			"total|1-200": 200,
+			"list|10": [{
+				"allotOrderId":'@id',
+				"staffId":'@id',
+				"staffName":"@cname",
+				"originStorageId":'@id',
+				"originStorageName":"@cword(3,5)",
+				"targetStorageId":"@id",
+				"targetStorageName":"@cword(3,5)",
+				"createDt":"@date",
+				"statusCd|1":["1000", "1001", "1002"]//1000 待确认 1001 已完成 1002 已取消
+			}]
+		}
+	});
+	//26、待确认调拨单详情查询接口
+	Mock.mock(new RegExp('/terminal/stock/qryAllotOrderDetail'), {
+		'success': 'true',
+		'code': '',
+		'msg': '成功',
+		'error': null,
+		'data':{
+			"total|1-200": 200,
+			"list|10": [{
+				"allotItemId":'@id',
+				"offerId":'@id',
+				"offerName":"@cword(3,5)",
+				"brandCd":'@id',
+				"brandName":"@cword(3,5)",
+				"sortCd":'@id',
+				"sortName":"@cword(3,5)",
+				"offerModelId":'@id',
+				"offerModelName":"@cword(3,5)",
+				"offerConfig":"@cword(3,8)",
+				"applyOfferQty|1-100":10,
+				"offerQty|1-100":10,
+				"isHaveMac|1":['Y', 'N']
+			}]	
+		}
+	});
+	//27、调拨入库确认/拒绝接口
+	Mock.mock(new RegExp('/terminal/stock/changeAllotOrderStatus4JL'), {
+		'success': 'true',
+		'code': '',
+		'msg': '成功',
+		'error': null,
+		'data':{
+			"total|1-200": 200,
+			"list|10": [{
+				"allotItemId":'@id',
+				"offerId":'@id',
+				"offerName":"@cword(3,5)",
+				"brandCd":'@id',
+				"brandName":"@cword(3,5)",
+				"sortCd":'@id',
+				"sortName":"@cword(3,5)",
+				"offerModelId":'@id',
+				"offerModelName":"@cword(3,5)",
+				"offerConfig":"@cword(3,8)",
+				"applyOfferQty|1-100":10,
+				"offerQty|1-100":10,
+				"isHaveMac|1":['Y', 'N']
+			}]	
+		}
+	});
+	//28、仓库所属组织/门店下拉框数据获取接口
+	Mock.mock(new RegExp('/terminal/baseConfig/qryOrgOrShop'), {
+		'success': 'true',
+		'code': '',
+		'msg': '成功',
+		'error': null,
+		'data':{
+			"orgId": '@id',
+			"orgName":"@cword(3,5)",
+			"subOrgList|4":[{
+				"orgId":'@id',
+				"orgName":"@cword(3,5)",
+				"subOrgList|3":[{
+					"orgId":'@id',
+					"orgName":"@cword(3,5)"
+				}]
+			}]
 
+		}
+	});
+	//29、仓库查询接口
+	Mock.mock(new RegExp('/terminal/baseConfig/qryStorage4Select'), {
+		'success': 'true',
+		'code': '',
+		'msg': '成功',
+		'error': null,
+		'data':{
+			"total|1-200": 200,
+			"list|10": [{
+				"storageId":'@id',
+				"storageName":"@cword(3,5)",
+				"storageLevel":["1", "2", "3"],//1 - 一级库（省中心库） 2 - 二级库（地市装维库） 3 - 三级库（网格库）
+				"storageType":["1", "2", "3", "4", "5", "6"],//1 - 中心库 2 - 装维库 3 - 网格库 4 - 厅店库 5 - 个人库 6 –回收库
+				"orgId":'@id',
+				"orgName":"@cword(3,5)",
+				"retailShopId":'@id',
+				"retailShopName":"@cword(3,5)",
+				"commonRegionId":'@id',
+				"regionName":"@city",
+				"statusCd":["1000", "1001", "1002"],//状态 1000 有效 1001 停用 1002 无效
+				"remarks":"@cword(3,10)"
+			}]
+		}
+	});
+	//30、调拨入库页面终端串号录入接口
+	Mock.mock(new RegExp('/terminal/baseConfig/checkInstCodsByOffer'), {
+		'success': 'true',
+		'code': '',
+		'msg': '成功',
+		'error': null,
+		'data':{
+			"macCode":"@id"
+		}
+	});
+	//31、调拨入库终端串号批量导入接口
+	Mock.mock(new RegExp('/terminal/baseConfig/checkInstCodsByOfferBatch'), {
+		'success': 'true',
+		'code': '',
+		'msg': '成功',
+		'error': null,
+		'data|10':['@id']
+	});
 });
 
 

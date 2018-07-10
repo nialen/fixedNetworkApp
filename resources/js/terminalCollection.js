@@ -7,7 +7,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
             $rootScope.infoShow = false;
             $rootScope.addOneTakeOffer = [];
             $rootScope.goback = function (index) {
-                $rootScope.step = index - 1;
+                $rootScope.step = index;
             };
         }])
         .filter('prodName', function () {
@@ -40,7 +40,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 item.processType = $scope.processTypeList[0].processType;
             });
 
-            $scope.termTakeBaseInfo = {
+            $rootScope.termTakeBaseInfo = {
                 'operateType': '1'
             };
             $scope.operateTypeList = [{
@@ -51,7 +51,6 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 'operateName': '营业厅收取'
             }];
 
-            // $scope.infoShow = false;
             $scope.infoShowMore = function () {
                 $rootScope.infoShow = !$rootScope.infoShow;
             };
@@ -60,7 +59,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
             };
             httpMethod.qryTermTakeBaseInfo().then(function(rsp){ 
                 if(rsp.success){
-                    $scope.termTakeBaseInfo = rsp.data;
+                    $rootScope.termTakeBaseInfo = rsp.data;
                 }
             });
             $scope.addNewOne = function () {
@@ -79,7 +78,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 var takeOfferList = [];
                 _.map($rootScope.addOneTakeOffer, function(item){                    
                     var obj = {
-                        'takeRecordId': $scope.termTakeBaseInfo.takeRecordId,
+                        'takeRecordId': $rootScope.termTakeBaseInfo.takeRecordId,
                         'offerId':item.offerId,
                         'offerQty': 1,
                         'instCodeList':[{
@@ -93,10 +92,10 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                     takeOfferList.push(obj);               
                 });              
                 var param={
-                    'takeRecordId': $scope.termTakeBaseInfo.takeRecordId,
-                    'staffId': $scope.termTakeBaseInfo.staffId,
-                    'operateType': _.get($scope, 'termTakeBaseInfo.operateType'),
-                    'remark': $scope.termTakeBaseInfo.remark,
+                    'takeRecordId': $rootScope.termTakeBaseInfo.takeRecordId,
+                    'staffId': $rootScope.termTakeBaseInfo.staffId,
+                    'operateType': _.get($rootScope, 'termTakeBaseInfo.operateType'),
+                    'remark': $rootScope.termTakeBaseInfo.remark,
                     'takeItemList': takeOfferList
                 };
                 httpMethod.termTakeOrderSubmit(param).then(function(rsp){              
@@ -143,8 +142,8 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 var param = {
                     'prodType': _.get($scope, 'prodType'),
                     'productNum': $rootScope.productItem.oldBindNumber,
-                    'commonRegionId': $scope.commonRegionId,
-                    'statusCd': $scope.statusCd
+                    'commonRegionId': $rootScope.termTakeBaseInfo.commonRegionId,
+                    'statusCd': '1'
                 };
                 httpMethod.prodInfoQuery(param).then(function(rsp){              
                     if(rsp.success){

@@ -13,7 +13,7 @@
 
 <body>
 	<!-- 调拨入库 -->
-	<div class="wrap" ng-controller="partsTransferCtrl" style="display:none">
+	<div class="wrap" ng-controller="partsTransferCtrl" ng-show="step === 1" id="partsTransfer" ng-cloak>
 		<header>调拨入库<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
 		<div class="content">
 			<!-- step -->
@@ -28,127 +28,77 @@
 			</div>
 			<div class="search">
 				<div class="search-left">
-					<input type="text" placeholder="输入单据号搜索">
+					<input type="text" placeholder="输入单据号搜索" ng-model="partsTransferForm.allotOrderId">
 					<button class="search-btn iconfont">&#xe600;</button>
 				</div>
-				<button class="more">更多 <i class="iconfont">&#xe608;</i><!-- <i class="iconfont">&#xe607;</i> --></button>
+				<button class="more" ng-click="detailShowMore()">更多 <i class="iconfont" ng-show="!detailShow">&#xe608;</i><i class="iconfont" ng-show="detailShow">&#xe607;</i></button>
 			</div>
-			<div class="parts-info fn-clear">
+			<div class="parts-info fn-clear" ng-show="detailShow">
 				<div class="from-item border-bottom">
                     <label class="txt-label">单据日期：</label>
                     <div class="date-wrap">
                         <div class="date">
-                            <input ng-model="couponStartDt" id="startDt" class="date-input" type="text" readonly />
+                            <input ng-model="partsTransferForm.startDate" id="startDt" class="date-input" type="text" readonly />
                             <i class="date-icon iconfont">&#xe64b;</i>
                         </div>
                         <span class="line">至</span>
                         <div class="date">
-                            <input ng-model="couponEndDt" id="endDt" class="date-input" type="text" readonly />
+                            <input ng-model="partsTransferForm.endDate" id="endDt" class="date-input" type="text" readonly />
                             <i class="date-icon iconfont">&#xe64b;</i>
                         </div>
                     </div>
                 </div>
 				<div class="from-item border-bottom">
                     <label class="txt-label">制单人：</label>
-                    <input class="txt-input" type="text"/>
+                    <input class="txt-input" type="text" ng-model="partsTransferForm.staffName"/>
                 </div>
                 <div class="from-item border-bottom">
                     <label class="txt-label">入库仓库：</label>
-                    <div class="search-item disabled"><input type="text" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
+                    <div class="search-item disabled"><input type="text" ng-model="partsTransferForm.originStorageId" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
                 </div>
                 <div class="from-item border-bottom">
                     <label class="txt-label">调出仓库：</label>
-                    <div class="search-item"><input type="text" placeholder="请选择" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
+                    <div class="search-item"><input type="text" placeholder="请选择" ng-model="partsTransferForm.targetStorageId" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
                 </div>
-                <button class="query-btn fn-right">查 询</button>
+                <button class="query-btn fn-right" ng-click="queryTbcAllotOrder()">查 询</button>
 			</div>
 			<p class="p-titl"><i class="iconfont">&#xe60b;</i>待确认接收的调拨单据列表</p>
-			<ul class="docu-num">
-				<li class="docu-num-list">
-					<div class="docu-titl"><p class="num-left"><b>单据号：</b><label>1000000001421</label></p><p class="state-right">状态：<span>待确认</span></p></div>
+			<ul class="docu-num" infinite-scroll="reddit.tbcAllotOrderNextPage(partsTransferForm)" infinite-scroll-distance='3' infinite-scroll-container="'#partsTransfer'">
+				<li class="docu-num-list" ng-repeat="item in reddit.tbcAllotOrderItems">
+					<div class="docu-titl"><p class="num-left"><b>单据号：</b><label>{{item.allotOrderId}}</label></p><p class="state-right">状态：<span ng-bind="item.statusCd | statusName"></span></p></div>
 					<div class="list-form">
 						<div class="list-info">
 							<label class="info-label">调出仓库：</label>
-	                		<p class="info-p">长春市库</p>
+	                		<p class="info-p" ng-bind="item.originStorageName"></p>
 						</div>
 						<div class="list-info">
 							<label class="info-label">调入仓库：</label>
-	                		<p class="info-p">中国电信鼓楼班组</p>
+	                		<p class="info-p" ng-bind="item.targetStorageName"></p>
 						</div>
 						<div class="list-info">
 							<label class="info-label">制单人：</label>
-	                		<p class="info-p">销售店店长</p>
+	                		<p class="info-p" ng-bind="item.staffName"></p>
 						</div>
 						<div class="list-info">
 							<label class="info-label">制单日期：</label>
-	                		<p class="info-p">2018-06-18  20:12:40</p>
+	                		<p class="info-p" ng-bind="item.createDt"></p>
 						</div>
 					</div>
 					<div class="docu-bottom text-right">
-						<button class="detail-btn">详情</button>
-						<button class="confirm-btn"><i class="iconfont">&#xe6b2;</i> 确认</button>
-					</div>
-				</li>
-				<li class="docu-num-list">
-					<div class="docu-titl"><p class="num-left"><b>单据号：</b><label>1000000001421</label></p><p class="state-right">状态：<span>待确认</span></p></div>
-					<div class="list-form">
-						<div class="list-info">
-							<label class="info-label">调出仓库：</label>
-	                		<p class="info-p">长春市库</p>
-						</div>
-						<div class="list-info">
-							<label class="info-label">调入仓库：</label>
-	                		<p class="info-p">中国电信鼓楼班组</p>
-						</div>
-						<div class="list-info">
-							<label class="info-label">制单人：</label>
-	                		<p class="info-p">销售店店长</p>
-						</div>
-						<div class="list-info">
-							<label class="info-label">制单日期：</label>
-	                		<p class="info-p">2018-06-18  20:12:40</p>
-						</div>
-					</div>
-					<div class="docu-bottom text-right">
-						<button class="detail-btn">详情</button>
-						<button class="confirm-btn"><i class="iconfont">&#xe6b2;</i> 确认</button>
-					</div>
-				</li>
-				<li class="docu-num-list">
-					<div class="docu-titl"><p class="num-left"><b>单据号：</b><label>1000000001421</label></p><p class="state-right">状态：<span>待确认</span></p></div>
-					<div class="list-form">
-						<div class="list-info">
-							<label class="info-label">调出仓库：</label>
-	                		<p class="info-p">长春市库</p>
-						</div>
-						<div class="list-info">
-							<label class="info-label">调入仓库：</label>
-	                		<p class="info-p">中国电信鼓楼班组</p>
-						</div>
-						<div class="list-info">
-							<label class="info-label">制单人：</label>
-	                		<p class="info-p">销售店店长</p>
-						</div>
-						<div class="list-info">
-							<label class="info-label">制单日期：</label>
-	                		<p class="info-p">2018-06-18  20:12:40</p>
-						</div>
-					</div>
-					<div class="docu-bottom text-right">
-						<button class="detail-btn">详情</button>
-						<button class="confirm-btn"><i class="iconfont">&#xe6b2;</i> 确认</button>
+						<button class="detail-btn" ng-click="detailTbcAllotOrder(item)">详情</button>
+						<button class="confirm-btn" ng-click="confirmTbcAllotOrder(item)"><i class="iconfont">&#xe6b2;</i> 确认</button>
 					</div>
 				</li>
 			</ul>
 		</div>
 	</div>
 	<!-- 选择仓库（筛选条件）-->
-	<div class="wrap chooseDepot" ng-controller="chooseDepotCtrl" style="display:none">
-		<header>调拨入库-选择仓库<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
+	<div class="wrap chooseDepot" ng-controller="chooseDepotCtrl" ng-if="step === 2">
+		<header>调拨入库-选择仓库<a href="javascript:" class="back" ng-click="goback(1)"><i class="iconfont">&#xe658;</i> 返回</a></header>
 		<div class="content">
-			<p class="p-titl"><i class="iconfont">&#xe600;</i>查询条件<button class="more-btn iconfont">&#xe608;</button>
-			<!-- <button class="more-btn iconfont">&#xe607;</button> --></p>
-			<div class="parts-info fn-clear">
+			<p class="p-titl"><i class="iconfont">&#xe600;</i>查询条件<button class="more-btn iconfont" ng-click="infoShowMore()" ng-show="infoShow">&#xe608;</button>
+			<button class="more-btn iconfont" ng-click="infoShowMore()" ng-show="!infoShow">&#xe607;</button></p>
+			<div class="parts-info fn-clear" ng-show="infoShow">
 				<div class="from-item border-bottom">
                     <label class="txt-label">归属地区：</label>
                     <p class="p-detail">长春市</p>
@@ -241,8 +191,8 @@
 	    </div>
 	</div>
 	<!-- 调拨入库确认 -->
-	<div class="wrap" ng-controller="confirmDepotCtrl" style="display:none">
-		<header>调拨入库<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
+	<div class="wrap" ng-controller="confirmDepotCtrl" ng-if="step === 3">
+		<header>调拨入库<a href="javascript:" class="back" ng-click="goback(1)"><i class="iconfont">&#xe658;</i> 返回</a></header>
 	    <div class="content">
 	    	<!-- step -->
 			<div class="step">
@@ -323,8 +273,8 @@
 	    </div>
 	</div>
 	<!-- 录入串码 -->
-	<div class="wrap srialCode" ng-controller="srialCodeCtrl" style="display: none">
-		<header>录入串码<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
+	<div class="wrap srialCode" ng-controller="srialCodeCtrl" ng-if="step === 4">
+		<header>录入串码<a href="javascript:" class="back" ng-click="goback(3)"><i class="iconfont">&#xe658;</i> 返回</a></header>
 		<div class="content">
 			<p class="p-titl"><i class="iconfont">&#xe693;</i>终端信息</p>
 			<div class="parts-info">
@@ -385,8 +335,8 @@
 	    </div>
 	</div>
 	<!-- 串码详情 -->
-	<div class="wrap srialCode" ng-controller="srialCodeDetailCtrl">
-		<header>录入串码<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
+	<div class="wrap srialCode" ng-controller="srialCodeDetailCtrl" ng-if="step === 5">
+		<header>录入串码<a href="javascript:" class="back" ng-click="goback(1)"><i class="iconfont">&#xe658;</i> 返回</a></header>
 		<div class="content">
 			<p class="p-titl"><i class="iconfont">&#xe693;</i>终端信息</p>
 			<div class="parts-info">
