@@ -9,7 +9,7 @@
 	<title>借机出库</title>
 </head>
 <body>
-	<div class="wrapper" ng-controller="lendPhoneOutputCtrl">
+	<div class="wrapper" ng-controller="lendPhoneOutputCtrl" ng-show="stepNum == 0" ng-cloak>
 		<header>
 			<div class="header-title">借机出库</div>
 			<div class="back"><span class="iconfont">&#xe658;</span>返回</div>
@@ -23,7 +23,7 @@
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">单据号：</label>
-							<p class="info-area-detail">2018060440000</p>
+							<p class="info-area-detail" ng-bind="borrowOrderOutBaseinfo.borrowOrderId"></p>
 						</div>
 					</div>
 					<div class="info-area">
@@ -31,16 +31,14 @@
 							<div class="info-people fn-left">
 								<div class="info-area-item">
 									<label for="">借机人：</label>
-									<select class="select-up" name="" id="">
-										<option value="">李敏</option>
-										<option value="">黎明</option>
+									<select class="select-up" ng-model="borrowUser" ng-options="item.staffId as item.staffName for item in borrowUserList">
 									</select>
 								</div>
 							</div>
 							<div class="info-date fn-right">
 								<div class="info-date-item">
 									<label for="">借机日期：</label>
-									<p class="info-area-detail">2018-06-04</p>
+									<p class="info-area-detail" ng-bind="borrowOrderOutBaseinfo.createDt"></p>
 								</div>
 							</div>
 						</div>
@@ -48,16 +46,16 @@
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">所属组织：</label>
-							<p class="info-area-detail">XXXXXXXXXX</p>
+							<p class="info-area-detail" ng-bind="borrowOrderOutBaseinfo.orgName"></p>
 						</div>
 					</div>
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">借出仓库：</label>
-							<p class="info-area-detail">长春市库</p>
+							<p class="info-area-detail" ng-bind="borrowOrderOutBaseinfo.originStorageName"></p>
 						</div>
 					</div>
-					<div class="info-item mt10">
+					<div class="info-item-area mt10">
 						<label for="">备注：</label>
 						<textarea></textarea>
 					</div>
@@ -68,42 +66,17 @@
 			</div>
 			<div class="terminal-list" ng-show="isHideDetail">
 				<ul>
-					<li>
+					<li ng-repeat="item in detailsTerminalList">
 						<div class="terminal-info-head">
 							<div class="terminal-title"><span>【机顶盒】</span>华为-EC6108V9</div>
-							<div class="terminal-del"><button><span class="iconfont">&#xe610;</span></button></div>
+							<div class="terminal-del"><button ng-click="delTerminal($index)"><span class="iconfont">&#xe610;</span></button></div>
 						</div>
 						<div class="terminal-info-content">
 							<div class="terminal-info">
-								<span>品牌：</span>华为<br/><span>型号：</span>EC6108V9<br/><span>配置：</span>--<br/><span>调整数量：</span><span class="info-number">10</span>
-							</div>
-						</div>
-						<div class="terminal-info-foot">
-							<button class="btn-code">串码详情</button>
-						</div>
-					</li>
-					<li>
-						<div class="terminal-info-head">
-							<div class="terminal-title"><span>【机顶盒】</span>华为-EC6108V9</div>
-							<div class="terminal-del"><button><span class="iconfont">&#xe610;</span></button></div>
-						</div>
-						<div class="terminal-info-content">
-							<div class="terminal-info">
-								<span>品牌：</span>华为<br/><span>型号：</span>EC6108V9<br/><span>配置：</span>--<br/><span>调整数量：</span><span class="info-number">10</span>
-							</div>
-						</div>
-						<div class="terminal-info-foot">
-							<button class="btn-code">串码详情</button>
-						</div>
-					</li>
-					<li>
-						<div class="terminal-info-head">
-							<div class="terminal-title"><span>【机顶盒】</span>华为-EC6108V9</div>
-							<div class="terminal-del"><button><span class="iconfont">&#xe610;</span></button></div>
-						</div>
-						<div class="terminal-info-content">
-							<div class="terminal-info">
-								<span>品牌：</span>华为<br/><span>型号：</span>EC6108V9<br/><span>配置：</span>--<br/><span>调整数量：</span><span class="info-number">10</span>
+								<span>品牌：</span><i ng-bind="item.bandName || '--'"></i><br/>
+								<span>型号：</span><i ng-bind="item.offerModelName || '--'"></i><br/>
+								<span>配置：</span><i ng-bind="item.offerConfig || '--'"></i><br/>
+								<span>调整数量：</span><span class="info-number" ng-bind="item.offerQty"></span>
 							</div>
 						</div>
 						<div class="terminal-info-foot">
@@ -113,13 +86,51 @@
 				</ul>
 			</div>
 			<div class="checked-terminal">
-				<button class="btn-confirm"><span class="iconfont">&#xe60e;</span>选择出库终端</button>
+				<button class="btn-confirm" ng-click="forward(0)"><span class="iconfont">&#xe60e;</span>选择出库终端</button>
 			</div>
 		</div>
 		<footer>
 			<button class="btn btn-confirm">提交</button><button class="btn btn-cancel">取消</button>
 		</footer>
-	</div>	
+	</div>
+	<div class="terminal-selection" ng-controller="qryOfferCtrl" ng-show="stepNum == 1" ng-cloak>
+		<header>
+			<div class="header-title">选择借机出库终端</div>
+			<div class="back" ng-click="deselection()"><span class="iconfont">&#xe658;</span>返回</div>
+		</header>
+		<div class="content">
+			<div class="top-entry">
+				<div class="top-title"><span class="iconfont">&#xe693;</span>终端扫码录入</div>
+			</div>
+			<div class="prod-info">
+				<form>
+					<div class="info-item mt10">
+						<label for="">终端串码：</label>
+						<input type="text" ng-model="aryOfferForm.instCode">
+						<button class="btn-query" ng-click="qryOfferByInstCodes()" ng-disabled="!aryOfferForm.instCode">扫描查询</button>
+					</div>
+				</form>
+			</div>
+			<div class="result-box">
+				<div class="top-title"><span class="iconfont">&#xe60b;</span>&nbsp;查询结果</div>
+				<div class="result-info">
+					<dl class="fn-clear" ng-if="offerInfo">
+						<dd><div class="result-title">终端名称：</div><span ng-bind="offerInfo.offerName || '--'"></span></dd>
+						<dd><div class="result-title">终端编码：</div><span ng-bind="offerInfo.offerCode || '--'"></span></dd>
+						<dd><div class="result-title">终端分类：</div><span ng-bind="offerInfo.sortName || '--'"></span></dd>
+						<dd><div class="result-title">终端品牌：</div><span ng-bind="offerInfo.bandName || '--'"></span></dd>
+						<dt><div class="result-title">终端型号：</div><span ng-bind="offerInfo.offerModelName || '--'"></span></dt>
+						<dt><div class="result-title">终端串码：</div><span ng-bind="offerInfo.instCode || '--'"></span></dt>
+						<dt ng-if="offerInfo.macCode"><div class="result-title">MAC码：</div><span ng-bind="offerInfo.macCode || '--'"></span></dt>
+						<dt><div class="result-title">配置：</div><span ng-bind="offerInfo.offerConfig || '--'"></span></dt>
+					</dl>
+				</div>	
+			</div>
+		</div>
+		<footer>
+			<button class="btn btn-confirm" ng-click="confirm()">确定</button><button ng-click="deselection()" class="btn btn-cancel">取消</button>
+		</footer>
+	</div>
 	
 	<script type="text/javascript" async="true">
 	    function _adaptFont(maxWidth, baseWidth, baseSize) {

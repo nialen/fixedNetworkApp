@@ -38,5 +38,21 @@ angular
 		httpMethod.termTakeOrderSubmit = function (params) {
 			return httpServer(httpConfig.siteUrl + '/terminal/recover/termTakeOrderSubmit', params, 'POST');
 		};
+		//9、终端串号添加接口
+		httpMethod.qryOfferByInstCodes = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/baseConfig/qryOfferByInstCodes', params, 'POST');
+		};
+		//10、借机出库单基本信息获取接口
+		httpMethod.qryBorrowOrderOutBaseinfo = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/construction/qryBorrowOrderOutBaseinfo', params, 'POST');
+		};
+		//11、借机出库单提交接口
+		httpMethod.borrowOrderOutSubmit = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/construction/borrowOrderOutSubmit', params, 'POST');
+		};
+		//1000、借机人下拉数据接口
+		httpMethod.qryBorrowUser = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/construction/qryBorrowUser', params, 'POST');
+		};
 		return httpMethod;
 	}]);

@@ -110,6 +110,64 @@
 		"msg":"操作成功",
 		"error":""
 	});
+	//9、终端串号添加接口
+	Mock.mock(new RegExp('/terminal/baseConfig/qryOfferByInstCodes'), {
+		'success':'true',
+		'code':'',
+		'msg':'操作成功',
+		'error':'',
+		'data':{
+			'instCode':'@id',
+			'macCode|1': ['@id', ''],
+			'offerId': '@id',
+			'offerName':'@cword(3,5)',
+			'offerCode': '@id',
+			'sortCd': '@id',
+			'sortName':'@cword(3,5)',
+			'bandCd': '@id',
+			'bandName': '@cword(2,5)',
+			'offerModelId': '@id',
+			'offerModelName': '@cword(5,7)',
+			'batchNum': '@id',
+			'price|1-99': 10,
+			'isHaveMac|1': ['Y', 'N'],
+			'offerConfig': '@cword(8, 15)'
+		}
+	});
+	//10、借机出库单基本信息获取接口
+	Mock.mock(new RegExp('/terminal/construction/qryBorrowOrderOutBaseinfo'), {
+		'success': 'true',
+		'code': '',
+		'msg': '成功',
+		'error': null,
+		'data':{
+			'borrowOrderId': '@id',
+			'createDt': '@date',
+			'originStorageId': '@id',
+			'originStorageName': '@cword(4,6)',
+			'orgName': '@cword(3,4)'
+		}
+	});
+	//11、借机出库单提交接口
+	Mock.mock(new RegExp('/terminal/construction/borrowOrderOutSubmit'), {
+		'success': 'true',
+		'code': '',
+		'msg':'操作成功',
+		'error':''
+	});
+
+	//1000、借机人下拉数据接口
+	Mock.mock(new RegExp('/terminal/construction/qryBorrowUser'), {
+		'rsphead': 's',
+		'success': true,
+		'code': null,
+		'msg': null,
+		'data|3': [{
+			"staffId":"@id",
+			"staffName":"@cname",
+		}],
+		'errors': null
+	});
 
 });
 
