@@ -233,7 +233,7 @@
 				'targetStorageId': '@id',
 				'targetStorageName': '@cword(4,6)'
 			},
-			'originStorageList':[{
+			'originStorageList|3-5':[{
 				'storageId': '@id',
 				'storageName':'@cword(4,6)'
 			}]
@@ -252,7 +252,7 @@
 		'code':'',
 		'msg':'操作成功',
 		'error':'',
-		'data':[{
+		'data|3-5':[{
 			'sortCd': '@id',
 			'sortName': '@cword(2,6)'
 		}]
@@ -263,7 +263,7 @@
 		'code':'',
 		'msg':'操作成功',
 		'error':'',
-		'data':[{
+		'data|3-5':[{
 			'brandCd': '@id',
 			'brandName': '@cword(2,6)',
 			'firstLetter': 'H'
@@ -327,7 +327,7 @@
 		'success': true,
 		'code': null,
 		'msg': null,
-		'data|3': [{
+		'data|3-5': [{
 			"staffId":"@id",
 			"staffName":"@cname",
 		}],

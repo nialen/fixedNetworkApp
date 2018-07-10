@@ -1,21 +1,9 @@
-define(['angular'], function (angular) {
+define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bootstrap-tpls', 'angular-animate', 'datepicker', 'iscroll'], function (angular, $, _, Mock) {
     angular
-        .module('transfersApplyModule', [])
+        .module('transfersApplyModule', ['httpMethod'])
         .run(['$rootScope', function ($rootScope) {
         }])
-        .filter('prodTypeFilter', function () {
-            return function (val) {
-                switch (val) {
-                    case '1':
-                        return '宽带';
-                        break;
-                    case '2':
-                        return 'IPTV';
-                        break;
-                }
-            }
-        })
-        .controller('lendPhoneRefundCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+        .controller('transfersApplyCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
 
             $scope.isHideInfo = true;
 
@@ -28,6 +16,10 @@ define(['angular'], function (angular) {
             $scope.hideDetail = function(){
                 $scope.isHideDetail = !$scope.isHideDetail;
             };
+
+            httpMethod.qryAllotApplyOrderBaseinfo().then(function(rsp){
+                console.log(rsp.data)
+            })
             
         }])
 });
