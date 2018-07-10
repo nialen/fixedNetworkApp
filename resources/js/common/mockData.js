@@ -269,6 +269,19 @@
 			'firstLetter': 'H'
 		}]
 	});
+	//22、终端型号下拉框数据查询接口
+	Mock.mock(new RegExp('/terminal/baseConfig/qryOfferModel4Select'), {
+		'success':'true',
+		'code':'',
+		'msg':'操作成功',
+		'error':'',
+		'data|3-5':[{
+			'offerModelId': '@id',
+			'offerModelName': '@cword(4,6)',
+			'firstLetter': 'H'
+		}]
+
+	});
 	//21、终端配置查询接口
 	Mock.mock(new RegExp('/terminal/baseConfig/qryOffer'), {
 		'success':'true',
@@ -277,7 +290,7 @@
 		'error':null,
 		'data':{
 			'total': 200,
-			'list': [{
+			'list|5-10': [{
 				'offerId': '@id',
 				'offerCode': '@id',
 				'offerName':'@cword(4,6)',
@@ -292,23 +305,10 @@
 				'unitName': '个',
 				'statusCd|1': ['1000', '1001', '1002'],
 				'manageType|1': ['1000', '1001'],
-				'offerConfig': '@cword(8, 16)',
+				'offerConfig': '@cword(30)',
 				'remarks': '@cword(8, 16)'
 			}]
 		}
-	});
-	//22、终端型号下拉框数据查询接口
-	Mock.mock(new RegExp('/terminal/baseConfig/qryOfferModel4Select'), {
-		'success':'true',
-		'code':'',
-		'msg':'操作成功',
-		'error':'',
-		'data|3-5':[{
-			'offerModelId': '@id',
-			'offerModelName': '@cword(4,6)',
-			'firstLetter': 'H'
-		}]
-
 	});
 	//23、调出仓库下拉选择接口
 	Mock.mock(new RegExp('/terminal/baseConfig/qryTwoStorage'), {
