@@ -161,6 +161,4 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
             }
 
         }])
-        .controller('codeDetailCtrl', ['$scope', '$rootScope', 'httpMethod', '$sessionStorage', function ($scope, $rootScope, httpMethod, $sessionStorage) {
-        }])
 });

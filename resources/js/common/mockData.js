@@ -155,7 +155,27 @@
 		'msg':'操作成功',
 		'error':''
 	});
-
+	//12、借机退库单基本信息获取接口
+	Mock.mock(new RegExp('/terminal/construction/qryBorrowOrderInBaseinfo'), {
+		'success':'true',
+		'code':'',
+		'msg':'成功',
+		'error':null,
+		'data':{
+			'borrowOrderId': '@id',
+			'createDt': '@date',
+			'targetStorageId': '@id',
+			'targetStorageName':'@cword(4,6)',
+			'orgName':'@cword(3,4)'
+		}
+	});
+	//13、借机退库单提交接口
+	Mock.mock(new RegExp('/terminal/construction/borrowOrderInSubmit'), {
+		'success': 'true',
+		'code': '',
+		'msg':'操作成功',
+		'error':''
+	});
 	//1000、借机人下拉数据接口
 	Mock.mock(new RegExp('/terminal/construction/qryBorrowUser'), {
 		'rsphead': 's',

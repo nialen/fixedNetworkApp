@@ -50,6 +50,14 @@ angular
 		httpMethod.borrowOrderOutSubmit = function (params) {
 			return httpServer(httpConfig.siteUrl + '/terminal/construction/borrowOrderOutSubmit', params, 'POST');
 		};
+		//12、借机退库单基本信息获取接口
+		httpMethod.qryBorrowOrderInBaseinfo = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/construction/qryBorrowOrderInBaseinfo', params, 'POST');
+		};
+		//13、借机退库单提交接口
+		httpMethod.borrowOrderInSubmit = function (params) {
+			return httpServer(httpConfig.siteUrl + '/terminal/construction/borrowOrderInSubmit', params, 'POST');
+		};
 		//1000、借机人下拉数据接口
 		httpMethod.qryBorrowUser = function (params) {
 			return httpServer(httpConfig.siteUrl + '/terminal/construction/qryBorrowUser', params, 'POST');
