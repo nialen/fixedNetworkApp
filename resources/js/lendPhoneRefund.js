@@ -39,9 +39,9 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
                 borrowUser: ''
             };
             
-            //借机出库单基本信息获取接口
-            httpMethod.qryBorrowOrderOutBaseinfo().then(function(rsp){
-                $rootScope.borrowOrderOutBaseinfo = rsp.data;
+            //借机退库单基本信息获取接口
+            httpMethod.qryBorrowOrderInBaseinfo().then(function(rsp){
+                $rootScope.borrowOrderInBaseinfo = rsp.data;
             })
 
             //借机人信息查询
@@ -63,12 +63,12 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
                 $rootScope.stepNum = 2;
             };
 
-            //借机出库单提交接口
-            $scope.borrowOrderOutSubmit = function(){
+            //借机退库单提交接口
+            $scope.borrowOrderInSubmit = function(){
                 $scope.borrowItemList = [];
                 _.map($rootScope.detailsTerminalList, function(item, index){
                     var param = {
-                        'borrowOrderId': _.get($rootScope.borrowOrderOutBaseinfo, 'borrowOrderId'),
+                        'borrowOrderId': _.get($rootScope.borrowOrderInBaseinfo, 'borrowOrderId'),
                         'offerId': item.offerId,
                         'offerQty': item.offerQty,
                         'instCodes': item.instCodeList
@@ -76,13 +76,13 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
                     $scope.borrowItemList.push(param)
                 });
                 var param = {
-                    'borrowOrderId': _.get($rootScope.borrowOrderOutBaseinfo, 'borrowOrderId'),
+                    'borrowOrderId': _.get($rootScope.borrowOrderInBaseinfo, 'borrowOrderId'),
                     'staffId': _.get($scope.borrowOrderForm, 'borrowUser'),
-                    'originStorageId': _.get($rootScope.borrowOrderOutBaseinfo, 'originStorageId'),
+                    'targetStorageId': _.get($rootScope.borrowOrderInBaseinfo, 'targetStorageId'),
                     'remarks': _.get($scope.borrowOrderForm, 'remarks'),
                     'borrowItemList': $scope.borrowItemList
                 };
-                httpMethod.borrowOrderOutSubmit(param).then(function(rsp){
+                httpMethod.borrowOrderInSubmit(param).then(function(rsp){
                     if(rsp.success){
                         console.log('提交成功!');
                         location.reload();
@@ -100,7 +100,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
             $scope.qryOfferByInstCodes = function(){
                 var param = {
                     'instCode': _.get($scope.aryOfferForm, 'instCode'),
-                    'storageId': _.get($rootScope.borrowOrderOutBaseinfo, 'originStorageId')
+                    'storageId': _.get($rootScope.borrowOrderInBaseinfo, 'targetStorageId')
                 };
                 httpMethod.qryOfferByInstCodes(param).then(function(rsp){
                     $scope.offerInfo = rsp.data;

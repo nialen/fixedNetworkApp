@@ -23,7 +23,7 @@
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">单据号：</label>
-							<p class="info-area-detail" ng-bind="borrowOrderOutBaseinfo.borrowOrderId"></p>
+							<p class="info-area-detail" ng-bind="borrowOrderInBaseinfo.borrowOrderId"></p>
 						</div>
 					</div>
 					<div class="info-area">
@@ -38,7 +38,7 @@
 							<div class="info-date fn-right">
 								<div class="info-date-item">
 									<label for="">借机日期：</label>
-									<p class="info-area-detail" ng-bind="borrowOrderOutBaseinfo.createDt"></p>
+									<p class="info-area-detail" ng-bind="borrowOrderInBaseinfo.createDt"></p>
 								</div>
 							</div>
 						</div>
@@ -46,13 +46,13 @@
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">所属组织：</label>
-							<p class="info-area-detail" ng-bind="borrowOrderOutBaseinfo.orgName"></p>
+							<p class="info-area-detail" ng-bind="borrowOrderInBaseinfo.orgName"></p>
 						</div>
 					</div>
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">退库仓库：</label>
-							<p class="info-area-detail" ng-bind="borrowOrderOutBaseinfo.originStorageName"></p>
+							<p class="info-area-detail" ng-bind="borrowOrderInBaseinfo.targetStorageName"></p>
 						</div>
 					</div>
 					<div class="info-item-area mt10">
@@ -90,7 +90,7 @@
 			</div>
 		</div>
 		<footer>
-			<button class="btn btn-confirm" ng-disabled="!detailsTerminalList.length || !borrowOrderForm.remarks" ng-click="borrowOrderOutSubmit()">提交</button><button class="btn btn-cancel">取消</button>
+			<button class="btn btn-confirm" ng-disabled="!detailsTerminalList.length || !borrowOrderForm.remarks" ng-click="borrowOrderInSubmit()">提交</button><button class="btn btn-cancel">取消</button>
 		</footer>
 	</div>
 	<div class="wrapper terminal-selection" ng-controller="qryOfferCtrl" ng-show="stepNum == 1" ng-cloak>
