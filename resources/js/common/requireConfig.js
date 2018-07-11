@@ -22,7 +22,8 @@ require.config({
 		'moment': './moment',
 		'ngCommonModule': './ngCommonModule',
 		'datepicker': './datepicker',
-		'iscroll':'./iscroll'
+		'iscroll':'./iscroll',
+		'ng-infinite-scroll': './ng-infinite-scroll.min',
 	},
 	shim: {
 		'angular': {
@@ -66,9 +67,9 @@ require.config({
 			deps: ['angular', 'jqueryDialog'],
 			exports: 'ngCommonModule'
 		},
-		// 'datepicker': {
-		// 	deps: ['angular'],
-		// }
+		'ng-infinite-scroll': {
+            'deps': ['angular'],
+        }
 	}
 });
 

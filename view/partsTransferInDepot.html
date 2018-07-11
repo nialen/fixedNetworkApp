@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="../resources/css/partsTransferInDepot.css">
 </head>
 
-<body>
+<body ng-cloak>
 	<!-- 调拨入库 -->
-	<div class="wrap" ng-controller="partsTransferCtrl" ng-show="step === 1" id="partsTransfer" ng-cloak>
+	<div class="wrap partsTransfer" id="partsTransfer" ng-controller="partsTransferCtrl" ng-show="step === 1" ng-cloak>
 		<header>调拨入库<a href="javascript:" class="back"><i class="iconfont">&#xe658;</i> 返回</a></header>
 		<div class="content">
 			<!-- step -->
@@ -54,17 +54,17 @@
                 </div>
                 <div class="from-item border-bottom">
                     <label class="txt-label">入库仓库：</label>
-                    <div class="search-item disabled"><input type="text" ng-model="partsTransferForm.originStorageId" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
+                    <div class="search-item disabled"><input type="text" ng-model="partsTransferForm.targetStorageName" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
                 </div>
                 <div class="from-item border-bottom">
                     <label class="txt-label">调出仓库：</label>
-                    <div class="search-item"><input type="text" placeholder="请选择" ng-model="partsTransferForm.targetStorageId" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
+                    <div class="search-item"><input type="text" placeholder="请选择" ng-model="partsTransferForm.originStorageName" readonly/><button class="ser-btn iconfont" ng-click="chooseOutDepot()">&#xe600;</button></div>
                 </div>
                 <button class="query-btn fn-right" ng-click="queryTbcAllotOrder()">查 询</button>
 			</div>
 			<p class="p-titl"><i class="iconfont">&#xe60b;</i>待确认接收的调拨单据列表</p>
-			<ul class="docu-num" infinite-scroll="reddit.tbcAllotOrderNextPage(partsTransferForm)" infinite-scroll-distance='3' infinite-scroll-container="'#partsTransfer'">
-				<li class="docu-num-list" ng-repeat="item in reddit.tbcAllotOrderItems">
+			<ul infinite-scroll="tbcAllotOrder.tbcAllotOrderNextPage(partsTransferForm)" infinite-scroll-distance='3' infinite-scroll-container="'#partsTransfer'">
+				<li class="docu-num-list" ng-repeat="item in tbcAllotOrder.tbcAllotOrderItems">
 					<div class="docu-titl"><p class="num-left"><b>单据号：</b><label>{{item.allotOrderId}}</label></p><p class="state-right">状态：<span ng-bind="item.statusCd | statusName"></span></p></div>
 					<div class="list-form">
 						<div class="list-info">
@@ -101,11 +101,11 @@
 			<div class="parts-info fn-clear" ng-show="infoShow">
 				<div class="from-item border-bottom">
                     <label class="txt-label">归属地区：</label>
-                    <p class="p-detail">长春市</p>
+                    <p class="p-detail" ng-bind="allotOrderInBaseInfo.regionName"></p>
                 </div>
                 <div class="from-item border-bottom">
                     <label class="txt-label">归属组织：</label>
-                    <div class="search-item"><input type="text" placeholder="请选择" readonly/><button class="ser-btn iconfont" ng-click="showScreen()">&#xe600;</button></div>
+                    <div class="search-item"><input type="text" placeholder="请选择" ng-model="checkedOrgList.orgName" readonly/><button class="ser-btn iconfont" ng-click="showScreen()">&#xe600;</button></div>
                 </div>
                 <div class="from-item border-bottom">
                     <label class="txt-label">仓库名称：</label>
@@ -113,17 +113,18 @@
                 </div>
                 <div class="from-item border-bottom">
 	                <label class="txt-label">仓库类型：</label>
-	                <select class="select-up" name="" id="">
-	                    <option value="">网格库</option>
+	                <select class="select-up" ng-model="storageType">	                
+	                    <option ng-repeat="item in storageTypeList" value="{{item.storageType}}">
+	                    {{item.storageName}}</option>
 	                </select>
 	            </div>  
 	            <div class="from-item border-bottom">
 	                <label class="txt-label">仓库级别：</label>
-	                <select class="select-up" name="" id="">
-	                    <option value="">网格库</option>
+	                <select class="select-up" ng-model="storageLevel">
+	                    <option ng-repeat="item in storageLevelList" value="{{item.storageLevel}}">{{item.storageLevelName}}</option>
 	                </select>
 	            </div>  
-	            <button class="query-btn fn-right">查 询</button>
+	            <button class="query-btn fn-right" ng-click="depotQuery()">查 询</button>
 			</div>
 			<p class="p-titl"><i class="iconfont">&#xe60b;</i>仓库列表：</p>
 			<div class="transfers-list">
@@ -162,29 +163,16 @@
 	                <div class="screen-info-title">归属组织选择</div>
 	            </div>
 	            <div class="screen-info-list">
-	                <div class="info-list-title">长春维装<button class="iconfont">&#xe608;</button><!-- <button class="iconfont">&#xe607;</button> --></div>
-	                <div class="info-list-item fn-clear">
+	                <div class="info-list-title">{{orgOrShopList.orgName}}</div>
+	                <div class="info-list-item fn-clear" >
 	                    <ul>
-	                        <li class="checked">南关区装维库维库维库</li>
-	                        <li>宽城区装维</li>
-	                        <li>朝阳区装维库</li>
-	                        <li>宽城区装维</li>
-	                        <li>朝阳区装维库</li>
+	                        <!-- <li class="checked"></li> -->
+	                        <li ng-repeat="item in orgOrShopList.subOrgList" ng-click="checkedOrg(item, $index)" ng-class="{'checked': checked == $index}">{{item.orgName}}</li>	
 	                    </ul>
-	                </div>
-	                <div class="info-list-title">吉林装维<button class="iconfont">&#xe608;</button><!-- <button class="iconfont">&#xe607;</button> --></div>
-	                <div class="info-list-item fn-clear">
-	                    <ul>
-	                        <li class="checked">船营区装维库</li>
-	                        <li>昌邑区装维</li>
-	                        <li>龙潭区装维库</li>
-	                        <li>丰满区装维</li>
-	                        <li>铁西区装维</li>	                       
-	                    </ul>
-	                </div>	             
+	                </div>	                    
 	            </div>    
 	            <div class="screen-info-foot">
-	                <button ng-click="hideScreen()" class="btn-reset">重置</button><button ng-click="hideScreen()" class="btn-confirm">确定</button>
+	                <button class="btn-reset" ng-click="cancelChoose()">重置</button><button class="btn-confirm" ng-click="confirmChoose()">确定</button>
 	            </div>
 	        </div>
 	        <div class="shade"></div>

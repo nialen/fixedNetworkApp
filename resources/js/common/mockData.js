@@ -426,13 +426,9 @@
 		'data':{
 			"orgId": '@id',
 			"orgName":"@cword(3,5)",
-			"subOrgList|4":[{
+			"subOrgList|100":[{
 				"orgId":'@id',
-				"orgName":"@cword(3,5)",
-				"subOrgList|3":[{
-					"orgId":'@id',
-					"orgName":"@cword(3,5)"
-				}]
+				"orgName":"@cword(3,5)",			
 			}]
 
 		}
