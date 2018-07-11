@@ -9,10 +9,11 @@
 	<title>调拨申请</title>
 </head>
 <body>
-	<div class="wrapper" ng-controller="transfersApplyCtrl">
+
+	<div class="wrapper" ng-controller="transfersApplyCtrl" ng-show="stepNum == 0" ng-cloak>
 		<header>
 			<div class="header-title">调拨申请</div>
-			<div class="back"><span class="iconfont">&#xe658;</span>返回</div>
+			<div class="back" ng-click="back()"><span class="iconfont">&#xe658;</span>返回</div>
 		</header>
 		<div class="content">
 			<div class="top" ng-class="{'top-bg': !isHideInfo}" ng-click="hideInfo()">
@@ -23,7 +24,7 @@
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">单据号：</label>
-							<p class="info-area-detail">2018060440000</p>
+							<p class="info-area-detail" ng-bind="allotOrderInfo.allotOrderId"></p>
 						</div>
 					</div>
 					<div class="info-area">
@@ -31,13 +32,13 @@
 							<div class="info-people fn-left">
 								<div class="info-area-item">
 									<label for="">制单人：</label>
-									<p class="info-area-detail">李敏</p>
+									<p class="info-area-detail" ng-bind="allotOrderInfo.staffName"></p>
 								</div>
 							</div>
 							<div class="info-date fn-right">
 								<div class="info-date-item">
 									<label for="">调拨日期：</label>
-									<p class="info-area-detail">2018-06-04</p>
+									<p class="info-area-detail" ng-bind="allotOrderInfo.createDt"></p>
 								</div>
 							</div>
 						</div>
@@ -45,21 +46,19 @@
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">调入仓库：</label>
-							<input type="text" value="中国电信鼓楼班组" disabled>
+							<input type="text" ng-model="allotOrderInfo.targetStorageName" disabled>
 						</div>
 					</div>
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">调出仓库：</label>
-							<select class="select-up" name="" id="">
-								<option value="1">二道区装维回收库</option>
-								<option value="2">三道区装维回收库</option>
+							<select class="select-up" ng-model="transfersApplyForm.originStorageId" ng-options="item.storageId as item.storageIdName for item in twoStorageList">
 							</select>
 						</div>
 					</div>
 					<div class="info-item mt10">
 						<label for="">备注：</label>
-						<textarea></textarea>
+						<textarea ng-model="transfersApplyForm.allotRemarks"></textarea>
 					</div>
 				</form>
 			</div>
@@ -68,40 +67,23 @@
 			</div>
 			<div class="terminal-list" ng-show="isHideDetail">
 				<ul>
-					<li>
+					<li ng-repeat="item in checkedTerminalList">
 						<div class="terminal-info-head">
-							<div class="terminal-title"><span>【ONU终端】</span>华为-EC6108V9</div>
-							<div class="terminal-del"><button><span class="iconfont">&#xe610;</span></button></div>
+							<div class="terminal-title"><span>【<span ng-bind="item.sortName"></span>】</span><i ng-bind="item.offerName"></i></div>
+							<div ng-click="delTerminal($index)" class="terminal-del"><button><span class="iconfont">&#xe610;</span></button></div>
 						</div>
 						<div class="terminal-info-content">
 							<div class="terminal-info">
-								<span>品牌：</span>华为<br/><span>型号：</span>EC6108V9<br/><span>配置：</span>--
+								<span>品牌：</span><i ng-bind="item.brandName"></i><br/>
+								<span>型号：</span><i ng-bind="item.offerModelName"></i><br/>
+								<span>配置：</span><i ng-bind="item.offerConfig"></i>
 							</div>
 						</div>
 						<div class="terminal-info-foot fn-clear">
 							<div class="fn-right adjust-number-box">
-								<div class="btn-nub-reduce"><button>-</button></div>
-								<div class="fn-left adjust-number-input"><input type="number" value="10"></div>
-								<div class="btn-nub-add"><button>+</button></div>
-							</div>
-							<div class="fn-right adjust-number-title">调整数量：</div>
-						</div>
-					</li>
-					<li>
-						<div class="terminal-info-head">
-							<div class="terminal-title"><span>【ONU终端】</span>华为-EC6108V9</div>
-							<div class="terminal-del"><button><span class="iconfont">&#xe610;</span></button></div>
-						</div>
-						<div class="terminal-info-content">
-							<div class="terminal-info">
-								<span>品牌：</span>华为<br/><span>型号：</span>EC6108V9<br/><span>配置：</span>--
-							</div>
-						</div>
-						<div class="terminal-info-foot fn-clear">
-							<div class="fn-right adjust-number-box">
-								<div class="btn-nub-reduce"><button>-</button></div>
-								<div class="adjust-number-input"><input type="number" value="10"></div>
-								<div class="btn-nub-add"><button>+</button></div>
+								<div class="btn-nub-reduce" ng-click="reduce(item)"><button>-</button></div>
+								<div class="fn-left adjust-number-input"><input type="input" ng-model="item.applyOfferQty" disabled></div>
+								<div class="btn-nub-add" ng-click="increase(item)"><button>+</button></div>
 							</div>
 							<div class="fn-right adjust-number-title">调整数量：</div>
 						</div>
@@ -109,13 +91,83 @@
 				</ul>
 			</div>
 			<div class="checked-terminal">
-				<button class="btn-confirm"><span class="iconfont">&#xe60e;</span>选择调拨终端</button>
+				<button class="btn-confirm" ng-click="forward(0)"><span class="iconfont">&#xe60e;</span>选择调拨终端</button>
 			</div>
 		</div>
 		<footer>
-			<button class="btn btn-confirm">提交</button><button class="btn btn-cancel">取消</button>
+			<button ng-click="allotApplyOrderSubmit()" ng-disabled="!transfersApplyForm.allotRemarks || !checkedTerminalList.length" class="btn btn-confirm">提交</button><button ng-click="cancelSubmit()" class="btn btn-cancel">取消</button>
 		</footer>
-	</div>	
+	</div>
+
+	<div class="wrapper" ng-controller="partsTransferCtrl" ng-show="stepNum == 1" ng-cloak>
+        <header>
+            <div class="header-title">选择调拨终端</div>
+            <div class="back"><span class="iconfont">&#xe658;</span>返回</div>
+        </header>
+        <div class="search">
+            <div class="search-left">
+                <input type="text" placeholder="终端名称或型号搜索" ng-model="qryOfferForm.offerName">
+                <button ng-click="qryOfferSubmit()" class="search-btn iconfont">&#xe600;</button>
+            </div>
+            <button ng-click="showScreen()" class="more">筛选 <i class="iconfont">&#xe685;</i></button>
+        </div>
+        <div class="transfer-content">
+            <div class="transfers-list">
+                <ul>
+                    <li ng-repeat="item in offerList">
+                        <div class="transfer-info-head" ng-click="checkedOffer(item)">
+                            <input type="checkbox" ng-model="item.checked">
+                            <label>【<span ng-bind="item.sortName"></span>】<span ng-bind="item.offerName"></span></label>
+                        </div>
+                        <div class="transfer-info">
+                            <div class="transfer-info-item">
+                            	<div class="transfer-info-brand"><span>品牌：</span><i ng-bind="item.brandName" title="{{item.brandName}}"></i></div>
+                        		<span class="transfer-info-type" ng-bind="item.manageType | manageTypeFilter"></span>
+                            	</div>
+                            <div class="transfer-info-item"><span>型号：</span><i ng-bind="item.offerModelName"></i></div>
+                            <div class="transfer-info-item"><span>配置：</span><i ng-bind="item.offerConfig" title="{{item.offerConfig}}"></i></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="loading"><span class="iconfont">&#xe677;</span>加载中</div>
+        <footer>
+            <button ng-click="checkedConfirm()" class="btn btn-confirm">提交</button><button ng-click="goBack(1)" class="btn btn-cancel">取消</button>
+        </footer>
+
+        <div class="screen-box"  ng-show="stepNum == 1" ng-class="{'show-screen': isShowScreen === true}" ng-cloak>
+            <div class="screen-info-box">
+                <div class="screen-info-head">
+                    <div class="screen-info-title">筛选</div>
+                </div>
+                <div class="screen-info-list">
+                    <div class="info-list-title">分类</div>
+                    <div class="info-list-item fn-clear">
+                        <ul>
+                            <li ng-show="!checkedSortIndex || ($index + 1) == checkedSortIndex" ng-class="{'checked': ($index + 1) == checkedSortIndex}"  ng-repeat="item in offerSortList" ng-bind="item.sortName" ng-click="checkedSort(item, $index + 1)"></li>
+                        </ul>
+                    </div>
+                    <div class="info-list-title" ng-click="showBrand()">品牌<div class="info-list-toggle" ng-class="{'hide': !isBrandModel}"></div></div>
+                    <div class="info-list-item fn-clear">
+                        <ul ng-show="isBrandModel">
+                            <li ng-show="!checkedBrandIndex || ($index + 1) == checkedBrandIndex" ng-class="{'checked': ($index + 1) == checkedBrandIndex}"  ng-repeat="item in offerBrandList" ng-bind="item.brandName" ng-click="checkedBrand(item, $index + 1)"></li>
+                        </ul>
+                    </div>
+                    <div class="info-list-title" ng-click="showModel()">型号<div class="info-list-toggle" ng-class="{'hide': !isShowModel}"></div></div>
+                    <div class="info-list-model fn-clear">
+                        <ul ng-show="isShowModel">
+                            <li ng-show="!checkedModelIndex || ($index + 1) == checkedModelIndex"  ng-class="{'checked': ($index + 1) == checkedModelIndex}" ng-repeat="item in offerModelList" ng-click="checkedModel(item, $index + 1)"><p ng-bind="item.offerModelName"></p></li>
+                        </ul>
+                    </div>
+                </div>    
+                <div class="screen-info-foot">
+                    <button ng-click="reset()" class="btn-reset">重置</button><button ng-click="qryOfferSub()" class="btn-confirm">确定</button>
+                </div>
+            </div>
+            <div class="shade"></div>
+        </div>
+    </div>
 	
 	<script type="text/javascript" async="true">
 	    function _adaptFont(maxWidth, baseWidth, baseSize) {

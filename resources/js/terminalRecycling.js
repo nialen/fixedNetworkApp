@@ -42,7 +42,6 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
             httpMethod.qryTermRecoverBaseInfo().then(function(rsp){
                 if(rsp.success){
                     $rootScope.termRecoverBaseInfo = rsp.data;
-                    console.log($rootScope.termRecoverBaseInfo);
                     $scope.recoverStorageList = [{
                         recoverStorageId: $rootScope.termRecoverBaseInfo.recoverStorageId,
                         recoverStorageName: $rootScope.termRecoverBaseInfo.recoverStorageName
@@ -86,6 +85,14 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
                         location.reload();
                     }
                 });
+            };
+
+            $scope.back = function(){
+                history.back();
+            };
+
+            $scope.cancel = function(){
+                location.reload();
             };
 
         }])

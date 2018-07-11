@@ -12,7 +12,7 @@
 	<div class="wrapper" ng-controller="terminalRecyclingCtrl" ng-show="stepNum == 0" ng-cloak>
 		<header>
 			<div class="header-title">终端回收</div>
-			<div class="back"><span class="iconfont">&#xe658;</span>返回</div>
+			<div class="back" ng-click="back()"><span class="iconfont">&#xe658;</span>返回</div>
 		</header>
 		<div class="content">
 			<div class="top" ng-class="{'top-bg': !isHideInfo}" ng-click="hideInfo()">
@@ -84,7 +84,7 @@
 			</div>
 		</div>
 		<footer>
-			<button class="btn btn-confirm" ng-click="recoverOrderSubmit()" ng-disabled="!borrowOrderForm.remarks || !detailsTerminalList.length">提交</button><button class="btn btn-cancel">取消</button>
+			<button class="btn btn-confirm" ng-click="recoverOrderSubmit()" ng-disabled="!borrowOrderForm.remarks || !detailsTerminalList.length">提交</button><button ng-click="cancel()" class="btn btn-cancel">取消</button>
 		</footer>
 	</div>
 	<div class="wrapper terminal-selection" ng-controller="qryOfferCtrl" ng-show="stepNum == 1" ng-cloak>

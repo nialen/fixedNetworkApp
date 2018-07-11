@@ -70,7 +70,7 @@
 				</div>
 			</div>
 			<footer>
-				<button class="btn btn-confirm" ng-click="bindReplaceSumbit()">提交</button><button class="btn btn-cancel">取消</button>
+				<button ng-disabled="!terminalToReplaceForm.constructionNo || !accessInfo.number || !productInfo.bindProductId || !terminalToReplaceForm.oldInstCode || !terminalToReplaceForm.newInstCode || !terminalToReplaceForm.remark"  class="btn btn-confirm" ng-click="bindReplaceSumbit()">提交</button><button ng-click="cancel()" class="btn btn-cancel">取消</button>
 			</footer>
 		</div>
 	</div>

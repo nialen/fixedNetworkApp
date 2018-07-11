@@ -59,6 +59,10 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
                 history.back();
             };
 
+            $scope.cancel = function(){
+                location.reload();
+            };
+
         }])
         .controller('productQueryCtrl', ['$scope', '$rootScope', '$sessionStorage', 'httpMethod', function($scope, $rootScope, $sessionStorage, httpMethod){
 
