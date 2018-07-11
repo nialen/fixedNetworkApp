@@ -175,7 +175,7 @@
 	    </div>
 	</div>
 	<!-- 调拨入库确认 -->
-	<div class="wrap partsTransfer" id="confirmDepot" ng-controller="confirmDepotCtrl" ng-if="step === 3">
+	<div class="wrap partsTransfer" id="confirmDepot" ng-controller="confirmDepotCtrl" ng-show="step === 3">
 		<header>调拨入库<a href="javascript:" class="back" ng-click="goback(1)"><i class="iconfont">&#xe658;</i> 返回</a></header>
 	    <div class="content">
 	    	<!-- step -->
@@ -235,7 +235,7 @@
 	                <p class="detail-p-list"><span>型号：</span>{{item.offerModelName}}</p>
 	                <p class="detail-p-list"><span>配置：</span>{{item.offerConfig}}</p>
 	                <div class="detail-p-list">
-	                	<p class="p-num"><span>申请数量：</span><b>{{item.applyOfferQty}}</b></p><p class="p-num"><span>分配数量：</span><b>{{item.offerQty}}</b></p><p class="p-num"><span>录入数量：</span><b>{{item.getQty}}</b></p>
+	                	<p class="p-num"><span>申请数量：</span><b>{{item.applyOfferQty}}</b></p><p class="p-num"><span>分配数量：</span><b>{{item.offerQty}}</b></p><p class="p-num"><span>录入数量：</span><b>{{item.getInQty}}</b></p>
 	                </div>
 	                <div class="docu-bottom text-right border-top">
 						<button class="detail-btn" ng-click="serailCode(item)">录入串号</button>
@@ -244,8 +244,8 @@
 	        </ul>
 	    </div>
 	    <div class="bottom-btns">
-	        <button class="submit-btn" ng-click="submitOfferIndepot()">提交</button>
-	        <button class="cancel-btn" ng-click="refuseOfferIndepot()">拒绝</button>
+	        <button class="submit-btn" ng-click="submitOfferIndepot('confirm')">提交</button>
+	        <button class="cancel-btn" ng-click="submitOfferIndepot('refuse')">拒绝</button>
 	    </div>
 	</div>
 	<!-- 录入串码 -->
@@ -281,33 +281,19 @@
 				<button class="add-search-btn" ng-click="addSerialNumberSingle(instCode)">添加</button>
 			</div>
 			<ul class="srial-code-list fn-clear">
-				<li class="code-li fn-left">
-					<span class="order-num">1</span>
+				<li class="code-li fn-left" ng-repeat="item in instCodeList">
+					<span class="order-num">{{$index+1}}</span>
 					<div class="code-num">
-						<p class="p-code"><span>串：</span>20181340HWC142963</p>
-						<p class="p-code"><span>M：</span>54:93:59:64:D2:24</p>
+						<p class="p-code"><span>串：</span>{{item.instCode}}</p>
+						<p class="p-code" ng-if="isHaveMac"><span>M：</span>{{item.macCode}}</p>
 					</div>
-					<button class="del-btn"></button>
-				</li>
-				<li class="code-li fn-left">
-					<span class="order-num">1</span>
-					<div class="code-num">
-						<p class="p-code"><span>串：</span>20181340HWC142963</p>
-						<p class="p-code"><span>M：</span>54:93:59:64:D2:24</p>
-					</div>
-				</li>
-				<li class="code-li fn-left">
-					<span class="order-num">1</span>
-					<div class="code-num">
-						<p class="p-code"><span>串：</span>20181340HWC142963</p>
-						<p class="p-code"><span>M：</span>54:93:59:64:D2:24</p>
-					</div>
+					<button class="del-btn" ng-click="delSerisNum(item)"></button>
 				</li>
 			</ul>
 		</div>
 		<div class="bottom-btns">
-	        <button class="submit-btn">确认</button>
-	        <button class="cancel-btn">取消</button>
+	        <button class="submit-btn" ng-click="ok()">确认</button>
+	        <button class="cancel-btn" ng-click="cancel()">取消</button>
 	    </div>
 	</div>
 	<!-- 串码详情 -->
@@ -319,11 +305,11 @@
 				<div class="from-item">
 	            	<div class="half-from-item">
 		                <label class="txt-label">终端名称：</label>
-		                <p class="info-p overflow-handle">中兴-ONMI2543</p>
+		                <p class="info-p overflow-handle" ></p>
 		            </div>
 		            <div class="half-from-item">
 		                <label class="txt-label">终端编码：</label>
-		                <p class="info-p">12005345345</p>
+		                <p class="info-p"></p>
 		            </div>
 	            </div>
 	            <div class="from-item">

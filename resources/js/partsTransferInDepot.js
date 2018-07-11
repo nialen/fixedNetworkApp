@@ -23,14 +23,14 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                 if (_this.tbcAllotOrderBusy) return;
                 _this.tbcAllotOrderBusy = true;
                 var param = {                
-                    "curPage": _this.tbcAllotOrderPage,
-                    "pageSize": '10',
-                    "allotOrderId": item.allotOrderId,
-                    "startDate": item.startDate,
-                    "endDate": item.endDate,
-                    "staffName": item.staffName,
-                    "originStorageId": item.originStorageId,
-                    "targetStorageId": item.targetStorageId
+                    'curPage': _this.tbcAllotOrderPage,
+                    'pageSize': '10',
+                    'allotOrderId': item.allotOrderId,
+                    'startDate': item.startDate,
+                    'endDate': item.endDate,
+                    'staffName': item.staffName,
+                    'originStorageId': item.originStorageId,
+                    'targetStorageId': item.targetStorageId
                 }
                 httpMethod.qryTbcAllotOrder(param).then(function(rsp) {
                     if (rsp.success) {
@@ -69,16 +69,15 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                 if (_this.depotBusy) return;
                 _this.depotBusy = true;
                 var param = {                
-                    "curPage": _this.depotPage,
-                    "pageSize": '10',
-                    "commonRegionId": item.commonRegionId,
-                    "storageType": item.storageType,
-                    "storageLevel": item.storageLevel,
-                    "storageName": item.storageName,
-                    "orgId": item.orgId,
-                    "parentStorageId": item.parentStorageId
+                    'curPage': _this.depotPage,
+                    'pageSize': '10',
+                    'commonRegionId': item.commonRegionId,
+                    'storageType': item.storageType,
+                    'storageLevel': item.storageLevel,
+                    'storageName': item.storageName,
+                    'orgId': item.orgId,
+                    'parentStorageId': item.parentStorageId
                 }; 
-                debugger;            
                 httpMethod.qryStorage4Select(param).then(function(rsp) {
                     if (rsp.success) {
                         if(rsp.data.list.length > 0){
@@ -116,9 +115,9 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                 if (_this.depotDetailBusy) return;
                 _this.depotDetailBusy = true;
                 var param = {                
-                    "curPage": _this.depotDetailPage,
-                    "pageSize": '10',
-                    "allotOrderId": org
+                    'curPage': _this.depotDetailPage,
+                    'pageSize': '10',
+                    'allotOrderId': org
                 };             
                 httpMethod.qryAllotOrderDetail(param).then(function(rsp) {
                     if (rsp.success) {
@@ -202,12 +201,12 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
         // 调拨入库
         .controller('partsTransferCtrl', ['$scope', '$rootScope', 'httpMethod', 'Reddit', '$timeout', function ($scope, $rootScope, httpMethod, Reddit, $timeout) {
             $rootScope.partsTransferForm = {
-                "allotOrderId": '',
-                "startDate": '',
-                "endDate": '',
-                "staffName": '',
-                "originStorageId": '',
-                "targetStorageId": '',
+                'allotOrderId': '',
+                'startDate': '',
+                'endDate': '',
+                'staffName': '',
+                'originStorageId': '',
+                'targetStorageId': '',
             };
             //调拨入库页面入库仓库信息
             httpMethod.qryAllotOrderInBaseInfo().then(function(rsp){ 
@@ -241,6 +240,11 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             $scope.confirmTbcAllotOrder = function (item) {
                 $rootScope.tbcAllotOrderOne = item;
                 $rootScope.step = 3;
+            }
+            //串码详情
+            $scope.detailTbcAllotOrder = function (item) {
+                $rootScope.orderOneDetail = item;
+                $rootScope.step = 5;
             }
         }])
         // 调出仓库选择
@@ -277,12 +281,12 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                 $scope.isShowScreen = false;
             };
             $scope.depotForm = {
-                "commonRegionId": $rootScope.allotOrderInBaseInfo.commonRegionId,
-                "storageType": '',
-                "storageLevel": '',
-                "storageName": '',
-                "orgId": $scope.checkedOrgList.orgId,
-                "parentStorageId": $rootScope.allotOrderInBaseInfo.targetStorageId
+                'commonRegionId': $rootScope.allotOrderInBaseInfo.commonRegionId,
+                'storageType': '',
+                'storageLevel': '',
+                'storageName': '',
+                'orgId': $scope.checkedOrgList.orgId,
+                'parentStorageId': $rootScope.allotOrderInBaseInfo.targetStorageId
             };
 
             $scope.storageTypeList = [{
@@ -355,37 +359,90 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                 $rootScope.offerInfoOne = item;
                 $rootScope.step = 4;
             }
+            //确认或拒绝
+            $scope.submitOfferIndepot = function(status){               
+                var STATUS_CD;
+                switch (status) {
+                    case 'confirm':
+                        STATUS_CD = '1001';
+                        break;
+                    case 'reject':
+                        STATUS_CD = '1002';
+                        break;
+                }
+                var allotItemList = [],
+                    flag = false;
+                for(var i=0; i<$scope.queryDepotDetail.depotDetailItems.length; i++){
+                    var item = $scope.queryDepotDetail.depotDetailItems[i];        
+                    if(item.offerQty != item.getInQty){
+                        flag = true;
+                        return;
+                    }
+                    var obj = {
+                        'allotItemId': item.allotItemId,
+                        'offerId': item.offerId,
+                        'offerQty': item.offerQty,
+                        'instCodes': item.instCodeList
+                    };
+                    allotItemList.push(obj);
+                }              
+                if(status == 'confirm' && flag){
+                    alert('录入数量与分配数量不一致');
+                    return;
+                };
+                var param = {
+                    'allotOrderId': _.get($rootScope.tbcAllotOrderOne, 'allotOrderId'),
+                    'statusCd': STATUS_CD,
+                    'staffId': _.get($rootScope.tbcAllotOrderOne, 'allotOrderId'),,
+                    'originStorageId': _.get($rootScope.tbcAllotOrderOne, 'originStorageId'),,
+                    'targetStorageId': _.get($rootScope.tbcAllotOrderOne, 'targetStorageId'),,
+                    'confirmRemarks': $scope.confirmRemarks,
+                    'allotItemList': allotItemList
+                }
+                httpMethod.changeAllotOrderStatus4JL(param).then(function(rsp){ 
+                    if(rsp.success){
+                        if(status == 'confirm'){
+                            alert('调拨入库提交成功!')
+                            window.location.reload();                           
+                        }else{
+                            alert('调拨入库拒绝成功!')
+                            window.location.reload();                            
+                        }
+                    }
+                });    
+            }
         }])
         // 录入串码
         .controller('serialCodeCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
+            $scope.instCodeList = _.cloneDeep($rootScope.offerInfoOne.instCodeList) || [];
             //单个添加串码
             $scope.addSerialNumberSingle = function (instCode) {
                 if (!instCode) {
-                    // JqueryDialog.inform('提示信息', '请先输入串码');
+                    alert('请先输入串码');
                     return;
                 } 
                 //检验串码在当前页面加入的串码中是否重复
                 var isEqualInstCode = _.some($scope.instCodeList, function (item) {
-                    return item === instCode;
+                    return item.instCode === instCode;
                 });
                 if (isEqualInstCode) {
-                    JqueryDialog.inform('提示信息', '输入串码与之前输入串码重复');
+                    alert('输入串码与之前输入串码重复');
                     return;
-                }
+                };
+                $scope.isHaveMac = true;
                 var params = {
                     instCode: instCode,
-                    storageId: _.get($rootScope.checkedAllotOrder, 'originStorageId'),
-                    offerId: _.get($ctrl.items, 'offerId')
+                    storageId: _.get($rootScope.partsTransferForm, 'originStorageId'),
+                    offerId: _.get($rootScope.offerInfoOne, 'offerId')
                 };
                 httpMethod.checkInstCodsByOffer(params).then(function (rsp) {
                     if (rsp.success) {
-                        // if($ctrl.items.isHaveMac == 'Y'){
-                        //  $scope.instCodeList.unshift({'instCode': instCode, 'macCode': macCode});
-                        // }else{
-                        //  $scope.instCodeList.unshift({'instCode': instCode});
-                        // }
-                        $scope.instCodeList.push(instCode);
-                        $scope.pageChanged();
+                        if(rsp.data.macCode){
+                            $scope.instCodeList.unshift({'instCode': instCode, 'macCode': macCode});
+                            $scope.isHaveMac = true;
+                        }else{
+                            $scope.instCodeList.unshift({'instCode': instCode});
+                        }                      
                     }
                 });
             };
@@ -399,14 +456,14 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                     var excelfileExtend = '.xls,.xlsx';
                     var fileExtend = newValue[0].name.substring(newValue[0].name.lastIndexOf('.')).toLowerCase();
                     if (excelfileExtend.indexOf(fileExtend) <= -1) {
-                        JqueryDialog.inform('提示信息', '导入文件只能是Excel文件');
+                        alert('导入文件只能是Excel文件');
                         return false
                     }
 
                     var formdata = new FormData();
                     formdata.append('uploadFile', newValue[0]);
-                    formdata.append('storageId', _.get($rootScope, 'checkedAllotOrder.originStorageId')); //出库仓库ID
-                    formdata.append('offerId', _.get($ctrl, 'items.offerId')); //商品Id
+                    formdata.append('storageId', _.get($rootScope, 'partsTransferForm.originStorageId')); //出库仓库ID
+                    formdata.append('offerId', _.get($rootScope.offerInfoOne, 'offerId')); //商品Id
 
                     $http({
                         headers: {
@@ -417,31 +474,33 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                         data: formdata
                     }).success(function (rsp) {
                         $('#upload_file').val('');
-                        if (rsp.success) {
-                            // _.forEach(rsp.data, function (data) {
-                            //  //检验串码在当前页面加入的串码中是否重复
-                            //  var isEqualInstCode = _.some($scope.instCodeList, function (item) {
-                            //      return item === data;
-                            //  });
-                            //  if (isEqualInstCode) {
-                            //      JqueryDialog.inform('提示信息', '输入串码与之前输入串码重复');
-                            //      return;
-                            //  }
-                            //  $scope.instCodeList.unshift(data);
-                            // });
-                            for(var i=0; i<rsp.data.length; i++){
-                                var isEqualInstCode = _.some($scope.instCodeList, function (item) {
-                                    return item === rsp.data[i];
-                                });
-                                if (isEqualInstCode) {
-                                    JqueryDialog.inform('提示信息', '输入串码与之前输入串码重复');
-                                    return;
-                                };
-                                $scope.instCodeList.unshift(rsp.data[i]);
-                            }
-                            $scope.pageChanged();
+                        if (rsp.success) {                            
+                            if(rsp.data[0].macCode){
+                                for(var i=0; i<rsp.data.length; i++){
+                                    var isEqualInstCode = _.some($scope.instCodeList, function (item) {
+                                        return item.instCode === rsp.data[i].instCode;
+                                    });
+                                    if (isEqualInstCode) {
+                                        alert('输入串码与之前输入串码重复');
+                                        return;
+                                    };
+                                    $scope.instCodeList.unshift({'instCode': instCode, 'macCode': macCode});                           
+                                }
+                                $scope.isHaveMac = true;
+                            }else{
+                                for(var i=0; i<rsp.data.length; i++){
+                                    var isEqualInstCode = _.some($scope.instCodeList, function (item) {
+                                        return item.instCode === rsp.data[i].instCode;
+                                    });
+                                    if (isEqualInstCode) {
+                                        alert('输入串码与之前输入串码重复');
+                                        return;
+                                    };
+                                    $scope.instCodeList.unshift(rsp.data[i]);
+                                }
+                            }                           
                         } else {
-                            JqueryDialog.inform('提示信息', rsp.msg);
+                            // JqueryDialog.inform('提示信息', rsp.msg);
                         }
                     });
                 }
@@ -450,19 +509,14 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             //删除串码
             $scope.delSerisNum = function (index) {
                 $scope.instCodeList.splice(index, 1);
-                $scope.pageChanged();
             };
-            $ctrl.ok = function () {
-                // if($scope.instCodeList.length != $ctrl.items.offerQty){
-                //  JqueryDialog.inform('提示信息', '录入数量与分配数量不一致');
-                //  return;
-                // }
-                $ctrl.items.instCodeList = $scope.instCodeList;
-                $ctrl.items.getInQty = $scope.instCodeList.length;
-                $uibModalInstance.close();
+            $ctrl.ok = function () {              
+                $rootScope.offerInfoOne.instCodeList = $scope.instCodeList;
+                $rootScope.offerInfoOne.getInQty = $scope.instCodeList.length;
+                $rootScope.step = 3;
             };
             $ctrl.cancel = function () {
-                $uibModalInstance.dismiss('cancel');
+                $rootScope.step = 3;
             };
         }]) 
         .controller('serialCodeDetailCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
