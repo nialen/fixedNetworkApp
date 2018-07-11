@@ -13,7 +13,7 @@
 	<div class="wrapper" ng-controller="transfersApplyCtrl" ng-show="stepNum == 0" ng-cloak>
 		<header>
 			<div class="header-title">调拨申请</div>
-			<div class="back"><span class="iconfont">&#xe658;</span>返回</div>
+			<div class="back" ng-click="back()"><span class="iconfont">&#xe658;</span>返回</div>
 		</header>
 		<div class="content">
 			<div class="top" ng-class="{'top-bg': !isHideInfo}" ng-click="hideInfo()">

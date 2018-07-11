@@ -94,6 +94,10 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
                 })
             };
 
+            $scope.back = function(){
+                history.back();
+            };
+
             $scope.cancelSubmit = function(){
                 location.reload();
             }

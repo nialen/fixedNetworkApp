@@ -90,6 +90,14 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
                 });
             };
 
+            $scope.back = function(){
+                history.back();
+            };
+
+            $scope.cancel = function(){
+                location.reload();
+            };
+
         }])
         .controller('qryOfferCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
 
