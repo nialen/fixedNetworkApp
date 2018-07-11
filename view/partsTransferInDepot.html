@@ -235,7 +235,7 @@
 	                <p class="detail-p-list"><span>型号：</span>{{item.offerModelName}}</p>
 	                <p class="detail-p-list"><span>配置：</span>{{item.offerConfig}}</p>
 	                <div class="detail-p-list">
-	                	<p class="p-num"><span>申请数量：</span><b>{{item.applyOfferQty}}</b></p><p class="p-num"><span>分配数量：</span><b>{{item.offerQty}}</b></p><p class="p-num"><span>录入数量：</span><b>{{item.getInQty}}</b></p>
+	                	<p class="p-num"><span>申请数量：</span><b>{{item.applyOfferQty}}</b></p><p class="p-num"><span>分配数量：</span><b>{{item.offerQty}}</b></p><p class="p-num"><span>录入数量：</span><b>{{item.getInQty || '0'}}</b></p>
 	                </div>
 	                <div class="docu-bottom text-right border-top">
 						<button class="detail-btn" ng-click="serailCode(item)">录入串号</button>
@@ -261,17 +261,17 @@
 		            </div>
 		            <div class="half-from-item">
 		                <label class="txt-label">终端编码：</label>
-		                <p class="info-p" ng-bind="offerInfoOne.offerId"></p>
+		                <p class="info-p overflow-handle" ng-bind="offerInfoOne.offerId"></p>
 		            </div>
 	            </div>
 	            <div class="from-item">
 	            	<div class="half-from-item">
 		                <label class="txt-label">终端品牌：</label>
-		                <p class="info-p" ng-bind="offerInfoOne.brandName"></p>
+		                <p class="info-p overflow-handle" ng-bind="offerInfoOne.brandName"></p>
 		            </div>
 		            <div class="half-from-item">
 		                <label class="txt-label">终端型号：</label>
-		                <p class="info-p" ng-bind="offerInfoOne.offerModelName"></p>
+		                <p class="info-p overflow-handle" ng-bind="offerInfoOne.offerModelName"></p>
 		            </div>
 	            </div>
 			</div>

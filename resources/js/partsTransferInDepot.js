@@ -360,7 +360,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                 $rootScope.step = 4;
             }
             //确认或拒绝
-            $scope.submitOfferIndepot = function(status){               
+            $scope.submitOfferIndepot = function(status){
                 var STATUS_CD;
                 switch (status) {
                     case 'confirm':
@@ -376,7 +376,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                     var item = $scope.queryDepotDetail.depotDetailItems[i];        
                     if(item.offerQty != item.getInQty){
                         flag = true;
-                        return;
+                        break;
                     }
                     var obj = {
                         'allotItemId': item.allotItemId,
@@ -393,9 +393,9 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                 var param = {
                     'allotOrderId': _.get($rootScope.tbcAllotOrderOne, 'allotOrderId'),
                     'statusCd': STATUS_CD,
-                    'staffId': _.get($rootScope.tbcAllotOrderOne, 'allotOrderId'),,
-                    'originStorageId': _.get($rootScope.tbcAllotOrderOne, 'originStorageId'),,
-                    'targetStorageId': _.get($rootScope.tbcAllotOrderOne, 'targetStorageId'),,
+                    'staffId': _.get($rootScope.tbcAllotOrderOne, 'allotOrderId'),
+                    'originStorageId': _.get($rootScope.tbcAllotOrderOne, 'originStorageId'),
+                    'targetStorageId': _.get($rootScope.tbcAllotOrderOne, 'targetStorageId'),
                     'confirmRemarks': $scope.confirmRemarks,
                     'allotItemList': allotItemList
                 }
@@ -437,8 +437,9 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                 };
                 httpMethod.checkInstCodsByOffer(params).then(function (rsp) {
                     if (rsp.success) {
-                        if(rsp.data.macCode){
-                            $scope.instCodeList.unshift({'instCode': instCode, 'macCode': macCode});
+                        var codeList = rsp.data;
+                        if(codeList.macCode){
+                            $scope.instCodeList.unshift({'instCode': instCode, 'macCode': codeList.macCode});
                             $scope.isHaveMac = true;
                         }else{
                             $scope.instCodeList.unshift({'instCode': instCode});
@@ -474,31 +475,17 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                         data: formdata
                     }).success(function (rsp) {
                         $('#upload_file').val('');
-                        if (rsp.success) {                            
-                            if(rsp.data[0].macCode){
-                                for(var i=0; i<rsp.data.length; i++){
-                                    var isEqualInstCode = _.some($scope.instCodeList, function (item) {
-                                        return item.instCode === rsp.data[i].instCode;
-                                    });
-                                    if (isEqualInstCode) {
-                                        alert('输入串码与之前输入串码重复');
-                                        return;
-                                    };
-                                    $scope.instCodeList.unshift({'instCode': instCode, 'macCode': macCode});                           
-                                }
-                                $scope.isHaveMac = true;
-                            }else{
-                                for(var i=0; i<rsp.data.length; i++){
-                                    var isEqualInstCode = _.some($scope.instCodeList, function (item) {
-                                        return item.instCode === rsp.data[i].instCode;
-                                    });
-                                    if (isEqualInstCode) {
-                                        alert('输入串码与之前输入串码重复');
-                                        return;
-                                    };
-                                    $scope.instCodeList.unshift(rsp.data[i]);
-                                }
-                            }                           
+                        if (rsp.success) {            
+                            for(var i=0; i<rsp.data.length; i++){
+                                var isEqualInstCode = _.some($scope.instCodeList, function (item) {
+                                    return item.instCode === rsp.data[i].instCode;
+                                });
+                                if (isEqualInstCode) {
+                                    alert('输入串码与之前输入串码重复');
+                                    return;
+                                };
+                                $scope.instCodeList.unshift(rsp.data[i]); 
+                            }                                        
                         } else {
                             // JqueryDialog.inform('提示信息', rsp.msg);
                         }
@@ -510,12 +497,12 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             $scope.delSerisNum = function (index) {
                 $scope.instCodeList.splice(index, 1);
             };
-            $ctrl.ok = function () {              
+            $scope.ok = function () {              
                 $rootScope.offerInfoOne.instCodeList = $scope.instCodeList;
                 $rootScope.offerInfoOne.getInQty = $scope.instCodeList.length;
                 $rootScope.step = 3;
             };
-            $ctrl.cancel = function () {
+            $scope.cancel = function () {
                 $rootScope.step = 3;
             };
         }]) 
