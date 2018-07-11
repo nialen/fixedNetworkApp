@@ -54,11 +54,11 @@
                 </div>
                 <div class="from-item border-bottom">
                     <label class="txt-label">入库仓库：</label>
-                    <div class="search-item disabled"><input type="text" ng-model="partsTransferForm.targetStorageName" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
+                    <div class="search-item disabled"><input type="text" ng-model="allotOrderInBaseInfo.targetStorageName" readonly/><button class="ser-btn iconfont">&#xe600;</button></div>
                 </div>
                 <div class="from-item border-bottom">
                     <label class="txt-label">调出仓库：</label>
-                    <div class="search-item"><input type="text" placeholder="请选择" ng-model="partsTransferForm.originStorageName" readonly/><button class="ser-btn iconfont" ng-click="chooseOutDepot()">&#xe600;</button></div>
+                    <div class="search-item"><input type="text" placeholder="请选择" ng-model="sourceStorage.storageName" readonly/><button class="ser-btn iconfont" ng-click="chooseOutDepot()">&#xe600;</button></div>
                 </div>
                 <button class="query-btn fn-right" ng-click="queryTbcAllotOrder()">查 询</button>
 			</div>
@@ -93,11 +93,13 @@
 		</div>
 	</div>
 	<!-- 选择仓库（筛选条件）-->
-	<div class="wrap chooseDepot" ng-controller="chooseDepotCtrl" ng-if="step === 2">
+	<div class="wrap chooseDepot" id="chooseDepot" ng-controller="chooseDepotCtrl" ng-if="step === 2">
 		<header>调拨入库-选择仓库<a href="javascript:" class="back" ng-click="goback(1)"><i class="iconfont">&#xe658;</i> 返回</a></header>
 		<div class="content">
-			<p class="p-titl"><i class="iconfont">&#xe600;</i>查询条件<button class="more-btn iconfont" ng-click="infoShowMore()" ng-show="infoShow">&#xe608;</button>
-			<button class="more-btn iconfont" ng-click="infoShowMore()" ng-show="!infoShow">&#xe607;</button></p>
+			<p class="p-titl"><i class="iconfont">&#xe600;</i>查询条件
+				<button class="more-btn iconfont" ng-click="infoShowMore()" ng-show="infoShow">&#xe608;</button>
+				<button class="more-btn iconfont" ng-click="infoShowMore()" ng-show="!infoShow">&#xe607;</button>
+			</p>
 			<div class="parts-info fn-clear" ng-show="infoShow">
 				<div class="from-item border-bottom">
                     <label class="txt-label">归属地区：</label>
@@ -109,18 +111,20 @@
                 </div>
                 <div class="from-item border-bottom">
                     <label class="txt-label">仓库名称：</label>
-                    <input class="txt-input" type="text"/>
+                    <input class="txt-input" type="text" ng-model="depotForm.storageName"/>
                 </div>
                 <div class="from-item border-bottom">
 	                <label class="txt-label">仓库类型：</label>
-	                <select class="select-up" ng-model="storageType">	                
+	                <select class="select-up" ng-model="depotForm.storageType">	
+	                	<option value="">全部</option>            
 	                    <option ng-repeat="item in storageTypeList" value="{{item.storageType}}">
 	                    {{item.storageName}}</option>
 	                </select>
 	            </div>  
 	            <div class="from-item border-bottom">
 	                <label class="txt-label">仓库级别：</label>
-	                <select class="select-up" ng-model="storageLevel">
+	                <select class="select-up" ng-model="depotForm.storageLevel">
+	                	<option value="">全部</option> 
 	                    <option ng-repeat="item in storageLevelList" value="{{item.storageLevel}}">{{item.storageLevelName}}</option>
 	                </select>
 	            </div>  
@@ -128,32 +132,24 @@
 			</div>
 			<p class="p-titl"><i class="iconfont">&#xe60b;</i>仓库列表：</p>
 			<div class="transfers-list">
-                <ul>
-                    <li>
+                <ul infinite-scroll="queryDepot.depotNextPage(depotForm)" infinite-scroll-distance='3' infinite-scroll-container="'#chooseDepot'">
+                    <li ng-repeat="item in queryDepot.depotItems">
                         <div class="transfer-info-head">                       
-                            <label class="info-radioclass"><input type="radio" name="suggradio" value="1" checked><span><b class="red-color">【网格库】</b>南安区装维库</span></label>
+                            <label class="info-radioclass"><input type="radio" name="suggradio" ng-click="checkDepot(item)"><span><b class="red-color">【{{item.storageType | storageTypeName}}】</b>{{item.orgName}}</span></label>
                         </div>
                         <div class="transfer-info">
-                            <div class="transfer-info-item"><p><span>编码：</span>01</p><p><span>级别：</span>三级库</p></div>
-                            <div class="transfer-info-item"><span>归属地区：</span>长春</div>
-                            <div class="transfer-info-item"><span>归属组织：</span>南安区装维库</div>
+                            <div class="transfer-info-item">
+                            	<p class="overflow-handle"><span>编码：</span>{{item.storageId}}</p>
+                            	<p class="overflow-handle"><span>级别：</span>{{item.storageLevel | storageLevelName}}</p></div>
+                            <div class="transfer-info-item"><span>归属地区：</span>{{item.regionName}}</div>
+                            <div class="transfer-info-item"><span>归属组织：</span>{{item.orgName}}</div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="transfer-info-head">                       
-                            <label class="info-radioclass"><input type="radio" name="suggradio" value="1"><span><b class="red-color">【网格库】</b>南安区装维库</span></label>
-                        </div>
-                        <div class="transfer-info">
-                            <div class="transfer-info-item"><p><span>编码：</span>01</p><p><span>级别：</span>三级库</p></div>
-                            <div class="transfer-info-item"><span>归属地区：</span>长春</div>
-                            <div class="transfer-info-item"><span>归属组织：</span>南安区装维库</div>
-                        </div>
-                    </li>                
+                    </li>                       
                 </ul>
             </div>
             <div class="bottom-btns">
-		        <button class="submit-btn">确定</button>
-		        <button class="cancel-btn">取消</button>
+		        <button class="submit-btn" ng-click="chooseDepotConfirm()">确定</button>
+		        <button class="cancel-btn" ng-click="cancel()">取消</button>
 		    </div>
 		</div>
 		<!-- 筛选条件 -->
@@ -179,7 +175,7 @@
 	    </div>
 	</div>
 	<!-- 调拨入库确认 -->
-	<div class="wrap" ng-controller="confirmDepotCtrl" ng-if="step === 3">
+	<div class="wrap partsTransfer" id="confirmDepot" ng-controller="confirmDepotCtrl" ng-if="step === 3">
 		<header>调拨入库<a href="javascript:" class="back" ng-click="goback(1)"><i class="iconfont">&#xe658;</i> 返回</a></header>
 	    <div class="content">
 	    	<!-- step -->
@@ -192,76 +188,68 @@
 					<span>2</span> 调拨入库确认
 				</div>
 			</div>
-	        <p class="p-titl"><i class="iconfont">&#xe737;</i>调拨入库单据基本信息<button class="more-btn iconfont">&#xe608;</button>
-			<!-- <button class="more-btn iconfont">&#xe607;</button> --></p>
-	        <div class="parts-info">
+	        <p class="p-titl"><i class="iconfont">&#xe737;</i>调拨入库单据基本信息	        	
+				<button class="more-btn iconfont" ng-click="confirmShowMore()" ng-show="confirmShow">&#xe608;</button>
+				<button class="more-btn iconfont" ng-click="confirmShowMore()" ng-show="!confirmShow">&#xe607;</button>
+			</p>
+	        <div class="parts-info" ng-show="confirmShow">
 	            <div class="from-item border-bottom">
 	                <label class="txt-label">单据号：</label>
-	                <p class="p-detail">201806040000</p>
+	                <p class="p-detail" ng-bind="tbcAllotOrderOne.allotOrderId"></p>
 	            </div>	       
 	            <div class="from-item border-bottom">
 	            	<div class="half-from-item">
 		                <label class="txt-label">制单人：</label>
-		                <p class="info-p">李敏</p>
+		                <p class="info-p" ng-bind="tbcAllotOrderOne.staffName"></p>
 		            </div>
 		            <div class="half-from-item">
 		                <label class="txt-label">调入日期：</label>
-		                <p class="info-p">2018-06-04</p>
+		                <p class="info-p" ng-bind="tbcAllotOrderOne.createDt"></p>
 		            </div>
 	            </div>
 	            <div class="from-item border-bottom">
 	                <label class="txt-label">调出单号：</label>
-	                <p class="info-p">201806009874</p>
+	                <p class="info-p" ng-bind="tbcAllotOrderOne.allotOrderId"></p>
 	            </div>
 	            <div class="from-item border-bottom">
 	                <label class="txt-label">调入仓库：</label>
-	                <p class="info-p">省中心库</p>
+	                <p class="info-p" ng-bind="tbcAllotOrderOne.targetStorageName"></p>
 	            </div>
 	            <div class="from-item border-bottom">
 	                <label class="txt-label">调出仓库：</label>
-	                <p class="info-p">长春市局库</p>
+	                <p class="info-p" ng-bind="tbcAllotOrderOne.originStorageName"></p>
 	            </div>	     
 	            <div class="from-item">
 	                <label class="txt-label">备注：</label>
-	                <textarea class="textarea-box"></textarea>
+	                <textarea class="textarea-box" ng-model="confirmRemarks"></textarea>
 	            </div>
 	        </div>
-	        <p class="p-titl"><i class="iconfont">&#xe737;</i>调拨入库终端明细<button class="more-btn iconfont">&#xe608;</button>
-			<!-- <button class="more-btn iconfont">&#xe607;</button> --></p>
-	        <ul class="detail-info">
-	            <li class="detail-list">
-	                <p class="detail-p"><span>【机顶盒】</span>华为-EC6108V9 <a href="javascript:" class="iconfont delete-btn">&#xe610;</a></p>
-	                <p class="detail-p-list"><span>品牌：</span>华为</p>
-	                <p class="detail-p-list"><span>型号：</span>EC6108V9</p>
-	                <p class="detail-p-list"><span>配置：</span>--</p>
+	        <p class="p-titl"><i class="iconfont">&#xe737;</i>调拨入库终端明细
+	        	<button class="more-btn iconfont" ng-click="confirmDetailMore()" ng-show="confirmDetail">&#xe608;</button>
+				<button class="more-btn iconfont" ng-click="confirmDetailMore()" ng-show="!confirmDetail">&#xe607;</button>
+			</p>
+	        <ul class="detail-info" infinite-scroll="queryDepotDetail.depotDetailNextPage(tbcAllotOrderOne.allotOrderId)" infinite-scroll-distance='3' infinite-scroll-container="'#confirmDepot'" ng-show="confirmDetail">
+	            <li class="detail-list" ng-repeat="item in queryDepotDetail.depotDetailItems">
+	                <p class="detail-p"><span>【{{item.sortName}}】</span>{{item.offerName}} <a href="javascript:" class="iconfont delete-btn" ng-click="deleteOfferOne(item)">&#xe610;</a></p>
+	                <p class="detail-p-list"><span>品牌：</span>{{item.brandName}}</p>
+	                <p class="detail-p-list"><span>型号：</span>{{item.offerModelName}}</p>
+	                <p class="detail-p-list"><span>配置：</span>{{item.offerConfig}}</p>
 	                <div class="detail-p-list">
-	                	<p class="p-num"><span>申请数量：</span><b>1</b></p><p class="p-num"><span>分配数量：</span><b>1</b></p><p class="p-num"><span>录入数量：</span><b>1</b></p>
+	                	<p class="p-num"><span>申请数量：</span><b>{{item.applyOfferQty}}</b></p><p class="p-num"><span>分配数量：</span><b>{{item.offerQty}}</b></p><p class="p-num"><span>录入数量：</span><b>{{item.getQty}}</b></p>
 	                </div>
 	                <div class="docu-bottom text-right border-top">
-						<button class="detail-btn">录入串号</button>
+						<button class="detail-btn" ng-click="serailCode(item)">录入串号</button>
 					</div>
-	            </li>
-	            <li class="detail-list">
-	                <p class="detail-p"><span>【机顶盒】</span>华为-EC6108V9 <a href="javascript:" class="iconfont delete-btn">&#xe610;</a></p>
-	                <p class="detail-p-list"><span>品牌：</span>华为</p>
-	                <p class="detail-p-list"><span>型号：</span>EC6108V9</p>
-	                <p class="detail-p-list"><span>配置：</span>--</p>
-	                <div class="detail-p-list">
-	                	<p class="p-num"><span>申请数量：</span><b>1</b></p><p class="p-num"><span>分配数量：</span><b>1</b></p><p class="p-num"><span>录入数量：</span><b>1</b></p>
-	                </div>
-	                <div class="docu-bottom text-right border-top">
-						<button class="detail-btn">录入串号</button>
-					</div>
-	            </li>
+	            </li>	         
 	        </ul>
 	    </div>
 	    <div class="bottom-btns">
-	        <button class="submit-btn">提交</button>
-	        <button class="cancel-btn">拒绝</button>
+	        <button class="submit-btn" ng-click="submitOfferIndepot()">提交</button>
+	        <button class="cancel-btn" ng-click="refuseOfferIndepot()">拒绝</button>
 	    </div>
 	</div>
 	<!-- 录入串码 -->
-	<div class="wrap srialCode" ng-controller="srialCodeCtrl" ng-if="step === 4">
+	<div class="wrap srialCode" ng-controller="serialCodeCtrl" ng-if="step === 4">
 		<header>录入串码<a href="javascript:" class="back" ng-click="goback(3)"><i class="iconfont">&#xe658;</i> 返回</a></header>
 		<div class="content">
 			<p class="p-titl"><i class="iconfont">&#xe693;</i>终端信息</p>
@@ -269,28 +257,28 @@
 				<div class="from-item">
 	            	<div class="half-from-item">
 		                <label class="txt-label">终端名称：</label>
-		                <p class="info-p overflow-handle">中兴-ONMI2543</p>
+		                <p class="info-p overflow-handle" ng-bind="offerInfoOne.offerName"></p>
 		            </div>
 		            <div class="half-from-item">
 		                <label class="txt-label">终端编码：</label>
-		                <p class="info-p">12005345345</p>
+		                <p class="info-p" ng-bind="offerInfoOne.offerId"></p>
 		            </div>
 	            </div>
 	            <div class="from-item">
 	            	<div class="half-from-item">
 		                <label class="txt-label">终端品牌：</label>
-		                <p class="info-p">中兴</p>
+		                <p class="info-p" ng-bind="offerInfoOne.brandName"></p>
 		            </div>
 		            <div class="half-from-item">
 		                <label class="txt-label">终端型号：</label>
-		                <p class="info-p">ONMI2543</p>
+		                <p class="info-p" ng-bind="offerInfoOne.offerModelName"></p>
 		            </div>
 	            </div>
 			</div>
 			<p class="p-titl"><i class="iconfont">&#xe60b;</i>终端串码列表<button class="leadingin-btn"><i class="iconfont">&#xe628;</i> 批量导入串码</button></p>
 			<div class="add-search">
-				<input type="text" name="" placeholder="输入串号添加">
-				<button class="add-search-btn">查询添加</button>
+				<input type="text" name="" placeholder="输入串号添加" ng-model="instCode">
+				<button class="add-search-btn" ng-click="addSerialNumberSingle(instCode)">添加</button>
 			</div>
 			<ul class="srial-code-list fn-clear">
 				<li class="code-li fn-left">
@@ -323,7 +311,7 @@
 	    </div>
 	</div>
 	<!-- 串码详情 -->
-	<div class="wrap srialCode" ng-controller="srialCodeDetailCtrl" ng-if="step === 5">
+	<div class="wrap srialCode" ng-controller="serialCodeDetailCtrl" ng-if="step === 5">
 		<header>录入串码<a href="javascript:" class="back" ng-click="goback(1)"><i class="iconfont">&#xe658;</i> 返回</a></header>
 		<div class="content">
 			<p class="p-titl"><i class="iconfont">&#xe693;</i>终端信息</p>
@@ -374,11 +362,7 @@
 					</div>
 				</li>
 			</ul>
-		</div>
-		<div class="bottom-btns">
-	        <button class="submit-btn">确认</button>
-	        <button class="cancel-btn">取消</button>
-	    </div>
+		</div>		
 	</div>
 	<script type="text/javascript" async="true">
     function _adaptFont(maxWidth, baseWidth, baseSize) {
