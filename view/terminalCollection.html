@@ -31,9 +31,9 @@
             </div>         
             <div class="info-line">
                 <label class="info-label">收取方式：</label>
-                <p class="info-radio">                  
+                <p class="info-radio">                                  
                     <label class="radioclass" ng-repeat="x in operateTypeList">
-                        <input type="radio"  ng-value="x.operateType" ng-model="termTakeBaseInfo.operateType">
+                        <input type="radio"  value="{{x.operateType}}" ng-model="$parent.operateType" required="required">
                         <span>{{x.operateName}}</span>
                     </label>
                 </p>
@@ -55,9 +55,9 @@
                 <p class="info-radio">
                     <span>旧终端处理意见</span>
                     <label class="info-radioclass" ng-repeat="x in processTypeList">
-                        <input type="radio"  ng-value="x.processType" ng-model="item.processType">
+                        <input type="radio" ng-value="x.processType" ng-model="item.processType">
                         <span>{{x.processName}}</span>
-                    </label>
+                    </label>                
                 </p>
             </li>
             <div class="detail-btns fn-clear">

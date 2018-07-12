@@ -3,8 +3,8 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
         .module('terminalCollectionModule', ['ngCommonModule', 'httpMethod'])
         .run(['$rootScope', function ($rootScope) {
             $rootScope.step = 1;
-            $rootScope.detailShow = false;
-            $rootScope.infoShow = false;
+            $rootScope.detailShow = true;
+            $rootScope.infoShow = true;
             $rootScope.addOneTakeOffer = [];
             $rootScope.goback = function (index) {
                 $rootScope.step = index;
@@ -36,20 +36,17 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 'processType': '4',
                 'processName': '翻新'
             }];
-            _.map($scope.addOneTakeOffer, function(item){
-                item.processType = $scope.processTypeList[0].processType;
-            });
-
-            $rootScope.termTakeBaseInfo = {
-                'operateType': '1'
-            };
+     
             $scope.operateTypeList = [{
                 'operateType': '1',
-                'operateName': '上客户门收取'
+                'operateName': '上客户门收取',
+                'checked': true
             },{
                 'operateType': '2',
                 'operateName': '营业厅收取'
             }];
+
+            $scope.operateType = '1';
 
             $scope.infoShowMore = function () {
                 $rootScope.infoShow = !$rootScope.infoShow;
@@ -94,7 +91,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 var param={
                     'takeRecordId': $rootScope.termTakeBaseInfo.takeRecordId,
                     'staffId': $rootScope.termTakeBaseInfo.staffId,
-                    'operateType': _.get($rootScope, 'termTakeBaseInfo.operateType'),
+                    'operateType': _.get($scope, 'operateType'),
                     'remark': $rootScope.termTakeBaseInfo.remark,
                     'takeItemList': takeOfferList
                 };
@@ -114,11 +111,12 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngCommonModule', '
                 httpMethod.qryTakeOffer(param).then(function(rsp){              
                     if(rsp.success){
                         $scope.takeOffer = rsp.data;
+                        $scope.takeOffer.processType = '1';
                     }
                 })
             };
             $scope.confirm = function () {              
-                $rootScope.addOneTakeOffer.push($scope.takeOffer);                            
+                $rootScope.addOneTakeOffer.push($scope.takeOffer);    
                 $rootScope.step = 1;
                 $rootScope.detailShow = true;
             };
