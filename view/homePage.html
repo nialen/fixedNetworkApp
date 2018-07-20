@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="../resources/css/common/reset.css" />
+	<link rel="stylesheet" href="../resources/css/common/common.css" />
+	<link rel="stylesheet" href="../resources/css/homePage.css" />
+	<title>固网终端运营</title>
+</head>
+<body>
+
+	<div class="wrapper" ng-controller="homePageCtrl" ng-cloak>
+		<header>
+			<div class="header-title">固网终端运营</div>
+			<div class="back" ng-click="back()"><span class="iconfont">&#xe658;</span>返回</div>
+		</header>
+		<div class="content">
+			<div class="banner"><img src="../resources/images/home-banner.jpg" alt=""></div>
+			<div class="nav-list-box fn-clear">
+				<div class="nav-title"><span class="iconfont">&#xe88f;</span>库存管理</div>
+				<div class="nav-list">
+					<ul>
+						<li ng-click="refreshto('transfersApply.html')">
+							<div class="nav-img">
+								<img src="../resources/images/icon-dbsq.png" alt="">
+							</div>
+							<div class="nav-name">调拨申请</div>
+						</li>
+						<li>
+							<div class="nav-img">
+								<img src="../resources/images/icon-dbrk.png" alt="">
+							</div>
+							<div class="nav-name">调拨入库</div>
+						</li>
+						<li>
+							<div class="nav-img">
+								<img src="../resources/images/icon-jjck.png" alt="">
+							</div>
+							<div class="nav-name">借机出库</div>
+						</li>
+						<li>
+							<div class="nav-img">
+								<img src="../resources/images/icon-jjtk.png" alt="">
+								<div class="red-dot"><span class="iconfont">&#xe68c;</span></div>
+							</div>
+							<div class="nav-name">借机退库</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="nav-list-box fn-clear">
+				<div class="nav-title"><span class="iconfont im-manage">&#xe68b;</span>装维管理</div>
+				<div class="nav-list">
+					<ul>
+						<li>
+							<div class="nav-img">
+								<img src="../resources/images/icon-zdkb.png" alt="">
+							</div>
+							<div class="nav-name">终端捆版</div>
+						</li>
+						<li>
+							<div class="nav-img">
+								<img src="../resources/images/icon-zdth.png" alt="">
+							</div>
+							<div class="nav-name">终端替换</div>
+						</li>
+						<li>
+							<div class="nav-img">
+								<img src="../resources/images/icon-yjsq.png" alt="">
+							</div>
+							<div class="nav-name">押金收取</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="nav-list-box fn-clear">
+				<div class="nav-title"><span class="iconfont">&#xe6a7;</span>回收管理</div>
+				<div class="nav-list">
+					<ul>
+						<li>
+							<div class="nav-img">
+								<img src="../resources/images/icon-cjzdsq.png" alt="">
+							</div>
+							<div class="nav-name">拆机终端收取</div>
+						</li>
+						<li>
+							<div class="nav-img">
+								<img src="../resources/images/icon-zdhs.png" alt="">
+							</div>
+							<div class="nav-name">终端回收</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" async="true">
+	    function _adaptFont(maxWidth, baseWidth, baseSize) {
+	        maxWidth = 750; //最大值750px
+	        baseWidth = 320;
+	        baseSize = 16;
+	        var winWidth = parseInt(window.innerWidth); /*s4手机读到的winWidth是分辨率的宽*/
+	        var docWidth = parseInt(document.documentElement.clientWidth || document.body.clientWidth); //和winWidth区别是,减去右边滚动条
+	        var docWidth = Math.min(winWidth, docWidth);
+	        docWidth > maxWidth && (docWidth = maxWidth);
+	        docWidth < baseWidth && (docWidth = baseWidth);
+	        //设置基准值
+	        document.documentElement.style.fontSize = (docWidth / baseWidth) * baseSize + 'px';
+	    }
+	    (function() {
+	        _adaptFont();
+	        window.addEventListener("resize", _adaptFont);
+	    })();
+    </script>
+    <script src="../../resources/js/common/require.js" data-main="../../resources/js/common/requireConfig.js" id="page"
+        current-page="../../resources/js/homePage.js" target-module="homePageModule"></script>
+</body>
+
+</html>

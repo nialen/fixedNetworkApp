@@ -4,11 +4,11 @@
  */
 @font-face {
   font-family: 'iconfont';  /* project id 144758 */
-  src: url('http://at.alicdn.com/t/font_144758_7ls8k8xksuq.eot');
-  src: url('http://at.alicdn.com/t/font_144758_7ls8k8xksuq.eot?#iefix') format('embedded-opentype'),
-  url('http://at.alicdn.com/t/font_144758_7ls8k8xksuq.woff') format('woff'),
-  url('http://at.alicdn.com/t/font_144758_7ls8k8xksuq.ttf') format('truetype'),
-  url('http://at.alicdn.com/t/font_144758_7ls8k8xksuq.svg#iconfont') format('svg');
+  src: url('http://at.alicdn.com/t/font_144758_lcixhshq6p.eot');
+  src: url('http://at.alicdn.com/t/font_144758_lcixhshq6p.eot?#iefix') format('embedded-opentype'),
+  url('http://at.alicdn.com/t/font_144758_lcixhshq6p.woff') format('woff'),
+  url('http://at.alicdn.com/t/font_144758_lcixhshq6p.ttf') format('truetype'),
+  url('http://at.alicdn.com/t/font_144758_lcixhshq6p.svg#iconfont') format('svg');
 }
 
 .iconfont {
@@ -87,4 +87,25 @@ button{
 }
 .text-right{
 	text-align: right;
+}
+
+.load-bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999999;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.load-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: block;
+	width: 80px;
+	height: 80px;
+	margin-top: -40px;
+	margin-left: -40px;
 }

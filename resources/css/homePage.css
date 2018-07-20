@@ -1,0 +1,138 @@
+body{
+	background: #f3f3f3;
+	width: 100%;
+	overflow-x: hidden;
+}
+.mt10{
+	margin-top: 0.4rem;
+}
+.wrapper {
+    width: 20rem;
+    margin: 0 auto;
+}
+header{
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 2.611111rem;
+	background: #333333;
+	color: #fff;
+	line-height: 2.611111rem;
+	text-align: center;
+}
+header .header-title{
+	font-size: 0.944444rem;
+}
+header .back{
+	position: absolute;
+	left: 0.777778rem;
+	top: 0;
+	font-size: 0.8rem;
+}
+header .back .iconfont{
+	font-size: 0.8rem;
+}
+
+.content{
+	position: absolute;
+	top: 2.611111rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	line-height: 0.64rem;
+	overflow-y: auto;
+}
+.content .banner{
+	width: 100%;
+	height: auto;
+}
+.content .banner img{
+	width: 100%;
+	height: auto;
+}
+
+.content .nav-list-box{
+	position: relative;
+	width: 100%;
+	margin-top: 1.013333rem;
+	background: #fff;
+	border-top: 1px solid #dedede;
+	border-bottom: 1px solid #dedede;
+}
+.content .nav-list-box .nav-title{
+	position: absolute;
+	top: -0.72rem;
+	left: 0;
+	width: 5.893333rem;
+	height: 1.44rem;
+	line-height: 1.44rem;
+	background: #ff5369;
+	color: #fff;
+	font-size: 0.746667rem;
+	border-top-right-radius: 1.333333rem;
+	border-bottom-right-radius: 1.333333rem;
+}
+.content .nav-list-box .nav-title span{
+	padding-left: 0.533333rem;
+	margin-right: 0.133333rem;
+}
+.content .nav-list-box .nav-title span.iconfont{
+    font-size: 1.0rem;
+    vertical-align: top;
+}
+.content .nav-list-box .nav-title span.iconfont.im-manage{
+	font-size: 0.8rem;
+	margin-right: 0.3rem;
+}
+.content .nav-list{
+	width: 100%;
+	padding-top: 1.84rem;
+}
+.content .nav-list ul{
+	width: 100%
+}
+.content .nav-list ul li{
+	display: inline-block;
+	float: left;
+	min-width: 2.506667rem;
+	width: 25%;
+	margin-bottom: 0.4rem;
+	text-align: center;
+}
+.content .nav-list ul li .nav-img{
+	position: relative;
+	width: 2.506667rem;
+	height: 2.506667rem;
+	margin: 0 auto;
+	text-align: center;
+}
+.content .nav-list ul li .nav-img img{
+	width: 2.506667rem;
+	height: 2.506667rem;
+}
+.content .nav-list ul li .nav-img .red-dot{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 0.5rem;
+	height: 0.5rem;
+	margin: 0;
+	padding: 0;
+	color: #fc2e34;
+	text-align: center;
+	line-height: 0.5rem;
+}
+.content .nav-list ul li .nav-img .red-dot .iconfont{
+	font-size: 1.066667rem;
+	margin: 0;
+	padding: 0;
+}
+.content .nav-list ul li .nav-name{
+	height: 1.333333rem;
+	color: #5e5e5e;
+	font-size: 0.64rem;
+	line-height: 1.333333rem;
+}
