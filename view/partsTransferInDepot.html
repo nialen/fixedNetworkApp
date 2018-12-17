@@ -86,7 +86,7 @@
 						</div>
 					</div>
 					<div class="docu-bottom text-right">
-						<button class="detail-btn" ng-click="detailTbcAllotOrder(item)">详情</button>
+						<!-- <button class="detail-btn" ng-click="detailTbcAllotOrder(item)">详情</button> -->
 						<button class="confirm-btn" ng-click="confirmTbcAllotOrder(item)"><i class="iconfont">&#xe6b2;</i> 确认</button>
 					</div>
 				</li>
@@ -231,7 +231,7 @@
 			</p>
 	        <ul class="detail-info" infinite-scroll="queryDepotDetail.depotDetailNextPage(tbcAllotOrderOne.allotOrderId)" infinite-scroll-distance='3' infinite-scroll-container="'#confirmDepot'" ng-show="confirmDetail">
 	            <li class="detail-list" ng-repeat="item in queryDepotDetail.depotDetailItems">
-	                <p class="detail-p"><span>【{{item.sortName}}】</span>{{item.offerName}} <a href="javascript:" class="iconfont delete-btn" ng-click="deleteOfferOne(item)">&#xe610;</a></p>
+	                <p class="detail-p"><span>【{{item.sortName}}】</span>{{item.offerName}} <a href="javascript:" class="iconfont delete-btn" ng-click="deleteOfferOne(item, $index)">&#xe610;</a></p>
 	                <p class="detail-p-list"><span>品牌：</span>{{item.brandName}}</p>
 	                <p class="detail-p-list"><span>型号：</span>{{item.offerModelName}}</p>
 	                <p class="detail-p-list"><span>配置：</span>{{item.offerConfig}}</p>

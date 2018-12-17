@@ -77,7 +77,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                     'storageName': item.storageName,
                     'orgId': item.orgId,
                     'parentStorageId': item.parentStorageId
-                }; 
+                };
                 httpMethod.qryStorage4Select(param).then(function(rsp) {
                     if (rsp.success) {
                         if(rsp.data.list.length > 0){
@@ -118,7 +118,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                     'curPage': _this.depotDetailPage,
                     'pageSize': '10',
                     'allotOrderId': org
-                };             
+                };
                 httpMethod.qryAllotOrderDetail(param).then(function(rsp) {
                     if (rsp.success) {
                         if(rsp.data.list.length > 0){
@@ -148,15 +148,12 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             return function (val) {
                 switch (val) {
                     case '1000':
-                        return '待审批';
-                        break;
-                    case '1001':
                         return '待确认';
                         break;
-                    case '1002':
+                    case '1001':
                         return '已完成';
                         break;
-                    case '1003':
+                    case '1002':
                         return '已取消';
                         break;
                 }
@@ -238,17 +235,17 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             };
             $scope.chooseOutDepot = function(){
                 $rootScope.step = 2;
-            }           
+            };
             //调拨入库确认
             $scope.confirmTbcAllotOrder = function (item) {
                 $rootScope.tbcAllotOrderOne = item;
                 $rootScope.step = 3;
-            }
+            };
             //串码详情
             $scope.detailTbcAllotOrder = function (item) {
                 $rootScope.orderOneDetail = item;
                 $rootScope.step = 5;
-            }
+            };
         }])
         // 调出仓库选择
         .controller('chooseDepotCtrl', ['$scope', '$rootScope', 'httpMethod', 'QueryDepot', function ($scope, $rootScope, httpMethod, QueryDepot) {
@@ -328,6 +325,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             $scope.depotQuery = function () {
                 $scope.queryDepot.depotItems = [];
                 $scope.queryDepot.depotPage = 1;
+                $scope.depotForm.orgId = $scope.checkedOrgList.orgId;
                 $scope.queryDepot.depotNextPage($scope.depotForm);
             };
 
@@ -358,6 +356,10 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             };
             $scope.queryDepotDetail = new QueryDepotDetail();
 
+            $scope.deleteOfferOne = function(item, index){
+                $scope.queryDepotDetail.depotDetailItems.splice(index, 1);
+            };
+
             $scope.serailCode = function(item){
                 $rootScope.offerInfoOne = item;
                 $rootScope.step = 4;
@@ -367,10 +369,10 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                 var STATUS_CD;
                 switch (status) {
                     case 'confirm':
-                        STATUS_CD = '1002';
+                        STATUS_CD = '1001';
                         break;
                     case 'reject':
-                        STATUS_CD = '1003';
+                        STATUS_CD = '1002';
                         break;
                 }
                 var allotItemList = [],
@@ -392,7 +394,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                 if(status == 'confirm' && flag){
                     alert('录入数量与分配数量不一致');
                     return;
-                };
+                }
                 var param = {
                     'allotOrderId': _.get($rootScope.tbcAllotOrderOne, 'allotOrderId'),
                     'statusCd': STATUS_CD,
@@ -401,7 +403,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                     'targetStorageId': _.get($rootScope.tbcAllotOrderOne, 'targetStorageId'),
                     'confirmRemarks': $scope.confirmRemarks,
                     'allotItemList': allotItemList
-                }
+                };
                 httpMethod.changeAllotOrderStatus4JL(param).then(function(rsp){ 
                     if(rsp.success){
                         if(status == 'confirm'){
@@ -511,5 +513,5 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
         }]) 
         .controller('serialCodeDetailCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
            
-        }])             
+        }]);
 });
