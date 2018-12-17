@@ -240,6 +240,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             $scope.confirmTbcAllotOrder = function (item) {
                 $rootScope.tbcAllotOrderOne = item;
                 $rootScope.step = 3;
+                $rootScope.qryAllotOrderDetailSubmit();
             };
             //串码详情
             $scope.detailTbcAllotOrder = function (item) {
@@ -354,7 +355,10 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             $scope.confirmDetailMore = function(){
                 $scope.confirmDetail = !$scope.confirmDetail;
             };
-            $scope.queryDepotDetail = new QueryDepotDetail();
+            $rootScope.qryAllotOrderDetailSubmit = function(){
+                $scope.queryDepotDetail = new QueryDepotDetail();
+                $scope.queryDepotDetail.depotDetailNextPage($rootScope.tbcAllotOrderOne.allotOrderId);
+            };
 
             $scope.deleteOfferOne = function(item, index){
                 $scope.queryDepotDetail.depotDetailItems.splice(index, 1);
@@ -418,7 +422,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             }
         }])
         // 录入串码
-        .controller('serialCodeCtrl', ['$scope', '$rootScope', 'httpMethod', function ($scope, $rootScope, httpMethod) {
+        .controller('serialCodeCtrl', ['$scope', '$rootScope', 'httpMethod', '$http', function ($scope, $rootScope, httpMethod, $http) {
             $scope.instCodeList = _.cloneDeep($rootScope.offerInfoOne.instCodeList) || [];
             //单个添加串码
             $scope.addSerialNumberSingle = function (instCode) {
@@ -463,7 +467,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                     var fileExtend = newValue[0].name.substring(newValue[0].name.lastIndexOf('.')).toLowerCase();
                     if (excelfileExtend.indexOf(fileExtend) <= -1) {
                         alert('导入文件只能是Excel文件');
-                        return false
+                        return false;
                     }
 
                     var formdata = new FormData();
@@ -476,11 +480,11 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                             'Content-Type': undefined
                         },
                         method: 'POST',
-                        url: httpConfig.siteUrl + '/terminal/baseConfig/checkInstCodsByOfferBatch',
+                        url: '/terminal/baseConfig/checkInstCodsByOfferBatch',
                         data: formdata
                     }).success(function (rsp) {
                         $('#upload_file').val('');
-                        if (rsp.success) {            
+                        if (rsp.success) {
                             for(var i=0; i<rsp.data.length; i++){
                                 var isEqualInstCode = _.some($scope.instCodeList, function (item) {
                                     return item.instCode === rsp.data[i].instCode;

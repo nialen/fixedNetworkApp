@@ -276,7 +276,11 @@
 		            </div>
 	            </div>
 			</div>
-			<p class="p-titl"><i class="iconfont">&#xe60b;</i>终端串码列表<button class="leadingin-btn"><i class="iconfont">&#xe628;</i> 批量导入串码</button></p>
+			<p class="p-titl"><i class="iconfont">&#xe60b;</i>终端串码列表<button class="leadingin-btn" ng-click="fileClick()"><i class="iconfont">&#xe628;</i> 批量导入串码</button></p>
+			<div style="display: none">
+				<label for="upload_file"></label>
+				<input type="file" id="upload_file" file="upload_file">
+			</div>
 			<div class="add-search">
 				<input type="text" name="" placeholder="输入串号添加" ng-model="instCode">
 				<button class="add-search-btn" ng-click="addSerialNumberSingle(instCode)">添加</button>
