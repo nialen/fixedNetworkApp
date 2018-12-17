@@ -7,7 +7,8 @@
     <title>调拨入库</title>
     <link rel="stylesheet" href="../resources/css/common/reset.css">
     <link rel="stylesheet" href="../resources/css/common/common.css">
-    <link rel="stylesheet" href="../../resources/css/common/datepicker.css">
+    <link rel="stylesheet" href="../resources/css/common/datepicker.css">
+    <link rel="stylesheet" href="../resources/css/common/jquery.dialog.css" />
     <link rel="stylesheet" href="../resources/css/partsTransferInDepot.css">
 </head>
 
@@ -29,7 +30,7 @@
 			<div class="search">
 				<div class="search-left">
 					<input type="text" placeholder="输入单据号搜索" ng-model="partsTransferForm.allotOrderId">
-					<button class="search-btn iconfont">&#xe600;</button>
+					<button class="search-btn iconfont" ng-click="queryTbcAllotOrder()">&#xe600;</button>
 				</div>
 				<button class="more" ng-click="detailShowMore()">更多 <i class="iconfont" ng-show="!detailShow">&#xe608;</i><i class="iconfont" ng-show="detailShow">&#xe607;</i></button>
 			</div>
@@ -81,7 +82,7 @@
 						</div>
 						<div class="list-info">
 							<label class="info-label">制单日期：</label>
-	                		<p class="info-p" ng-bind="item.createDt"></p>
+	                		<p class="info-p" ng-bind="item.createDt.substring(0,10)"></p>
 						</div>
 					</div>
 					<div class="docu-bottom text-right">
@@ -204,7 +205,7 @@
 		            </div>
 		            <div class="half-from-item">
 		                <label class="txt-label">调入日期：</label>
-		                <p class="info-p" ng-bind="tbcAllotOrderOne.createDt"></p>
+		                <p class="info-p" ng-bind="tbcAllotOrderOne.createDt.substring(0,10)"></p>
 		            </div>
 	            </div>
 	            <div class="from-item border-bottom">
@@ -245,7 +246,7 @@
 	    </div>
 	    <div class="bottom-btns">
 	        <button class="submit-btn" ng-click="submitOfferIndepot('confirm')">提交</button>
-	        <button class="cancel-btn" ng-click="submitOfferIndepot('refuse')">拒绝</button>
+	        <button class="cancel-btn" ng-click="submitOfferIndepot('reject')">拒绝</button>
 	    </div>
 	</div>
 	<!-- 录入串码 -->

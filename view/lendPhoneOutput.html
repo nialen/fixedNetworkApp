@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="../resources/css/common/reset.css" />
 	<link rel="stylesheet" href="../resources/css/common/common.css" />
+	<link rel="stylesheet" href="../resources/css/common/jquery.dialog.css" />
 	<link rel="stylesheet" href="../resources/css/lendPhoneOutput.css" />
 	<title>借机出库</title>
 </head>
@@ -38,7 +39,7 @@
 							<div class="info-date fn-right">
 								<div class="info-date-item">
 									<label for="">借机日期：</label>
-									<p class="info-area-detail" ng-bind="borrowOrderOutBaseinfo.createDt"></p>
+									<p class="info-area-detail" ng-bind="borrowOrderOutBaseinfo.createdt.substring(0,10)"></p>
 								</div>
 							</div>
 						</div>
@@ -73,7 +74,7 @@
 						</div>
 						<div class="terminal-info-content">
 							<div class="terminal-info">
-								<span>品牌：</span><i ng-bind="item.bandName || '--'"></i><br/>
+								<span>品牌：</span><i ng-bind="item.brandName || '--'"></i><br/>
 								<span>型号：</span><i ng-bind="item.offerModelName || '--'"></i><br/>
 								<span>配置：</span><i ng-bind="item.offerConfig || '--'"></i><br/>
 								<span>调整数量：</span><span class="info-number" ng-bind="item.offerQty"></span>
@@ -118,7 +119,7 @@
 						<dd><div class="result-title">终端名称：</div><span ng-bind="offerInfo.offerName || '--'"></span></dd>
 						<dd><div class="result-title">终端编码：</div><span ng-bind="offerInfo.offerCode || '--'"></span></dd>
 						<dd><div class="result-title">终端分类：</div><span ng-bind="offerInfo.sortName || '--'"></span></dd>
-						<dd><div class="result-title">终端品牌：</div><span ng-bind="offerInfo.bandName || '--'"></span></dd>
+						<dd><div class="result-title">终端品牌：</div><span ng-bind="offerInfo.brandName || '--'"></span></dd>
 						<dt><div class="result-title">终端型号：</div><span ng-bind="offerInfo.offerModelName || '--'"></span></dt>
 						<dt><div class="result-title">终端串码：</div><span ng-bind="offerInfo.instCode || '--'"></span></dt>
 						<dt ng-if="offerInfo.macCode"><div class="result-title">MAC码：</div><span ng-bind="offerInfo.macCode || '--'"></span></dt>
@@ -146,7 +147,7 @@
 						<dd><div class="result-title">终端名称：</div><span ng-bind="showCodeInfo.offerName"></span></dd>
 						<dd><div class="result-title">终端编码：</div><span ng-bind="showCodeInfo.offerCode"></span></dd>
 						<dd><div class="result-title">终端分类：</div><span ng-bind="showCodeInfo.sortName"></span></dd>
-						<dd><div class="result-title">终端品牌：</div><span ng-bind="showCodeInfo.bandName"></span></dd>
+						<dd><div class="result-title">终端品牌：</div><span ng-bind="showCodeInfo.brandName"></span></dd>
 						<dt><div class="result-title">终端型号：</div><span ng-bind="showCodeInfo.offerModelName"></span></dt>
 						<dt><div class="result-title">配置：</div><span ng-bind="showCodeInfo.offerConfig">--</span></dt>
 					</dl>
@@ -194,8 +195,8 @@
 	        window.addEventListener("resize", _adaptFont);
 	    })();
     </script>
-    <script src="../../resources/js/common/require.js" data-main="../../resources/js/common/requireConfig.js" id="page"
-        current-page="../../resources/js/lendPhoneOutput.js" target-module="lendPhoneOutputModule"></script>
+    <script src="../resources/js/common/require.js" data-main="../resources/js/common/requireConfig.js" id="page"
+        current-page="../resources/js/lendPhoneOutput.js" target-module="lendPhoneOutputModule"></script>
 </body>
 
 </html>

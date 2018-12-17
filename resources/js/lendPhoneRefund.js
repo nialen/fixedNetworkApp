@@ -39,6 +39,20 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
                 borrowUser: ''
             };
             
+            $scope.$watch('borrowOrderForm.borrowUser', function(newVaule){
+				if(newVaule){
+					$rootScope.shoppingCartList = [];
+					var params = {
+						staffId: newVaule
+					};
+					httpMethod.queryStorageByOutUser(params).then(function (rsp) {
+						if (rsp.success) {
+							$rootScope.storageByOutUser = rsp.data; //获取采购退库基本信息接口
+						}
+					});
+				}
+			});
+            
             //借机退库单基本信息获取接口
             httpMethod.qryBorrowOrderInBaseinfo().then(function(rsp){
                 $rootScope.borrowOrderInBaseinfo = rsp.data;
@@ -108,7 +122,7 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
             $scope.qryOfferByInstCodes = function(){
                 var param = {
                     'instCode': _.get($scope.aryOfferForm, 'instCode'),
-                    'storageId': _.get($rootScope.borrowOrderInBaseinfo, 'targetStorageId')
+                    'storageId': _.get($rootScope.storageByOutUser, 'targetStorageId')
                 };
                 httpMethod.qryOfferByInstCodes(param).then(function(rsp){
                     $scope.offerInfo = rsp.data;

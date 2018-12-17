@@ -19,9 +19,9 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             };
             //待确认调拨单查询接口
             Reddit.prototype.tbcAllotOrderNextPage = function(item) {
-                var _this = this;
-                if (_this.tbcAllotOrderBusy) return;
-                _this.tbcAllotOrderBusy = true;
+            	 var _this = this;
+                 if (_this.tbcAllotOrderBusy) return;
+                 _this.tbcAllotOrderBusy = true;
                 var param = {                
                     'curPage': _this.tbcAllotOrderPage,
                     'pageSize': '10',
@@ -148,12 +148,15 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
             return function (val) {
                 switch (val) {
                     case '1000':
-                        return '待确认';
+                        return '待审批';
                         break;
                     case '1001':
-                        return '已完成';
+                        return '待确认';
                         break;
                     case '1002':
+                        return '已完成';
+                        break;
+                    case '1003':
                         return '已取消';
                         break;
                 }
@@ -364,10 +367,10 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ui-bootstrap-tpls'
                 var STATUS_CD;
                 switch (status) {
                     case 'confirm':
-                        STATUS_CD = '1001';
+                        STATUS_CD = '1002';
                         break;
                     case 'reject':
-                        STATUS_CD = '1002';
+                        STATUS_CD = '1003';
                         break;
                 }
                 var allotItemList = [],

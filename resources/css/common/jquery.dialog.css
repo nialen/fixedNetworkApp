@@ -4,7 +4,7 @@
 }
 .dialog .widget-container {
 	position: relative;
-	width: 546px;
+	width: 70%;
 	background: #fff;
 	/*border: 1px solid #e04d4d;*/
 }
@@ -13,7 +13,7 @@
 	position: relative;
 	height: 36px;
 	padding-left: 10px;
-	background: #6e8ee2;
+	background: #333;
 	border-bottom: 1px solid #b0b0b0;
 	line-height: 36px;
 	color: #000;
@@ -49,27 +49,29 @@
 }
 
 .dialog .widget-body .alert-info-wrap {
-	height: 250px;
-	padding-top: 20px;
-	padding-left: 96px;
+	height: 100px;
+	padding-top: 10px;
+	padding-left: 45px;
 }
 
 .dialog .widget-body .alert-info-wrap.alert-success {
 	height: 250px;
-	background: url(../images/icon-succ01.png) no-repeat 0 0;
+	background: url(../../images/icon-succ01.png) no-repeat 0 0;
+	background-size: 40px 40px;
 }
 
 .dialog .widget-body .alert-info-wrap.alert-error {
-	background: url(../images/icon-err01.png) no-repeat 0 0;
+	background: url(../../images/icon-err01.png) no-repeat 0 0;
+	background-size: 40px 40px;
 }
 
 .dialog .widget-body .alert-info-wrap.alert-info {
-	background: url(../images/icon-info01.png) no-repeat 0 0;
+	background: url(../../images/icon-info01.png) no-repeat 0 0;
+	background-size: 40px 40px;
 }
 
 .dialog .widget-body .alert-title {
-	height: 200px;
-	line-height: 25px;
+	line-height: 20px;
 	color: #020202;
 	font-size: 14px;
 	text-align: left;
@@ -106,7 +108,6 @@
 }
 
 .dialog .widget-foot {
-	height: 50px;
 	padding: 10px 0;
 	background-color: #fafafa;
 	border-top: 1px solid #b0b0b0;
@@ -115,13 +116,13 @@
 
 .dialog .widget-foot button {
 	margin: 0 10px;
-	height: 32px;
+	height: 30px;
 	padding: 5px 20px;
-	background-color: #dbe6ff;
-	border: 1px solid #aabff2;
+	background-color: #333;
+	border: 1px solid #333;
 	border-radius: 5px;
 	outline: none;
-	color: #6b8ee6;
+	color: #fff;
 	cursor: pointer;
 }
 .dialog .widget-foot button:hover {

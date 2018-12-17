@@ -28,14 +28,8 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
             httpMethod.qryAllotApplyOrderBaseinfo().then(function(rsp){
                 $scope.orderBaseinfo = rsp.data;
                 $scope.allotOrderInfo = $scope.orderBaseinfo.allotOrder;
-            });
-
-            //调出仓库下拉选择接口
-            httpMethod.qryTwoStorage().then(function(rsp){
-                if(rsp.success){
-                    $scope.twoStorageList = rsp.data;
-                    $scope.transfersApplyForm.originStorageId = $scope.twoStorageList[0].storageId;
-                }
+                $scope.originStorageList = $scope.orderBaseinfo.originStorageList;
+                $scope.transfersApplyForm.originStorageId = $scope.originStorageList[0].storageId;
             });
 
             $scope.isHideInfo = true;
@@ -81,8 +75,8 @@ define(['angular', 'jquery', 'lodash', 'mock', 'httpMethod', 'ngStorage', 'ui-bo
                 var param = {
                     'allotOrderId': _.get($scope.allotOrderInfo, 'allotOrderId'),
                     'staffId': _.get($scope.allotOrderInfo, 'staffId'),
-                    'originStorageId': _.get($scope.allotOrderInfo, 'targetStorageId'),
-                    'targetStorageId': _.get($scope.transfersApplyForm, 'originStorageId'),
+                    'originStorageId': _.get($scope.transfersApplyForm, 'originStorageId'),
+                    'targetStorageId': _.get($scope.allotOrderInfo, 'targetStorageId'),
                     'allotRemarks': _.get($scope.transfersApplyForm, 'allotRemarks'),
                     'allotItemList': $scope.allotItemList
                 };

@@ -18,7 +18,7 @@
 
 			function showLoad() {
 				var loadDom =
-					'<div id="load" class="load-bg"><img src="../../resources/images/loading.gif" class="load-icon"/></div>';
+					'<div id="load" class="load-bg"><img src="../resources/images/loading.gif" class="load-icon"/></div>';
 				if (!$('body').find('#load').length) {
 					$('body').append(loadDom);
 				}

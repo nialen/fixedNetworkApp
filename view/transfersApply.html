@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="../resources/css/common/reset.css" />
 	<link rel="stylesheet" href="../resources/css/common/common.css" />
+	<link rel="stylesheet" href="../resources/css/common/jquery.dialog.css" />
 	<link rel="stylesheet" href="../resources/css/transfersApply.css" />
 	<title>调拨申请</title>
 </head>
@@ -38,7 +39,7 @@
 							<div class="info-date fn-right">
 								<div class="info-date-item">
 									<label for="">调拨日期：</label>
-									<p class="info-area-detail" ng-bind="allotOrderInfo.createDt"></p>
+									<p class="info-area-detail" ng-bind="allotOrderInfo.createDt.substring(0,10)"></p>
 								</div>
 							</div>
 						</div>
@@ -52,7 +53,7 @@
 					<div class="info-area">
 						<div class="info-area-item">
 							<label for="">调出仓库：</label>
-							<select class="select-up" ng-model="transfersApplyForm.originStorageId" ng-options="item.storageId as item.storageIdName for item in twoStorageList">
+							<select class="select-up" ng-model="transfersApplyForm.originStorageId" ng-options="item.storageId as item.storageName for item in originStorageList">
 							</select>
 						</div>
 					</div>
@@ -187,8 +188,8 @@
 	        window.addEventListener("resize", _adaptFont);
 	    })();
     </script>
-    <script src="../../resources/js/common/require.js" data-main="../../resources/js/common/requireConfig.js" id="page"
-        current-page="../../resources/js/transfersApply.js" target-module="transfersApplyModule"></script>
+    <script src="../resources/js/common/require.js" data-main="../resources/js/common/requireConfig.js" id="page"
+        current-page="../resources/js/transfersApply.js" target-module="transfersApplyModule"></script>
 </body>
 
 </html>

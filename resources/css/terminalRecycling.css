@@ -425,15 +425,11 @@ footer .btn.btn-cancel{
 .code-list ul li{
 	float: left;
 	display: inline-block;
-	width: 50%;
+	width: 100%;
 	height: 2.24rem;
 	line-height: 2.24rem;
 	border-bottom: 1px solid #d1d1d1;
 	font-size: 0.64rem;
-}
-.code-list ul li:nth-child(odd){
-	width: calc(50% - 1px);
-	border-right: 1px solid #d1d1d1;
 }
 .code-list ul li span{
 	display: inline-block;
@@ -455,15 +451,11 @@ footer .btn.btn-cancel{
 .code-mac-list ul li{
 	float: left;
 	display: inline-block;
-	width: 50%;
+	width: 100%;
 	height: 2.933333rem;
 	line-height: 1.0rem;
 	border-bottom: 1px solid #d1d1d1;
 	font-size: 0.64rem;
-}
-.code-mac-list ul li:nth-child(odd){
-	width: calc(50% - 1px);
-	border-right: 1px solid #d1d1d1;
 }
 .code-mac-list ul li span{
 	display: inline-block;

@@ -744,7 +744,7 @@ to{left:100%; opacity: 0;}
 .code-li{
 	position: relative;
 	display: flex;
-	width: calc(50% - 1px);
+	width: calc(100% - 1px);
 	padding: 0.45rem 0 0.2rem;
 	border-right: 1px solid #d1d1d1;
 	border-bottom: 1px solid #d1d1d1;
